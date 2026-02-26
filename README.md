@@ -1,5 +1,5 @@
 # KKShadersPlus
 Recreated Koikatsu shaders with more features 
 
-## Moved
-Moved to new git host
+## Forked
+Add Depth Feature for front hair
