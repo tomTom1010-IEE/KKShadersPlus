@@ -30,7 +30,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="LiquidTiling" Type="Color" />
       <Property Name="overcolor1" Type="Color" />
       <Property Name="overcolor2" Type="Color" />
@@ -107,7 +106,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="LiquidTiling" Type="Color" />
       <Property Name="overcolor1" Type="Color" />
       <Property Name="overcolor2" Type="Color" />
@@ -197,7 +195,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="LiquidTiling" Type="Color" />
       <Property Name="overcolor1" Type="Color" />
       <Property Name="overcolor2" Type="Color" />
@@ -285,7 +282,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="LiquidTiling" Type="Color" />
       <Property Name="overcolor1" Type="Color" />
       <Property Name="overcolor2" Type="Color" />
@@ -399,7 +395,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="OutlineOn" Type="Float" Range="0, 1" />
       <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
       <Property Name="LineWidthS" Type="Float" Range="0, 1" />
@@ -453,7 +448,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="OutlineOn" Type="Float" Range="0, 1" />
       <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
       <Property Name="LineWidthS" Type="Float" Range="0, 1" />
@@ -519,7 +513,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="OutlineOn" Type="Float" Range="0, 1" />
       <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
       <Property Name="LineWidthS" Type="Float" Range="0, 1" />
@@ -586,7 +579,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="OutlineOn" Type="Float" Range="0, 1" />
       <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
       <Property Name="LineWidthS" Type="Float" Range="0, 1" />
@@ -664,7 +656,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="OutlineOn" Type="Float" Range="0, 1" />
       <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
       <Property Name="LineWidthS" Type="Float" Range="0, 1" />
@@ -728,7 +719,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="OutlineOn" Type="Float" Range="0, 1" />
       <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
       <Property Name="LineWidthS" Type="Float" Range="0, 1" />
@@ -804,7 +794,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="OutlineOn" Type="Float" Range="0, 1" />
       <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
       <Property Name="LineWidthS" Type="Float" Range="0, 1" />
@@ -872,7 +861,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="OutlineOn" Type="Float" Range="0, 1" />
       <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
       <Property Name="LineWidthS" Type="Float" Range="0, 1" />
@@ -928,7 +916,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="ExpressionSize" Type="Float" Range="0, 1" />
       <Property Name="ExpressionDepth" Type="Float" Range="0, 2" />
       <Property Name="CustomAmbient" Type="Color" />
@@ -965,7 +952,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="ExpressionSize" Type="Float" Range="0, 1" />
       <Property Name="ExpressionDepth" Type="Float" Range="0, 2" />
       <Property Name="CustomAmbient" Type="Color" />
@@ -1009,7 +995,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
       <Property Name="DisableShadowedMatcap" Type="Float" Range="0, 1" />
       <Property Name="ReflectMap" Type="Texture" />
@@ -1038,7 +1023,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
       <Property Name="DisableShadowedMatcap" Type="Float" Range="0, 1" />
       <Property Name="ReflectMap" Type="Texture" />
@@ -1082,7 +1066,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="LiquidTiling" Type="Color" />
       <Property Name="ShadowColor" Type="Color" />
       <Property Name="SpecularColor" Type="Color" />
@@ -1162,7 +1145,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="LiquidTiling" Type="Color" />
       <Property Name="ShadowColor" Type="Color" />
       <Property Name="SpecularColor" Type="Color" />
@@ -1255,7 +1237,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="LiquidTiling" Type="Color" />
       <Property Name="ShadowColor" Type="Color" />
       <Property Name="SpecularColor" Type="Color" />
@@ -1337,7 +1318,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="LiquidTiling" Type="Color" />
       <Property Name="ShadowColor" Type="Color" />
       <Property Name="SpecularColor" Type="Color" />
@@ -1429,7 +1409,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="ShadowColor" Type="Color" />
       <Property Name="SpecularColor" Type="Color" />
       <Property Name="Color" Type="Color" />
@@ -1497,7 +1476,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="ShadowColor" Type="Color" />
       <Property Name="SpecularColor" Type="Color" />
       <Property Name="Color" Type="Color" />
@@ -1578,7 +1556,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="ShadowColor" Type="Color" />
       <Property Name="SpecularColor" Type="Color" />
       <Property Name="Color" Type="Color" />
@@ -1648,7 +1625,6 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
-      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="ShadowColor" Type="Color" />
       <Property Name="SpecularColor" Type="Color" />
       <Property Name="Color" Type="Color" />
@@ -2084,6 +2060,73 @@
       <Property Name="ShrinkVerticalAdjust" Type="Float" Range="-1, 1" />
       <Property Name="Clock" Type="Color" DefaultValue="0, 0, 0, 1" />
     </Shader>
+    <Shader Name="xukmi/HairFrontPlusDOF" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusDOF">
+      <Property Name="DetailMask" Type="Texture" />
+      <Property Name="MainTex" Type="Texture" />
+      <Property Name="AlphaMask" Type="Texture" />
+      <Property Name="NormalMap" Type="Texture" />
+      <Property Name="HairGloss" Type="Texture" />
+      <Property Name="ColorMask" Type="Texture" />
+      <Property Name="AnotherRamp" Type="Texture" />
+      <Property Name="Color" Type="Color" />
+      <Property Name="Color2" Type="Color" />
+      <Property Name="Color3" Type="Color" />
+      <Property Name="GlossColor" Type="Color" />
+      <Property Name="SpecularColor" Type="Color" />
+      <Property Name="ShadowColor" Type="Color" />
+      <Property Name="CustomAmbient" Type="Color" />
+      <Property Name="ReflectCol" Type="Color" />
+      <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
+      <Property Name="NormalMapScale" Type="Float" Range="0, 1" />
+      <Property Name="LineColor" Type="Color" />
+      <Property Name="rimpower" Type="Float" Range="0, 1" />
+      <Property Name="rimV" Type="Float" Range="0, 1" />
+      <Property Name="rimReflectMode" Type="Float" Range="-1, 1" />
+      <Property Name="ShadowExtend" Type="Float" Range="0, 1" />
+      <Property Name="SpeclarHeight" Type="Float" Range="0, 1" />
+      <Property Name="SpecularNormalScale" Type="Float" Range="0, 1" />
+      <Property Name="SpecularHairPower" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForLights" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForSpecular" Type="Float" Range="0, 1" />
+      <Property Name="UseLightColorSpecular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularIsHighlights" Type="Float" Range="0, 1" />
+      <Property Name="SpecularIsHighLightsPow" Type="Float" Range="0, 64" />
+      <Property Name="SpecularIsHighlightsRange" Type="Float" Range="0, 20" />
+      <Property Name="UseMeshSpecular" Type="Float" Range="0, 1" />
+      <Property Name="EmissionMask" Type="Texture" />
+      <Property Name="EmissionColor" Type="Color" />
+      <Property Name="EmissionIntensity" Type="Float" />
+      <Property Name="EmissionMaskMode" Type="Float" />
+      <Property Name="OutlineOn" Type="Float" Range="0, 1" />
+      <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
+      <Property Name="LineWidthS" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailRAsSpecularMap" Type="Float" Range="0, 1" />
+      <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
+      <Property Name="KKPRimColor" Type="Color" />
+      <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
+      <Property Name="KKPRimIntensity" Type="Float" Range="0, 10" />
+      <Property Name="KKPRimAsDiffuse" Type="Float" Range="0, 1" />
+      <Property Name="KKPRimRotateX" Type="Float" Range="-2, 2" />
+      <Property Name="KKPRimRotateY" Type="Float" Range="-2, 2" />
+      <Property Name="ReflectMap" Type="Texture" />
+      <Property Name="ReflectionMapCap" Type="Texture" />
+      <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
+      <Property Name="ReflBlendSrc" Type="Float" Range="0, 10" />
+      <Property Name="ReflBlendDst" Type="Float" Range="0, 10" />
+      <Property Name="ReflBlendVal" Type="Float" Range="0, 1" />
+      <Property Name="Roughness" Type="Float" Range="0, 1" />
+      <Property Name="ReflectionVal" Type="Float" Range="0, 1" />
+      <Property Name="AdjustBackfaceNormals" Type="Float" Range="0, 1" />
+      <Property Name="CullOption" Type="Float" Range="0, 2" />
+      <Property Name="Cutoff" Type="Float" Range="0, 1" />
+      <Property Name="ShadowHSV" Type="Color" />
+      <Property Name="transparency" Type="Float" Range="0, 1" />
+      <Property Name="Saturation" Type="Float" Range="0, 2" />
+    </Shader>
+    <Shader Name="xukmi/HairFrontPlusDepthOnly" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusDepthOnly">
+      <Property Name="MainTex" Type="Texture" />
+      <Property Name="Cutoff" Type="Float" Range="0, 1" />
+    </Shader>
   </MaterialEditor>
-  <game>Koikatsu</game>
+  <game>Koikatsu Sunshine</game>
 </manifest>
