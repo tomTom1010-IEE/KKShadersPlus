@@ -83,6 +83,11 @@ Shader "xukmi/MainAlphaPlus"
 		[MaterialToggle] _AdjustBackfaceNormals ("Adjust Backface Normals", Float) = 0.0
 		[Enum(Off,0,On,1)]_ReflectiveOverlayed ("Reflections Overlayed", Float) = 0.0
 		_rimReflectMode ("Rimlight Placement", Float) = 0.0
+
+		[MaterialToggle] _UseMatCapBlur ("Use MatCap Blur", Float) = 0
+		_MatCapBlur ("MatCap Blur", Range(0, 1)) = 0
+		_MatCapBlurMip ("MatCap Blur Mip", Range(0, 8)) = 4
+				
 		
 		_SpecularNormalScale ("Specular Normal Map Relative Scale", Float) = 1
 		_SpecularDetailNormalScale ("Specular Detail Normal Map Relative Scale", Float) = 1
@@ -257,6 +262,9 @@ Shader "xukmi/MainAlphaPlus"
 			#include "../KKPVertexLights.cginc"
 			#include "../KKPVertexLightsSpecular.cginc"
 			#include "../KKPEmission.cginc"
+
+			#define KKP_USE_MATCAP_BLUR
+
 			#include "../KKPReflect.cginc"
 			#include "KKPItemFrag.cginc"
 

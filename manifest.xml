@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <manifest schema-ver="1">
   <guid>xukmi.Shaders.VanillaPlus</guid>
-  <name>Vanilla Plus</name>
-  <version>1.7.2</version>
-  <author>xukmi</author>
+  <name>Vanilla Plus (tom fork)</name>
+  <version>1.7.3</version>
+  <author>xukmi&amp;tomTom</author>
   <description>Vanilla KK Shaders with more features</description>
   <website>https://www.pixiv.net/en/users/66587336</website>
   <MaterialEditor>
@@ -1189,6 +1189,9 @@
       <Property Name="ReflectiveBlend" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveMulOrAdd" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveOverlayed" Type="Float" Range="0, 1" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="AnotherRampFull" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
@@ -1283,6 +1286,9 @@
       <Property Name="ReflectiveBlend" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveMulOrAdd" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveOverlayed" Type="Float" Range="0, 1" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="AnotherRampFull" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
@@ -1450,6 +1456,9 @@
       <Property Name="ReflectiveBlend" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveMulOrAdd" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveOverlayed" Type="Float" Range="0, 1" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
@@ -1599,6 +1608,9 @@
       <Property Name="ReflectiveBlend" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveMulOrAdd" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveOverlayed" Type="Float" Range="0, 1" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
@@ -1747,6 +1759,9 @@
       <Property Name="ReflectiveBlend" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveMulOrAdd" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveOverlayed" Type="Float" Range="0, 1" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
@@ -1917,6 +1932,9 @@
       <Property Name="ReflectiveBlend" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveMulOrAdd" Type="Float" Range="0, 1" />
       <Property Name="ReflectiveOverlayed" Type="Float" Range="0, 1" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />

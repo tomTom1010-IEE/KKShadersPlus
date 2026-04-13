@@ -92,7 +92,11 @@
 		_ReflectRotation ("Matcap Rotation", Range(0, 360)) = 0
 		_UseKKMetal("Use KK Metal", Range(0, 1)) = 1
 		_UseMatCapReflection("Use Mat Cap", Range(0, 1)) = 1
-		
+
+		[MaterialToggle] _UseMatCapBlur ("Use MatCap Blur", Float) = 0
+		_MatCapBlur ("MatCap Blur", Range(0, 1)) = 0
+		_MatCapBlurMip ("MatCap Blur Mip", Range(0, 8)) = 4
+				
 		// Stuff added post-1.3.1
 		_ShadowHSV ("Shadow HSV", Vector) = (0, 0, 0, 0)
 		[MaterialToggle] _AdjustBackfaceNormals ("Adjust Backface Normals", Float) = 0.0
@@ -145,6 +149,9 @@
 			#include "../KKPVertexLights.cginc"
 			#include "../KKPVertexLightsSpecular.cginc"
 			#include "../KKPEmission.cginc"
+
+			#define KKP_USE_MATCAP_BLUR
+
 			#include "../KKPReflect.cginc"
 
 			Varyings vert (VertexData v)
