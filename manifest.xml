@@ -823,6 +823,74 @@
       <Property Name="transparency" Type="Float" Range="0, 1" />
       <Property Name="Saturation" Type="Float" Range="0, 2" />
     </Shader>
+    <Shader Name="xukmi/HairFrontPlusReflectDOF" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusReflectDOF">
+      <Property Name="DetailMask" Type="Texture" />
+      <Property Name="MainTex" Type="Texture" />
+      <Property Name="AlphaMask" Type="Texture" />
+      <Property Name="NormalMap" Type="Texture" />
+      <Property Name="HairGloss" Type="Texture" />
+      <Property Name="ColorMask" Type="Texture" />
+      <Property Name="AnotherRamp" Type="Texture" />
+      <Property Name="Color" Type="Color" />
+      <Property Name="Color2" Type="Color" />
+      <Property Name="Color3" Type="Color" />
+      <Property Name="GlossColor" Type="Color" />
+      <Property Name="SpecularColor" Type="Color" />
+      <Property Name="ShadowColor" Type="Color" />
+      <Property Name="CustomAmbient" Type="Color" />
+      <Property Name="ReflectCol" Type="Color" />
+      <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
+      <Property Name="DisableShadowedMatcap" Type="Float" Range="0, 1" />
+      <Property Name="NormalMapScale" Type="Float" Range="0, 1" />
+      <Property Name="LineColor" Type="Color" />
+      <Property Name="rimpower" Type="Float" Range="0, 1" />
+      <Property Name="rimV" Type="Float" Range="0, 1" />
+      <Property Name="rimReflectMode" Type="Float" Range="-1, 1" />
+      <Property Name="ShadowExtend" Type="Float" Range="0, 1" />
+      <Property Name="SpeclarHeight" Type="Float" Range="0, 1" />
+      <Property Name="SpecularNormalScale" Type="Float" Range="0, 1" />
+      <Property Name="SpecularHairPower" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForLights" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForSpecular" Type="Float" Range="0, 1" />
+      <Property Name="UseLightColorSpecular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularIsHighlights" Type="Float" Range="0, 1" />
+      <Property Name="SpecularIsHighLightsPow" Type="Float" Range="0, 64" />
+      <Property Name="SpecularIsHighlightsRange" Type="Float" Range="0, 20" />
+      <Property Name="UseMeshSpecular" Type="Float" Range="0, 1" />
+      <Property Name="EmissionMask" Type="Texture" />
+      <Property Name="EmissionColor" Type="Color" />
+      <Property Name="EmissionIntensity" Type="Float" />
+      <Property Name="EmissionMaskMode" Type="Float" />
+      <Property Name="OutlineOn" Type="Float" Range="0, 1" />
+      <Property Name="SpecularHeightInvert" Type="Float" Range="0, 1" />
+      <Property Name="LineWidthS" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailRAsSpecularMap" Type="Float" Range="0, 1" />
+      <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
+      <Property Name="KKPRimColor" Type="Color" />
+      <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
+      <Property Name="KKPRimIntensity" Type="Float" Range="0, 10" />
+      <Property Name="KKPRimAsDiffuse" Type="Float" Range="0, 1" />
+      <Property Name="KKPRimRotateX" Type="Float" Range="-2, 2" />
+      <Property Name="KKPRimRotateY" Type="Float" Range="-2, 2" />
+      <Property Name="ReflectMap" Type="Texture" />
+      <Property Name="ReflectionMapCap" Type="Texture" />
+      <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
+      <Property Name="ReflBlendSrc" Type="Float" Range="0, 10" />
+      <Property Name="ReflBlendDst" Type="Float" Range="0, 10" />
+      <Property Name="ReflBlendVal" Type="Float" Range="0, 1" />
+      <Property Name="Roughness" Type="Float" Range="0, 1" />
+      <Property Name="ReflectionVal" Type="Float" Range="0, 1" />
+      <Property Name="AdjustBackfaceNormals" Type="Float" Range="0, 1" />
+      <Property Name="CullOption" Type="Float" Range="0, 2" />
+      <Property Name="Cutoff" Type="Float" Range="0, 1" />
+      <Property Name="DOFPrepassZWrite" Type="Float" Range="0, 1" />
+      <Property Name="ReflectRotation" Type="Float" Range="0, 360" />
+      <Property Name="ReflectMask" Type="Texture" />
+      <Property Name="ReflectColMix" Type="Float" Range="0, 1" />
+      <Property Name="ShadowHSV" Type="Color" />
+      <Property Name="transparency" Type="Float" Range="0, 1" />
+      <Property Name="Saturation" Type="Float" Range="0, 2" />
+    </Shader>
     <Shader Name="xukmi/HairFrontPlusTessReflect" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusTessReflect">
       <Property Name="DetailMask" Type="Texture" />
       <Property Name="MainTex" Type="Texture" />
@@ -1196,6 +1264,9 @@
       <Property Name="AnotherRampFull" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
+      
+      
+      
       <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
       <Property Name="KKPRimColor" Type="Color" />
       <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
@@ -1374,6 +1445,9 @@
       <Property Name="AnotherRampFull" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
       <Property Name="KKPRimColor" Type="Color" />
       <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
@@ -1529,6 +1603,9 @@
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
       <Property Name="KKPRimColor" Type="Color" />
       <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
@@ -1614,6 +1691,9 @@
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
+      
+      
+      
       <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
       <Property Name="KKPRimColor" Type="Color" />
       <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
@@ -1683,6 +1763,9 @@
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
       <Property Name="KKPRimColor" Type="Color" />
       <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
@@ -1765,6 +1848,9 @@
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
+      
+      
+      
       <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
       <Property Name="KKPRimColor" Type="Color" />
       <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
@@ -1845,6 +1931,9 @@
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
       <Property Name="KKPRimColor" Type="Color" />
       <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
@@ -2018,6 +2107,9 @@
       <Property Name="UseKKMetal" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Type="Float" Range="0, 1" />
       <Property Name="ReflectionMapCap" Type="Texture" />
+      <Property Name="UseMatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlur" Type="Float" Range="0, 1" />
+      <Property Name="MatCapBlurMip" Type="Float" Range="0, 8" />
       <Property Name="UseKKPRim" Type="Float" Range="0, 1" />
       <Property Name="KKPRimColor" Type="Color" />
       <Property Name="KKPRimSoft" Type="Float" Range="0, 10" />
@@ -2140,6 +2232,7 @@
       <Property Name="AdjustBackfaceNormals" Type="Float" Range="0, 1" />
       <Property Name="CullOption" Type="Float" Range="0, 2" />
       <Property Name="Cutoff" Type="Float" Range="0, 1" />
+      <Property Name="DOFPrepassZWrite" Type="Float" Range="0, 1" />
       <Property Name="ShadowHSV" Type="Color" />
       <Property Name="transparency" Type="Float" Range="0, 1" />
       <Property Name="Saturation" Type="Float" Range="0, 2" />
@@ -2147,6 +2240,44 @@
     <Shader Name="xukmi/HairFrontPlusDepthOnly" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusDepthOnly">
       <Property Name="MainTex" Type="Texture" />
       <Property Name="Cutoff" Type="Float" Range="0, 1" />
+    </Shader>
+    <Shader Name="xukmi/PBRReference" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_PBRReference">
+      <Property Name="PBRBaseColor" Type="Color" />
+      <Property Name="MainTex" Type="Texture" />
+      <Property Name="NormalMap" Type="Texture" />
+      <Property Name="NormalMapScale" Type="Float" Range="0, 2" />
+      <Property Name="PBRMetallic" Type="Float" Range="0, 1" />
+      <Property Name="PBRMetallicMap" Type="Texture" />
+      <Property Name="PBRRoughness" Type="Float" Range="0, 1" />
+      <Property Name="PBRRoughnessMap" Type="Texture" />
+      <Property Name="PBRRoughnessBias" Type="Float" Range="-1, 1" />
+      <Property Name="PBROcclusion" Type="Float" Range="0, 1" />
+      <Property Name="PBROcclusionMap" Type="Texture" />
+      <Property Name="PBROcclusionStrength" Type="Float" Range="0, 1" />
+      <Property Name="PBRIOR" Type="Float" Range="1, 2.5" />
+      <Property Name="PBRSpecular" Type="Float" Range="0, 1" />
+      <Property Name="PBRFresnelStrength" Type="Float" Range="0, 2" />
+      <Property Name="PBRDirectIntensity" Type="Float" Range="0, 4" />
+      <Property Name="PBREnvIntensity" Type="Float" Range="0, 4" />
+      <Property Name="PBRCoatWeight" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatMask" Type="Texture" />
+      <Property Name="PBRCoatRoughness" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatRoughnessMap" Type="Texture" />
+      <Property Name="PBRCoatIOR" Type="Float" Range="1, 2.5" />
+      <Property Name="PBRCoatNormalMap" Type="Texture" />
+      <Property Name="PBRCoatNormalScale" Type="Float" Range="0, 2" />
+      <Property Name="EmissionMask" Type="Texture" />
+      <Property Name="EmissionColor" Type="Color" />
+      <Property Name="EmissionIntensity" Type="Float" />
+      <Property Name="PBRMasterBlend" Type="Float" Range="0, 1" />
+      <Property Name="PBRDiffuseBlend" Type="Float" Range="0, 1" />
+      <Property Name="PBRSpecularBlend" Type="Float" Range="0, 1" />
+      <Property Name="PBRReflectionBlend" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatBlend" Type="Float" Range="0, 1" />
+      <Property Name="PBRDiffuseBlendMask" Type="Texture" />
+      <Property Name="PBRSpecularBlendMask" Type="Texture" />
+      <Property Name="PBRReflectionBlendMask" Type="Texture" />
+      <Property Name="PBRCoatBlendMask" Type="Texture" />
     </Shader>
   </MaterialEditor>
   <game>Koikatsu Sunshine</game>
