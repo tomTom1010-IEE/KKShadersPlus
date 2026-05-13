@@ -26,6 +26,7 @@ float _PBRSpecular;
 float _PBRFresnelStrength;
 float _PBRDirectIntensity;
 float _PBREnvIntensity;
+float _DisablePointLights;
 
 sampler2D _PBRCoatMask;
 float4 _PBRCoatMask_ST;
@@ -43,20 +44,6 @@ float4 _EmissionMask_ST;
 float4 _EmissionColor;
 float _EmissionIntensity;
 
-sampler2D _PBRDiffuseBlendMask;
-float4 _PBRDiffuseBlendMask_ST;
-sampler2D _PBRSpecularBlendMask;
-float4 _PBRSpecularBlendMask_ST;
-sampler2D _PBRReflectionBlendMask;
-float4 _PBRReflectionBlendMask_ST;
-sampler2D _PBRCoatBlendMask;
-float4 _PBRCoatBlendMask_ST;
-float _PBRMasterBlend;
-float _PBRDiffuseBlend;
-float _PBRSpecularBlend;
-float _PBRReflectionBlend;
-float _PBRCoatBlend;
-
 struct KKPPBRSurface
 {
 	float3 albedo;
@@ -68,10 +55,6 @@ struct KKPPBRSurface
 	float coatWeight;
 	float coatRoughness;
 	float3 coatNormalWS;
-	float diffuseBlend;
-	float specularBlend;
-	float reflectionBlend;
-	float coatBlend;
 };
 
 float3 KKP_PBR_SampleNormalWS(sampler2D normalMap, float2 uv, float scale, float3 normalWS, float3 tangentWS, float3 bitangentWS)
@@ -100,11 +83,6 @@ KKPPBRSurface KKP_PBR_SampleSurface(float2 uv, float3 normalWS, float3 tangentWS
 	s.coatRoughness = saturate(_PBRCoatRoughness * tex2D(_PBRCoatRoughnessMap, uv * _PBRCoatRoughnessMap_ST.xy + _PBRCoatRoughnessMap_ST.zw).r);
 	s.coatRoughness = max(s.coatRoughness, 0.04);
 	s.coatNormalWS = KKP_PBR_SampleNormalWS(_PBRCoatNormalMap, uv * _PBRCoatNormalMap_ST.xy + _PBRCoatNormalMap_ST.zw, _PBRCoatNormalScale, normalWS, tangentWS, bitangentWS);
-
-	s.diffuseBlend = saturate(_PBRMasterBlend * _PBRDiffuseBlend * tex2D(_PBRDiffuseBlendMask, uv * _PBRDiffuseBlendMask_ST.xy + _PBRDiffuseBlendMask_ST.zw).r);
-	s.specularBlend = saturate(_PBRMasterBlend * _PBRSpecularBlend * tex2D(_PBRSpecularBlendMask, uv * _PBRSpecularBlendMask_ST.xy + _PBRSpecularBlendMask_ST.zw).r);
-	s.reflectionBlend = saturate(_PBRMasterBlend * _PBRReflectionBlend * tex2D(_PBRReflectionBlendMask, uv * _PBRReflectionBlendMask_ST.xy + _PBRReflectionBlendMask_ST.zw).r);
-	s.coatBlend = saturate(_PBRMasterBlend * _PBRCoatBlend * tex2D(_PBRCoatBlendMask, uv * _PBRCoatBlendMask_ST.xy + _PBRCoatBlendMask_ST.zw).r);
 
 	return s;
 }

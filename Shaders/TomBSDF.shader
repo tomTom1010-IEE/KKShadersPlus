@@ -1,4 +1,4 @@
-Shader "xukmi/PBRReference"
+Shader "xukmi/TomBSDF"
 {
 	Properties
 	{
@@ -22,6 +22,7 @@ Shader "xukmi/PBRReference"
 		_PBRFresnelStrength ("PBR Fresnel Strength", Range(0, 2)) = 1
 		_PBRDirectIntensity ("PBR Direct Light Intensity", Range(0, 4)) = 1
 		_PBREnvIntensity ("PBR Environment Intensity", Range(0, 4)) = 1
+		_DisablePointLights ("Disable Point Lights", Range(0, 1)) = 0
 
 		_PBRCoatWeight ("PBR Coat Weight", Range(0, 1)) = 0
 		_PBRCoatMask ("PBR Coat Mask", 2D) = "white" {}
@@ -34,16 +35,6 @@ Shader "xukmi/PBRReference"
 		_EmissionMask ("Emission Mask", 2D) = "black" {}
 		[Gamma]_EmissionColor ("Emission Color", Color) = (0, 0, 0, 1)
 		_EmissionIntensity ("Emission Intensity", Float) = 1
-
-		_PBRMasterBlend ("PBR Master Blend", Range(0, 1)) = 1
-		_PBRDiffuseBlend ("PBR Diffuse Blend", Range(0, 1)) = 1
-		_PBRSpecularBlend ("PBR Specular Blend", Range(0, 1)) = 1
-		_PBRReflectionBlend ("PBR Reflection Blend", Range(0, 1)) = 1
-		_PBRCoatBlend ("PBR Coat Blend", Range(0, 1)) = 1
-		_PBRDiffuseBlendMask ("PBR Diffuse Blend Mask", 2D) = "white" {}
-		_PBRSpecularBlendMask ("PBR Specular Blend Mask", 2D) = "white" {}
-		_PBRReflectionBlendMask ("PBR Reflection Blend Mask", 2D) = "white" {}
-		_PBRCoatBlendMask ("PBR Coat Blend Mask", 2D) = "white" {}
 	}
 
 	SubShader
@@ -68,6 +59,7 @@ Shader "xukmi/PBRReference"
 			#include "AutoLight.cginc"
 			#include "KKPPBRBRDF.cginc"
 			#include "KKPPBRInput.cginc"
+			#include "KKPVertexLights.cginc"
 
 			struct appdata
 			{
@@ -108,7 +100,7 @@ Shader "xukmi/PBRReference"
 
 				float3 n = surface.normalWS;
 				float3 v = normalize(_WorldSpaceCameraPos.xyz - i.posWS);
-				float3 l = normalize(_WorldSpaceLightPos0.xyz);
+				float3 l = normalize(_WorldSpaceLightPos0.xyz - i.posWS * _WorldSpaceLightPos0.w);
 				float3 h = normalize(v + l);
 				float3 r = reflect(-v, n);
 
@@ -128,22 +120,56 @@ Shader "xukmi/PBRReference"
 				float3 directDiffuse = kd * surface.albedo / KKP_PBR_PI * directLight;
 				float3 directSpecular = specularBRDF * directLight;
 
-				float3 ambientDiffuse = ShadeSH9(float4(n, 1.0)).rgb * surface.albedo * kd * surface.occlusion;
-				float3 envSpecular = KKP_PBR_SampleReflectionProbe(r, surface.roughness) * KKP_PBR_FresnelSchlick(nDotV, f0, _PBRFresnelStrength) * surface.occlusion * _PBREnvIntensity;
-
 				float3 coatN = surface.coatNormalWS;
 				float coatNDotL = saturate(dot(coatN, l));
 				float coatNDotV = saturate(dot(coatN, v));
 				float coatNDotH = saturate(dot(coatN, h));
 				float3 coatF0 = KKP_PBR_IorToF0(_PBRCoatIOR).xxx;
+
+				KKVertexLight vertexLights[4];
+				GetVertexLightsTwo(vertexLights, i.posWS, _DisablePointLights);
+
+				float3 vertexDiffuse = 0.0;
+				float3 vertexSpecular = 0.0;
+				float3 vertexCoat = 0.0;
+				[unroll]
+				for (int lightIndex = 0; lightIndex < 4; lightIndex++)
+				{
+					KKVertexLight vertexLight = vertexLights[lightIndex];
+					float3 pointL = vertexLight.dir;
+					float3 pointH = normalize(v + pointL);
+
+					float pointNDotL = saturate(dot(n, pointL));
+					float pointNDotH = saturate(dot(n, pointH));
+					float pointVDotH = saturate(dot(v, pointH));
+					float3 pointLight = vertexLight.col.rgb * vertexLight.atten * pointNDotL * _PBRDirectIntensity;
+					float3 pointF = KKP_PBR_FresnelSchlick(pointVDotH, f0, _PBRFresnelStrength);
+					float3 pointKd = (1.0 - pointF) * (1.0 - surface.metallic);
+
+					vertexDiffuse += pointKd * surface.albedo / KKP_PBR_PI * pointLight;
+					vertexSpecular += KKP_PBR_DirectSpecularGGX(nDotV, pointNDotL, pointNDotH, pointVDotH, surface.roughness, f0, _PBRFresnelStrength) * pointLight;
+
+					float coatPointNDotL = saturate(dot(coatN, pointL));
+					float coatPointNDotH = saturate(dot(coatN, pointH));
+					float3 coatPointLight = vertexLight.col.rgb * vertexLight.atten * coatPointNDotL * surface.coatWeight * _PBRDirectIntensity;
+					vertexCoat += KKP_PBR_DirectSpecularGGX(coatNDotV, coatPointNDotL, coatPointNDotH, pointVDotH, surface.coatRoughness, coatF0, _PBRFresnelStrength) * coatPointLight;
+				}
+
+				directDiffuse += vertexDiffuse;
+				directSpecular += vertexSpecular;
+
+				float3 ambientDiffuse = ShadeSH9(float4(n, 1.0)).rgb * surface.albedo * kd * surface.occlusion;
+				float3 envSpecular = KKP_PBR_SampleReflectionProbe(r, surface.roughness) * KKP_PBR_FresnelSchlick(nDotV, f0, _PBRFresnelStrength) * surface.occlusion * _PBREnvIntensity;
+
 				float3 coatDirect = KKP_PBR_DirectSpecularGGX(coatNDotV, coatNDotL, coatNDotH, vDotH, surface.coatRoughness, coatF0, _PBRFresnelStrength);
 				coatDirect *= _LightColor0.rgb * atten * coatNDotL * surface.coatWeight * _PBRDirectIntensity;
+				coatDirect += vertexCoat;
 				float3 coatEnv = KKP_PBR_SampleReflectionProbe(reflect(-v, coatN), surface.coatRoughness) * KKP_PBR_FresnelSchlick(coatNDotV, coatF0, _PBRFresnelStrength) * surface.coatWeight * surface.occlusion * _PBREnvIntensity;
 
-				float3 finalCol = directDiffuse * surface.diffuseBlend + ambientDiffuse * surface.diffuseBlend;
-				finalCol += directSpecular * surface.specularBlend;
-				finalCol += envSpecular * surface.reflectionBlend;
-				finalCol += (coatDirect + coatEnv) * surface.coatBlend;
+				float3 finalCol = directDiffuse + ambientDiffuse;
+				finalCol += directSpecular;
+				finalCol += envSpecular;
+				finalCol += coatDirect + coatEnv;
 				finalCol += surface.emission;
 
 				return float4(max(finalCol, 1E-06), 1.0);
