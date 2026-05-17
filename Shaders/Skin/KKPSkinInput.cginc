@@ -84,6 +84,10 @@
 	float4 _RampG_ST;
 	float4 _LineMask_ST;
 	float _Cutoff;
+	float _Alpha;
+	float _AlphaOptionZWrite;
+	float _AlphaOptionCutoff;
+	float _CullOption;
 	float4 _overcolor1;
 	float4 _overcolor2;
 	float4 _overcolor3;

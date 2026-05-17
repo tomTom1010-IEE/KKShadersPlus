@@ -146,6 +146,7 @@ fixed4 frag (Varyings i, int faceDir : VFACE) : SV_Target{
 
 	float3 shadingAdjustment = ShadeAdjust(diffuse);
 	float3 normal = GetNormal(i);
+	float3 matcapNormal = GetMatCapNormal(i);
 	_NormalMapScale *= _SpecularNormalScale;
 	_DetailNormalMapScale *= _SpecularDetailNormalScale;
 	float3 specularNormal = GetNormal(i);
@@ -155,7 +156,9 @@ fixed4 frag (Varyings i, int faceDir : VFACE) : SV_Target{
 	GetCumVals(i.uv0, liquidFinalMask, liquidNormal);
 
 	normal = lerp(normal, liquidNormal, liquidFinalMask);
+	matcapNormal = lerp(matcapNormal, liquidNormal, liquidFinalMask);
 	normal = NormalAdjust(i, normal, faceDir);
+	matcapNormal = NormalAdjust(i, matcapNormal, faceDir);
 	specularNormal = NormalAdjust(i, specularNormal, faceDir);
 
 	float3x3 rotX = AngleAxis3x3(_KKPRimRotateX, float3(0, 1, 0));
@@ -410,7 +413,7 @@ fixed4 frag (Varyings i, int faceDir : VFACE) : SV_Target{
 	finalDiffuse = lerp(HSLtoRGB(hsl), finalDiffuse, saturate(finalRamp + 0.5));
 	
 	finalDiffuse = lerp(finalDiffuse, pbrDiffuse, pbrDiffuseBlend);
-	finalDiffuse = GetBlendReflections(i, max(finalDiffuse, 1E-06), normal, viewDir, kkMetalMap, finalRamp);
+	finalDiffuse = GetBlendReflections(i, max(finalDiffuse, 1E-06), matcapNormal, viewDir, kkMetalMap, finalRamp);
 	finalDiffuse += pbrSpecular * pbrSpecularBlend + pbrReflection * pbrReflectionBlend;
 
 	finalDiffuse = lerp(finalDiffuse, kkpFresCol, _KKPRimColor.a * kkpFres * rimPlace * (1 - _KKPRimAsDiffuse));

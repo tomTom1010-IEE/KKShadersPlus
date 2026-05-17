@@ -3,6 +3,8 @@
 
 sampler2D _MainTex;
 float4 _MainTex_ST;
+sampler2D _AlphaMask;
+float4 _AlphaMask_ST;
 float4 _PBRBaseColor;
 
 sampler2D _NormalMap;
@@ -27,6 +29,13 @@ float _PBRFresnelStrength;
 float _PBRDirectIntensity;
 float _PBREnvIntensity;
 float _DisablePointLights;
+float _Cutoff;
+float _Alpha;
+float _AlphaOptionZWrite;
+float _AlphaOptionCutoff;
+float _CullOption;
+float _alpha_a;
+float _alpha_b;
 
 sampler2D _PBRCoatMask;
 float4 _PBRCoatMask_ST;
@@ -85,6 +94,38 @@ KKPPBRSurface KKP_PBR_SampleSurface(float2 uv, float3 normalWS, float3 tangentWS
 	s.coatNormalWS = KKP_PBR_SampleNormalWS(_PBRCoatNormalMap, uv * _PBRCoatNormalMap_ST.xy + _PBRCoatNormalMap_ST.zw, _PBRCoatNormalScale, normalWS, tangentWS, bitangentWS);
 
 	return s;
+}
+
+float KKP_PBR_GetMainAlpha(float2 uv)
+{
+	return tex2D(_MainTex, uv * _MainTex_ST.xy + _MainTex_ST.zw).a;
+}
+
+float KKP_PBR_GetAlphaMask(float2 uv)
+{
+	float4 alphaMask = tex2D(_AlphaMask, uv * _AlphaMask_ST.xy + _AlphaMask_ST.zw);
+	float2 alphaVal = -float2(_alpha_a, _alpha_b) + float2(1.0, 1.0);
+	alphaVal = max(alphaVal, alphaMask.xy);
+	return min(alphaVal.y, alphaVal.x);
+}
+
+float KKP_PBR_GetCutoffAlpha(float2 uv)
+{
+	return min(KKP_PBR_GetAlphaMask(uv), KKP_PBR_GetMainAlpha(uv));
+}
+
+void KKP_PBR_AlphaClip(float2 uv)
+{
+	float alphaVal = KKP_PBR_GetCutoffAlpha(uv) - _Cutoff;
+	if (alphaVal < 0.0 && _AlphaOptionCutoff)
+		discard;
+}
+
+float KKP_PBR_GetOutputAlpha(float2 uv)
+{
+	float alphaMaskVal = KKP_PBR_GetAlphaMask(uv);
+	alphaMaskVal = 1 - (1 - (alphaMaskVal - _Cutoff + 0.0001) / (1.0001 - _Cutoff)) * floor(_AlphaOptionCutoff / 2.0);
+	return saturate(alphaMaskVal) * KKP_PBR_GetMainAlpha(uv) * _Alpha;
 }
 
 #endif

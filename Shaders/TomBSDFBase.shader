@@ -1,15 +1,9 @@
-Shader "xukmi/TomBSDF"
+Shader "xukmi/TomBSDFBase"
 {
 	Properties
 	{
 		[Gamma]_PBRBaseColor ("PBR Base Color", Color) = (1, 1, 1, 1)
 		_MainTex ("MainTex", 2D) = "white" {}
-		_AlphaMask ("Alpha Mask", 2D) = "white" {}
-		_Cutoff ("Alpha cutoff", Range(0, 1)) = 0.5
-		[Enum(Off,0,On,1)]_AlphaOptionCutoff ("Cutoff On", Float) = 1.0
-		[Enum(Off,0,Front,1,Back,2)] _CullOption ("Cull Option", Range(0, 2)) = 0
-		[MaterialToggle] _alpha_a ("alpha_a", Float) = 1
-		[MaterialToggle] _alpha_b ("alpha_b", Float) = 1
 
 		_NormalMap ("Normal Map", 2D) = "bump" {}
 		_NormalMapScale ("Normal Map Scale", Float) = 1
@@ -45,14 +39,13 @@ Shader "xukmi/TomBSDF"
 
 	SubShader
 	{
-		Tags { "RenderType"="TransparentCutout" "Queue"="AlphaTest" }
+		Tags { "RenderType"="Opaque" "Queue"="Geometry" }
 		LOD 400
 
 		Pass
 		{
 			Name "ForwardBase"
-			Tags { "LightMode"="ForwardBase" "Queue"="AlphaTest" "RenderType"="TransparentCutout" "ShadowSupport"="true" }
-			Cull [_CullOption]
+			Tags { "LightMode"="ForwardBase" }
 
 			CGPROGRAM
 			#pragma target 3.0
@@ -103,7 +96,6 @@ Shader "xukmi/TomBSDF"
 			fixed4 frag(v2f i) : SV_Target
 			{
 				float2 uv = i.uv0;
-				KKP_PBR_AlphaClip(uv);
 				KKPPBRSurface surface = KKP_PBR_SampleSurface(uv, i.normalWS, i.tangentWS, i.bitangentWS);
 
 				float3 n = surface.normalWS;
@@ -188,33 +180,28 @@ Shader "xukmi/TomBSDF"
 		Pass
 		{
 			Name "ShadowCaster"
-			Tags { "LightMode"="ShadowCaster" "Queue"="AlphaTest" "RenderType"="TransparentCutout" "ShadowSupport"="true" }
-			Cull Off
+			Tags { "LightMode"="ShadowCaster" }
 
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
 			#pragma multi_compile_shadowcaster
 			#include "UnityCG.cginc"
-			#include "KKPPBRAlpha.cginc"
 
 			struct v2f
 			{
 				V2F_SHADOW_CASTER;
-				float2 uv0 : TEXCOORD1;
 			};
 
 			v2f vert(appdata_base v)
 			{
 				v2f o;
-				o.uv0 = v.texcoord;
 				TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
 				return o;
 			}
 
 			float4 frag(v2f i) : SV_Target
 			{
-				KKP_PBR_AlphaClip(i.uv0);
 				SHADOW_CASTER_FRAGMENT(i)
 			}
 			ENDCG

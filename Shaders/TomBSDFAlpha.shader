@@ -1,4 +1,4 @@
-Shader "xukmi/TomBSDF"
+Shader "xukmi/TomBSDFAlpha"
 {
 	Properties
 	{
@@ -6,8 +6,10 @@ Shader "xukmi/TomBSDF"
 		_MainTex ("MainTex", 2D) = "white" {}
 		_AlphaMask ("Alpha Mask", 2D) = "white" {}
 		_Cutoff ("Alpha cutoff", Range(0, 1)) = 0.5
-		[Enum(Off,0,On,1)]_AlphaOptionCutoff ("Cutoff On", Float) = 1.0
-		[Enum(Off,0,Front,1,Back,2)] _CullOption ("Cull Option", Range(0, 2)) = 0
+		_Alpha ("AlphaValue", Float) = 1
+		[Enum(Off,0,On,1)]_AlphaOptionZWrite ("ZWrite", Float) = 1.0
+		[Enum(Off,0,On,1,Smooth,2)]_AlphaOptionCutoff ("Cutoff On", Float) = 1.0
+		[Enum(Off,0,Front,1,Back,2)] _CullOption ("Cull Option", Range(0, 2)) = 2
 		[MaterialToggle] _alpha_a ("alpha_a", Float) = 1
 		[MaterialToggle] _alpha_b ("alpha_b", Float) = 1
 
@@ -45,14 +47,16 @@ Shader "xukmi/TomBSDF"
 
 	SubShader
 	{
-		Tags { "RenderType"="TransparentCutout" "Queue"="AlphaTest" }
+		Tags { "RenderType"="Transparent" "Queue"="Transparent+40" }
 		LOD 400
 
 		Pass
 		{
 			Name "ForwardBase"
-			Tags { "LightMode"="ForwardBase" "Queue"="AlphaTest" "RenderType"="TransparentCutout" "ShadowSupport"="true" }
+			Tags { "LightMode"="ForwardBase" "Queue"="Transparent+40" "RenderType"="Transparent" "ShadowSupport"="true" }
+			Blend SrcAlpha OneMinusSrcAlpha, SrcAlpha OneMinusSrcAlpha
 			Cull [_CullOption]
+			ZWrite [_AlphaOptionZWrite]
 
 			CGPROGRAM
 			#pragma target 3.0
@@ -180,7 +184,7 @@ Shader "xukmi/TomBSDF"
 				finalCol += coatDirect + coatEnv;
 				finalCol += surface.emission;
 
-				return float4(max(finalCol, 1E-06), 1.0);
+				return float4(max(finalCol, 1E-06), KKP_PBR_GetOutputAlpha(uv));
 			}
 			ENDCG
 		}
@@ -188,7 +192,7 @@ Shader "xukmi/TomBSDF"
 		Pass
 		{
 			Name "ShadowCaster"
-			Tags { "LightMode"="ShadowCaster" "Queue"="AlphaTest" "RenderType"="TransparentCutout" "ShadowSupport"="true" }
+			Tags { "LightMode"="ShadowCaster" "Queue"="Transparent+40" "RenderType"="TransparentCutout" "ShadowSupport"="true" }
 			Cull Off
 
 			CGPROGRAM

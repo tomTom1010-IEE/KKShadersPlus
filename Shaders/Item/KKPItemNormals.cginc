@@ -13,6 +13,20 @@ float3 GetNormal(Varyings i){
 	return mergedNormals;
 }
 
+float3 GetMatCapNormal(Varyings i){
+	float2 detailNormalUV = i.uv0 * _NormalMapDetail_ST.xy + _NormalMapDetail_ST.zw;
+	float4 packedNormalDetail = SAMPLE_TEX2D_SAMPLER(_NormalMapDetail, _NormalMap, detailNormalUV);
+	float3 detailNormal = UnpackScaleNormal(packedNormalDetail, _DetailNormalMapScale);
+	detailNormal = lerp(float3(0, 0, 1), detailNormal, _UseDetailNormalMapForMatCap);
+
+	float2 normalUV = i.uv0 * _NormalMap_ST.xy + _NormalMap_ST.zw;
+	float4 packedNormal = SAMPLE_TEX2D(_NormalMap, normalUV);
+	float3 normalMap = UnpackScaleNormal(packedNormal, _NormalMapScale);
+	normalMap = lerp(float3(0, 0, 1), normalMap, _UseNormalMapForMatCap);
+
+	return BlendNormals(normalMap, detailNormal);
+}
+
 float3 CreateBinormal (float3 normal, float3 tangent, float binormalSign) {
 	return cross(normal, tangent.xyz) *
 		(binormalSign * unity_WorldTransformParams.w);

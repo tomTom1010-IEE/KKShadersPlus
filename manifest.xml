@@ -2,7 +2,7 @@
 <manifest schema-ver="1">
   <guid>xukmi.Shaders.VanillaPlus</guid>
   <name>Vanilla Plus (tom fork)</name>
-  <version>1.7.3b</version>
+  <version>1.7.4</version>
   <author>xukmi&amp;tomTom</author>
   <description>Vanilla KK Shaders with more features</description>
   <website>https://www.pixiv.net/en/users/66587336</website>
@@ -33,6 +33,87 @@
       <Property Name="Saturation" Category="Base Colors" Type="Float" Range="0, 2" />
       <Property Name="NormalMapScale" Category="Render Options" Type="Float" Range="0, 1" />
       <Property Name="DetailNormalMapScale" Category="Render Options" Type="Float" Range="0,1" />
+      <Property Name="CustomAmbient" Category="Lighting" Type="Color" />
+      <Property Name="ShadowColor" Category="Lighting" Type="Color" />
+      <Property Name="ShadowHSV" Category="Lighting" Type="Color" />
+      <Property Name="ShadowExtend" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForLights" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForShadows" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="DisablePointLights" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="SpecularColor" Category="Specular" Type="Color" />
+      <Property Name="SpeclarHeight" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularPower" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularPowerNail" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularNormalScale" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularDetailNormalScale" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForSpecular" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="UseLightColorSpecular" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailRAsSpecularMap" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="notusetexspecular" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="rimpower" Category="Rim" Type="Float" Range="0, 1" />
+      <Property Name="rimV" Category="Rim" Type="Float" Range="0, 1" />
+      <Property Name="rimReflectMode" Category="Rim" Type="Float" Range="-1, 1" />
+      <Property Name="UseKKPRim" Category="Rim" Type="Float" Range="0, 1" />
+      <Property Name="KKPRimColor" Category="Rim" Type="Color" />
+      <Property Name="KKPRimSoft" Category="Rim" Type="Float" Range="0, 10" />
+      <Property Name="KKPRimIntensity" Category="Rim" Type="Float" Range="0, 10" />
+      <Property Name="KKPRimAsDiffuse" Category="Rim" Type="Float" Range="0, 1" />
+      <Property Name="KKPRimRotateX" Category="Rim" Type="Float" Range="-2, 2" />
+      <Property Name="KKPRimRotateY" Category="Rim" Type="Float" Range="-2, 2" />
+      <Property Name="Reflective" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="ReflectiveBlend" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="ReflectiveMulOrAdd" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseKKMetal" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="AnotherRampFull" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
+      <Property Name="OutlineColor" Category="Outline" Type="Color" />
+      <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
+      <Property Name="EmissionColor" Category="Emission" Type="Color" />
+      <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
+      <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
+      <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="liquidbtop" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="liquidbbot" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="liquidface" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="nip" Category="Koikatsu Extension" Type="Float" Range="0, 1" />
+      <Property Name="nipsize" Category="Koikatsu Extension" Type="Float" Range="0, 1" />
+      <Property Name="nip_specular" Category="Koikatsu Extension" Type="Float" Range="0, 1" />
+      <Property Name="tex1mask" Category="Koikatsu Extension" Type="Float" Range="0, 1" />
+      <Property Name="linetexon" Category="Koikatsu Extension" Type="Float" Range="0,1" />
+    </Shader>
+    <Shader Name="xukmi/SkinAlphaPlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_SkinAlphaPlus">
+      <Property Name="MainTex" Category="Textures" Type="Texture" />
+      <Property Name="AlphaMask" Category="Textures" Type="Texture" />
+      <Property Name="NormalMap" Category="Textures" Type="Texture" />
+      <Property Name="NormalMapDetail" Category="Textures" Type="Texture" />
+      <Property Name="DetailMask" Category="Textures" Type="Texture" />
+      <Property Name="LineMask" Category="Textures" Type="Texture" />
+      <Property Name="ColMask" Category="Textures" Type="Texture" />
+      <Property Name="NormalMask" Category="Textures" Type="Texture" />
+      <Property Name="EmissionMask" Category="Textures" Type="Texture" />
+      <Property Name="liquidmask" Category="Textures" Type="Texture" />
+      <Property Name="Texture2" Category="Textures" Type="Texture" />
+      <Property Name="Texture3" Category="Textures" Type="Texture" />
+      <Property Name="overtex1" Category="Textures" Type="Texture" />
+      <Property Name="overtex2" Category="Textures" Type="Texture" />
+      <Property Name="overtex3" Category="Textures" Type="Texture" />
+      <Property Name="Col0" Category="Base Colors" Type="Color" />
+      <Property Name="Col1" Category="Base Colors" Type="Color" />
+      <Property Name="Col2" Category="Base Colors" Type="Color" />
+      <Property Name="Col3" Category="Base Colors" Type="Color" />
+      <Property Name="overcolor1" Category="Base Colors" Type="Color" />
+      <Property Name="overcolor2" Category="Base Colors" Type="Color" />
+      <Property Name="overcolor3" Category="Base Colors" Type="Color" />
+      <Property Name="Saturation" Category="Base Colors" Type="Float" Range="0, 2" />
+      <Property Name="NormalMapScale" Category="Render Options" Type="Float" Range="0, 1" />
+      <Property Name="DetailNormalMapScale" Category="Render Options" Type="Float" Range="0,1" />
+      <Property Name="Cutoff" Category="Render Options" Type="Float" Range="0, 1" />
+      <Property Name="Alpha" Category="Render Options" Type="Float" Range="0, 1" />
+      <Property Name="AlphaOptionZWrite" Category="Render Options" Type="Float" Range="0, 1" DefaultValue="1" />
+      <Property Name="AlphaOptionCutoff" Category="Render Options" Type="Float" Range="0, 2" DefaultValue="1" />
+      <Property Name="CullOption" Category="Render Options" Type="Float" Range="0, 2" />
       <Property Name="CustomAmbient" Category="Lighting" Type="Color" />
       <Property Name="ShadowColor" Category="Lighting" Type="Color" />
       <Property Name="ShadowHSV" Category="Lighting" Type="Color" />
@@ -366,7 +447,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -419,7 +500,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -483,7 +564,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -549,7 +630,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -626,7 +707,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -689,7 +770,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -763,7 +844,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -830,7 +911,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -898,7 +979,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -1127,7 +1208,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="liquidmask" Category="Textures" Type="Texture" />
       <Property Name="Texture2" Category="Textures" Type="Texture" />
@@ -1188,6 +1269,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1270,6 +1353,8 @@
       <Property Name="UseMatCapBlur" Category="Stylized" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Stylized" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Stylized" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Stylized" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Stylized" Type="Float" Range="0, 1" />
       <Property Name="AnotherRampFull" Category="Stylized" Type="Float" Range="0, 1" />
       <Property Name="UseMatCapReflection" Category="Stylized" Type="Float" Range="0, 1" />
       <Property Name="UseKKPRim" Category="Stylized" Type="Float" Range="0, 1" />
@@ -1312,7 +1397,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="liquidmask" Category="Textures" Type="Texture" />
       <Property Name="Texture2" Category="Textures" Type="Texture" />
@@ -1386,6 +1471,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1410,7 +1497,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="liquidmask" Category="Textures" Type="Texture" />
       <Property Name="Texture2" Category="Textures" Type="Texture" />
@@ -1473,6 +1560,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1494,7 +1583,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="liquidmask" Category="Textures" Type="Texture" />
       <Property Name="Texture2" Category="Textures" Type="Texture" />
@@ -1570,6 +1659,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1590,7 +1681,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="DetailBLineG" Category="Textures" Type="Float" Range="0, 1" />
       <Property Name="DetailRLineR" Category="Textures" Type="Float" Range="0, 1" />
@@ -1646,6 +1737,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1660,7 +1753,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="DetailBLineG" Category="Textures" Type="Float" Range="0, 1" />
       <Property Name="DetailRLineR" Category="Textures" Type="Float" Range="0, 1" />
@@ -1729,6 +1822,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1743,7 +1838,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="DetailBLineG" Category="Textures" Type="Float" Range="0, 1" />
       <Property Name="DetailRLineR" Category="Textures" Type="Float" Range="0, 1" />
@@ -1801,6 +1896,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1818,7 +1915,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="DetailBLineG" Category="Textures" Type="Float" Range="0, 1" />
       <Property Name="DetailRLineR" Category="Textures" Type="Float" Range="0, 1" />
@@ -1889,6 +1986,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1903,7 +2002,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="PatternMask1" Category="Textures" Type="Texture" />
       <Property Name="PatternMask2" Category="Textures" Type="Texture" />
@@ -1962,6 +2061,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -1989,7 +2090,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="PatternMask1" Category="Textures" Type="Texture" />
       <Property Name="PatternMask2" Category="Textures" Type="Texture" />
@@ -2061,6 +2162,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
@@ -2085,7 +2188,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="PatternMask1" Category="Textures" Type="Texture" />
       <Property Name="PatternMask2" Category="Textures" Type="Texture" />
@@ -2147,6 +2250,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
@@ -2168,7 +2273,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="LineMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="PatternMask1" Category="Textures" Type="Texture" />
       <Property Name="PatternMask2" Category="Textures" Type="Texture" />
@@ -2243,6 +2348,8 @@
       <Property Name="UseMatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlur" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="MatCapBlurMip" Category="Reflection / MatCap" Type="Float" Range="0, 8" />
+      <Property Name="UseNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailNormalMapForMatCap" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
@@ -2283,7 +2390,7 @@
       <Property Name="DetailMask" Category="Textures" Type="Texture" />
       <Property Name="ColorMask" Category="Textures" Type="Texture" />
       <Property Name="HairGloss" Category="Textures" Type="Texture" />
-      <Property Name="AnotherRamp" Category="Textures" Type="Texture" />
+      <Property Name="AnotherRamp" Category="Reflection / MatCap" Type="Texture" />
       <Property Name="EmissionMask" Category="Textures" Type="Texture" />
       <Property Name="Color" Category="Base Colors" Type="Color" />
       <Property Name="Color2" Category="Base Colors" Type="Color" />
@@ -2344,9 +2451,83 @@
       <Property Name="MainTex" Type="Texture" />
       <Property Name="Cutoff" Type="Float" Range="0, 1" />
     </Shader>
+    <Shader Name="xukmi/TomBSDFBase" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_">
+      <Property Name="PBRBaseColor" Type="Color" />
+      <Property Name="MainTex" Type="Texture" />
+      <Property Name="NormalMap" Type="Texture" />
+      <Property Name="NormalMapScale" Type="Float" Range="0, 2" />
+      <Property Name="PBRMetallic" Type="Float" Range="0, 1" />
+      <Property Name="PBRMetallicMap" Type="Texture" />
+      <Property Name="PBRRoughness" Type="Float" Range="0, 1" />
+      <Property Name="PBRRoughnessMap" Type="Texture" />
+      <Property Name="PBRRoughnessBias" Type="Float" Range="-1, 1" />
+      <Property Name="PBROcclusion" Type="Float" Range="0, 1" />
+      <Property Name="PBROcclusionMap" Type="Texture" />
+      <Property Name="PBROcclusionStrength" Type="Float" Range="0, 1" />
+      <Property Name="PBRIOR" Type="Float" Range="1, 2.5" />
+      <Property Name="PBRSpecular" Type="Float" Range="0, 1" />
+      <Property Name="PBRFresnelStrength" Type="Float" Range="0, 2" />
+      <Property Name="PBRDirectIntensity" Type="Float" Range="0, 4" />
+      <Property Name="PBREnvIntensity" Type="Float" Range="0, 4" />
+      <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatWeight" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatMask" Type="Texture" />
+      <Property Name="PBRCoatRoughness" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatRoughnessMap" Type="Texture" />
+      <Property Name="PBRCoatIOR" Type="Float" Range="1, 2.5" />
+      <Property Name="PBRCoatNormalMap" Type="Texture" />
+      <Property Name="PBRCoatNormalScale" Type="Float" Range="0, 2" />
+      <Property Name="EmissionMask" Type="Texture" />
+      <Property Name="EmissionColor" Type="Color" />
+      <Property Name="EmissionIntensity" Type="Float" />
+    </Shader>
     <Shader Name="xukmi/TomBSDF" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_TomBSDF">
       <Property Name="PBRBaseColor" Type="Color" />
       <Property Name="MainTex" Type="Texture" />
+      <Property Name="AlphaMask" Type="Texture" />
+      <Property Name="Cutoff" Type="Float" Range="0, 1" />
+      <Property Name="AlphaOptionCutoff" Type="Float" Range="0, 1" DefaultValue="1" />
+      <Property Name="CullOption" Type="Float" Range="0, 2" />
+      <Property Name="alpha_a" Type="Float" Range="0, 1" DefaultValue="1" />
+      <Property Name="alpha_b" Type="Float" Range="0, 1" DefaultValue="1" />
+      <Property Name="NormalMap" Type="Texture" />
+      <Property Name="NormalMapScale" Type="Float" Range="0, 2" />
+      <Property Name="PBRMetallic" Type="Float" Range="0, 1" />
+      <Property Name="PBRMetallicMap" Type="Texture" />
+      <Property Name="PBRRoughness" Type="Float" Range="0, 1" />
+      <Property Name="PBRRoughnessMap" Type="Texture" />
+      <Property Name="PBRRoughnessBias" Type="Float" Range="-1, 1" />
+      <Property Name="PBROcclusion" Type="Float" Range="0, 1" />
+      <Property Name="PBROcclusionMap" Type="Texture" />
+      <Property Name="PBROcclusionStrength" Type="Float" Range="0, 1" />
+      <Property Name="PBRIOR" Type="Float" Range="1, 2.5" />
+      <Property Name="PBRSpecular" Type="Float" Range="0, 1" />
+      <Property Name="PBRFresnelStrength" Type="Float" Range="0, 2" />
+      <Property Name="PBRDirectIntensity" Type="Float" Range="0, 4" />
+      <Property Name="PBREnvIntensity" Type="Float" Range="0, 4" />
+      <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatWeight" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatMask" Type="Texture" />
+      <Property Name="PBRCoatRoughness" Type="Float" Range="0, 1" />
+      <Property Name="PBRCoatRoughnessMap" Type="Texture" />
+      <Property Name="PBRCoatIOR" Type="Float" Range="1, 2.5" />
+      <Property Name="PBRCoatNormalMap" Type="Texture" />
+      <Property Name="PBRCoatNormalScale" Type="Float" Range="0, 2" />
+      <Property Name="EmissionMask" Type="Texture" />
+      <Property Name="EmissionColor" Type="Color" />
+      <Property Name="EmissionIntensity" Type="Float" />
+    </Shader>
+    <Shader Name="xukmi/TomBSDFAlpha" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_TomBSDFAlpha">
+      <Property Name="PBRBaseColor" Type="Color" />
+      <Property Name="MainTex" Type="Texture" />
+      <Property Name="AlphaMask" Type="Texture" />
+      <Property Name="Cutoff" Type="Float" Range="0, 1" />
+      <Property Name="Alpha" Type="Float" Range="0, 1" DefaultValue="1" />
+      <Property Name="AlphaOptionCutoff" Type="Float" Range="0, 2" DefaultValue="1" />
+      <Property Name="AlphaOptionZWrite" Type="Float" Range="0, 1" DefaultValue="1" />
+      <Property Name="CullOption" Type="Float" Range="0, 2" DefaultValue="2" />
+      <Property Name="alpha_a" Type="Float" Range="0, 1" DefaultValue="1" />
+      <Property Name="alpha_b" Type="Float" Range="0, 1" DefaultValue="1" />
       <Property Name="NormalMap" Type="Texture" />
       <Property Name="NormalMapScale" Type="Float" Range="0, 2" />
       <Property Name="PBRMetallic" Type="Float" Range="0, 1" />

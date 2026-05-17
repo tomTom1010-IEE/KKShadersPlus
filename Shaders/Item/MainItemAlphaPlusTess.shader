@@ -55,6 +55,8 @@
 		[MaterialToggle] _UseMatCapBlur ("Use MatCap Blur", Float) = 0
 		_MatCapBlur ("MatCap Blur", Range(0, 1)) = 0
 		_MatCapBlurMip ("MatCap Blur Mip", Range(0, 8)) = 4
+		[MaterialToggle] _UseNormalMapForMatCap ("Use Normal Map For MatCap", Float) = 1
+		[MaterialToggle] _UseDetailNormalMapForMatCap ("Use Detail Normal Map For MatCap", Float) = 1
 		
 		_TessTex ("Tess Tex", 2D) = "white" {}
 		_TessMax("Tess Max", Range(1, 25)) = 4
