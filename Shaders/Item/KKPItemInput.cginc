@@ -38,6 +38,8 @@
 
 	float _NormalMapScale;
 	float _DetailNormalMapScale;
+	float _UseNormalMapForMatCap;
+	float _UseDetailNormalMapForMatCap;
 
 	float4 _OutlineColor;
 

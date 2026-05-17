@@ -69,6 +69,8 @@ Shader "xukmi/MainOpaqueBlend"
 		[MaterialToggle] _UseMatCapBlur ("Use MatCap Blur", Float) = 0
 		_MatCapBlur ("MatCap Blur", Range(0, 1)) = 0
 		_MatCapBlurMip ("MatCap Blur Mip", Range(0, 8)) = 4
+		[MaterialToggle] _UseNormalMapForMatCap ("Use Normal Map For MatCap", Float) = 1
+		[MaterialToggle] _UseDetailNormalMapForMatCap ("Use Detail Normal Map For MatCap", Float) = 1
 
 		_UseKKPRim ("Use KKP Rim", Range(0 ,1)) = 0
 		[Gamma]_KKPRimColor ("Body Rim Color", Color) = (1.0, 1.0, 1.0, 1.0)

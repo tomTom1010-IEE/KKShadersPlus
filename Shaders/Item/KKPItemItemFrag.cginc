@@ -70,6 +70,7 @@ fixed4 frag (Varyings i, int faceDir : VFACE) : SV_Target {
 	float3 diffuse = mainTex * color;
 	
 	float3 normal = NormalAdjust(i, GetNormal(i), faceDir);
+	float3 matcapNormal = NormalAdjust(i, GetMatCapNormal(i), faceDir);
 	_NormalMapScale *= _SpecularNormalScale;
 	_DetailNormalMapScale *= _SpecularDetailNormalScale;
 	float3 specularNormal = NormalAdjust(i, GetNormal(i), faceDir);
@@ -282,7 +283,7 @@ fixed4 frag (Varyings i, int faceDir : VFACE) : SV_Target {
 	hsl.z = hsl.z + _ShadowHSV.z;
 	finalDiffuse = lerp(HSLtoRGB(hsl), finalDiffuse, saturate(finalRamp + 0.5));
 
-	finalDiffuse = GetBlendReflections(i, max(finalDiffuse, 1E-06), normal, viewDir, kkMetalMap, finalRamp);
+	finalDiffuse = GetBlendReflections(i, max(finalDiffuse, 1E-06), matcapNormal, viewDir, kkMetalMap, finalRamp);
 
 	finalDiffuse = lerp(finalDiffuse, kkpFresCol, _KKPRimColor.a * kkpFres * rimPlace * (1 - _KKPRimAsDiffuse));
 

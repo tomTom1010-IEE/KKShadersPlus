@@ -99,16 +99,50 @@ void MapValuesOutline(float3 col, out float3 a){
 }
 
 void AlphaClip(float2 uv, bool outline){
+	if (!outline)
+		discard;
+
+	float mainAlpha = 1.0;
+#ifdef SKIN_MAIN_ALPHA_CLIP
+	float2 mainTexUV = uv * _MainTex_ST.xy + _MainTex_ST.zw;
+	mainAlpha = SAMPLE_TEX2D(_MainTex, mainTexUV).a;
+#endif
+
 	//Body alpha mask from outfits
 	float2 alphaUV = uv * _AlphaMask_ST.xy + _AlphaMask_ST.zw;
 	float4 alphaMask = SAMPLE_TEX2D(_AlphaMask, alphaUV);
 	float2 alphaVal = -float2(_alpha_a, _alpha_b) + float2(1.0f, 1.0f);
 	alphaVal = max(alphaVal, alphaMask.xy);
 	alphaVal = min(alphaVal.y, alphaVal.x) * outline;
+#ifdef SKIN_MAIN_ALPHA_CLIP
+	alphaVal = min(alphaVal, mainAlpha);
+	alphaVal.x -= _Cutoff;
+	float clipVal = alphaVal.x < 0.0f;
+	if(clipVal * int(0xffffffffu) != 0 && _AlphaOptionCutoff)
+		discard;
+#else
 	alphaVal.x -= 0.5f;
 	float clipVal = alphaVal.x < 0.0f;
 	if(clipVal * int(0xffffffffu) != 0)
 		discard;
+#endif
+}
+
+float GetSkinAlpha(float2 uv){
+#ifdef SKIN_MAIN_ALPHA_CLIP
+	float2 mainTexUV = uv * _MainTex_ST.xy + _MainTex_ST.zw;
+	float mainAlpha = SAMPLE_TEX2D(_MainTex, mainTexUV).a;
+
+	float2 alphaUV = uv * _AlphaMask_ST.xy + _AlphaMask_ST.zw;
+	float4 alphaMask = SAMPLE_TEX2D(_AlphaMask, alphaUV);
+	float2 alphaVal = -float2(_alpha_a, _alpha_b) + float2(1.0f, 1.0f);
+	alphaVal = max(alphaVal, alphaMask.xy);
+	float alphaMaskVal = min(alphaVal.y, alphaVal.x);
+	alphaMaskVal = 1 - (1 - (alphaMaskVal - _Cutoff + 0.0001) / (1.0001 - _Cutoff)) * floor(_AlphaOptionCutoff / 2.0);
+	return saturate(alphaMaskVal) * mainAlpha * _Alpha;
+#else
+	return 1.0;
+#endif
 }
 
 float3 HUEtoRGB(in float H)

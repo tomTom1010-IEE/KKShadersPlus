@@ -208,7 +208,12 @@ fixed4 frag (Varyings i, int frontFace : VFACE) : SV_Target
 	float4 emission = GetEmission(i.uv0);
 	finalCol = CombineEmission(finalCol, emission);
 
+#ifdef SKIN_ALPHA_BLEND
+	float alpha = GetSkinAlpha(i.uv0);
+	return float4(max(finalCol, 1E-06), alpha);
+#else
 	return float4(max(finalCol, 1E-06), 1); 
+#endif
 }
 
 
