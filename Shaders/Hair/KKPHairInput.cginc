@@ -70,6 +70,7 @@
 	float4 _DetailMask_ST;
 	float4 _RampG_ST;
 	float4 _AnotherRamp_ST;
+	float _AnotherRampStrength;
 
 	float _rimpower;
 	float _rimV;

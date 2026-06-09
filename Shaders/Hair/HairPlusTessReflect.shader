@@ -1,8 +1,9 @@
-﻿Shader "xukmi/HairPlusTessReflect"
+Shader "xukmi/HairPlusTessReflect"
 {
 	Properties
 	{
 		_AnotherRamp ("Another Ramp(ViewDir)", 2D) = "white" {}
+		_AnotherRampStrength ("Another Ramp Strength", Range(0, 1)) = 1
 		_MainTex ("MainTex", 2D) = "white" {}
 		_NormalMap ("Normal Map", 2D) = "bump" {}
 		_AlphaMask ("Alpha Mask", 2D) = "white" {}

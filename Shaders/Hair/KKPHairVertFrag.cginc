@@ -148,6 +148,7 @@ fixed4 frag (Varyings i, int frontFace : VFACE) : SV_Target
 
 	float lambert = saturate(dot(worldLight, adjustedNormal)) + vertexLighting.a;
 	float ramp = SAMPLE_TEX2D(_RampG, lambert * _RampG_ST.xy + _RampG_ST.zw).x;
+	anotherRamp = lerp(ramp, anotherRamp, _AnotherRampStrength);
 	float bitanFres = dot(viewDir, i.bitanWS);
 	float specularHeight = _SpeclarHeight - 1.0;
 	float3 hairGlossVal;

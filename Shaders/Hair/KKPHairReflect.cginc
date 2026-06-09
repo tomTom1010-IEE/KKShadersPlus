@@ -70,6 +70,7 @@ fixed4 reflectfrag (Varyings i) : SV_Target
 
 	float lambert = saturate(dot(worldLight, adjustedNormal)) + vertexLighting.a;
 	float ramp = SAMPLE_TEX2D(_RampG, lambert * _RampG_ST.xy + _RampG_ST.zw).x;
+	anotherRamp = lerp(ramp, anotherRamp, _AnotherRampStrength);
 	float shadowAttenuation = saturate(min(ramp, anotherRamp));
 	#ifdef SHADOWS_SCREEN
 		float2 shadowMapUV = i.shadowCoordinate.xy / i.shadowCoordinate.ww;
