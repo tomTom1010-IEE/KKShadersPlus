@@ -31,6 +31,11 @@ float2 rotateUV(float2 uv, float2 pivot, float rotation) {
 
 fixed4 reflectfrag (Varyings i) : SV_Target
 {
+#ifdef KKP_EYE_ALPHA_CUTOFF
+	if (GetEyeCutoffAlpha(i) < _Cutoff)
+		discard;
+#endif
+
 	KKVertexLight vertexLights[4];
 #ifdef VERTEXLIGHT_ON
 	GetVertexLightsTwo(vertexLights, i.posWS, _DisablePointLights);	
@@ -111,9 +116,12 @@ fixed4 reflectfrag (Varyings i) : SV_Target
 	
 	env *= matcapAttenuation * matcap.a;
 	
+#ifdef KKP_EYE_ALPHA_CUTOFF
+	_ReflectionVal *= GetEyeCutoffAlpha(i);
+#else
 	float2 mainUV = i.uv0 * _MainTex_ST.xy + _MainTex_ST.zw;
-	
 	_ReflectionVal *= SAMPLE_TEX2D(_MainTex, mainUV).a;
+#endif
 
 	float3 reflCol = lerp(env, reflectMulOrAdd, 1 - _ReflectionVal * reflectMap * matcapAttenuation * matcap.a * alphaLerp);
 

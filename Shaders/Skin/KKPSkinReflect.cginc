@@ -143,7 +143,11 @@ fixed4 reflectfrag (Varyings i) : SV_Target
 
 	float3 reflCol = lerp(env, reflectMulOrAdd, 1 - modifiedReflectionVal * matcapAttenuation * matcap.a * alphaLerp);
 
-	return float4(max(reflCol, 1E-06), modifiedReflectionVal * reflectMap * _ReflectCol.a);
+	float reflectAlpha = modifiedReflectionVal * reflectMap * _ReflectCol.a;
+#ifdef SKIN_ALPHA_BLEND
+	reflectAlpha *= GetSkinAlpha(i.uv0);
+#endif
+	return float4(max(reflCol, 1E-06), reflectAlpha);
 }
 
 #endif

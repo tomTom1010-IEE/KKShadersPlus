@@ -65,7 +65,11 @@ fixed4 frag (Varyings i) : SV_Target {
 	overTex.a = saturate(overTex.a * _isHighLight);
 	diffuse = overTex.a * blendOverTex + diffuse;
 	float alpha = saturate(overTex.a + expression.a + iris.a);
+#ifdef KKP_EYE_ALPHA_CUTOFF
+	if (alpha < _Cutoff) discard;
+#else
 	if (alpha < 0.01) discard;
+#endif
 
 	float3 shadedDiffuse = diffuse * finalAmbientShadow;
 	finalAmbientShadow = -diffuse * finalAmbientShadow + diffuse;

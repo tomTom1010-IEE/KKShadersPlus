@@ -10,3 +10,6 @@ Recreated KKShadersPlus with additional features and small fix
    - HairFrontPlusDepthOnly shader if you use hair shader other than Xukmi's
 - Improved matcap, with blur feature similar to KKUTS
   
+## FAQs
+- About shadows
+   - Issues concerning shadow color
