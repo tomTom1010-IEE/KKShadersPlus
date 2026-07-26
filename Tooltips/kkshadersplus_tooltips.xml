@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MaterialEditorTooltips SchemaVersion="1">
+  <TooltipSet Id="xukmi.common.alpha">
+    <Property Name="MainTex">Base color texture. Its alpha channel contributes to final opacity.</Property>
+    <Property Name="AlphaMask">Opacity mask. White preserves opacity and black removes it.</Property>
+    <Property Name="Alpha">Overall opacity multiplier. 0 is fully transparent; 1 preserves the texture and mask opacity.</Property>
+    <Property Name="Cutoff">Opacity threshold used when alpha cutoff is enabled. Higher values remove more low-alpha pixels.</Property>
+    <Property Name="AlphaOptionCutoff">Controls alpha clipping: Off keeps blended pixels, On uses a hard cutoff, and Smooth fades around the cutoff when available.</Property>
+    <Property Name="AlphaOptionZWrite">Controls whether visible transparent pixels write to the depth buffer. Enable it to improve sorting; disable it for layered transparency.</Property>
+    <Category Name="Textures">Textures used for color, normal detail, masks, and emission.</Category>
+    <Category Name="Render Options">Transparency, culling, depth, and alpha-cutoff controls.</Category>
+  </TooltipSet>
+
+  <UseTooltipSet Ref="xukmi.common.alpha"/>
+
+  <Shader Name="xukmi/MainAlphaPlus">
+    <Tooltip>Transparent xukmi item shader with the standard alpha workflow.</Tooltip>
+  </Shader>
+
+  <Shader Name="xukmi/MainAlphaPlusTess">
+    <Tooltip>Transparent xukmi item shader with tessellation and the standard alpha workflow.</Tooltip>
+  </Shader>
+
+  <Shader Name="xukmi/SkinAlphaPlus">
+    <Tooltip>Transparent skin shader with the standard alpha workflow.</Tooltip>
+  </Shader>
+
+  <Shader Name="xukmi/TomBSDFAlpha">
+    <Tooltip>Transparent Tom BSDF shader with the standard alpha workflow.</Tooltip>
+  </Shader>
+
+  <Shader Name="xukmi/MainHeightAlpha">
+    <Tooltip>Transparent height-overlay item shader. This entry tests a shader-specific tooltip override.</Tooltip>
+    <Property Name="Alpha">Overall opacity multiplier. Final opacity is also multiplied by HeightMap. With Is Height Reverse enabled, black height values preserve opacity and white values remove it.</Property>
+    <Property Name="HeightMap">Height texture used for reconstructed normal detail and as an additional opacity mask.</Property>
+    <Property Name="IsHeightReverse">Inverts HeightMap before normal reconstruction and alpha masking. Use it when the source height convention is reversed.</Property>
+  </Shader>
+
+  <Shader Name="xukmi/MainHeightAlphaDisplace">
+    <Tooltip>Displaced transparent height-overlay item shader. This entry tests a shader-specific tooltip override.</Tooltip>
+    <Property Name="Alpha">Overall opacity multiplier. Final opacity is also multiplied by HeightMap. With Is Height Reverse enabled, black height values preserve opacity and white values remove it.</Property>
+    <Property Name="HeightMap">Height texture used for tessellation displacement, reconstructed normal detail, and an additional opacity mask.</Property>
+    <Property Name="IsHeightReverse">Inverts HeightMap before displacement, normal reconstruction, and alpha masking. Use it when the source height convention is reversed.</Property>
+  </Shader>
+</MaterialEditorTooltips>

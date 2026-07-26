@@ -7,6 +7,7 @@
   <description>Vanilla KK Shaders with more features</description>
   <website>https://www.pixiv.net/en/users/66587336</website>
   <MaterialEditor>
+    <TooltipCatalog AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="kkshadersplus_tooltips" />
     <Shader Name="xukmi/SkinPlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_SkinPlus">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
       <Property Name="AlphaMask" Category="Textures" Type="Texture" />
@@ -71,6 +72,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -152,6 +154,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -246,6 +249,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -338,6 +342,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -443,6 +448,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -532,6 +538,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -619,6 +626,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -719,6 +727,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -784,6 +793,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairPlusTess" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairPlusTess">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -849,6 +859,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairPlusReflect" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairPlusReflect">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -916,6 +927,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairPlusTessReflect" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairPlusTessReflect">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -994,6 +1006,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairFrontPlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlus">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -1058,6 +1071,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairFrontPlusTess" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusTess">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -1133,6 +1147,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairFrontPlusReflect" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusReflect">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -1201,6 +1216,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairFrontPlusReflectDOF" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusReflectDOF">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -1270,6 +1286,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairFrontPlusTessReflect" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusTessReflect">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -1349,6 +1366,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/EyePlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_EyePlus">
       <Property Name="MainTex" Type="Texture" />
@@ -1379,6 +1397,7 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
+      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="expression" Type="Texture" />
       <Property Name="exppower" Type="Float" Range="0, 1" />
       <Property Name="ExpressionSize" Type="Float" Range="0, 1" />
@@ -1417,6 +1436,7 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
+      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="expression" Type="Texture" />
       <Property Name="exppower" Type="Float" Range="0, 1" />
       <Property Name="ExpressionSize" Type="Float" Range="0, 1" />
@@ -1464,6 +1484,7 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
+      <Property Name="EmissionKeepCol" Type="Float" />
       <Property Name="expression" Type="Texture" />
       <Property Name="exppower" Type="Float" Range="0, 1" />
       <Property Name="ExpressionSize" Type="Float" Range="0, 1" />
@@ -1498,6 +1519,7 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
+      <Property Name="EmissionKeepCol" Type="Float" />
     </Shader>
     <Shader Name="xukmi/EyeWAlphaPlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_EyeWAlphaPlus">
       <Property Name="MainTex" Type="Texture" />
@@ -1527,6 +1549,7 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
+      <Property Name="EmissionKeepCol" Type="Float" />
     </Shader>
     <Shader Name="xukmi/EyeWPlusTess" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_EyeWPlusTess">
       <Property Name="MainTex" Type="Texture" />
@@ -1566,6 +1589,7 @@
       <Property Name="EmissionColor" Type="Color" />
       <Property Name="EmissionIntensity" Type="Float" />
       <Property Name="EmissionMaskMode" Type="Float" />
+      <Property Name="EmissionKeepCol" Type="Float" />
     </Shader>
     <Shader Name="xukmi/MainOpaquePlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_MainOpaquePlus">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -1644,6 +1668,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -1675,6 +1700,7 @@
       <Property Name="EmissionColor" Category="Stylized" Type="Color" />
       <Property Name="EmissionIntensity" Category="Stylized" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Stylized" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Stylized" Type="Float" />
       <Property Name="LiquidTiling" Category="Stylized" Type="Color" />
       <Property Name="ShadowColor" Category="Stylized" Type="Color" />
       <Property Name="SpecularColor" Category="Stylized" Type="Color" />
@@ -1846,6 +1872,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -1932,6 +1959,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -2031,6 +2059,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -2120,6 +2149,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -2220,6 +2250,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
       <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
       <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
       <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
@@ -2298,6 +2329,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/MainItemPlusTess" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_MainItemPlusTess">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -2383,6 +2415,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/MainItemAlphaPlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_MainItemAlphaPlus">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -2457,6 +2490,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/MainItemAlphaPlusTess" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_MainItemAlphaPlusTess">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -2544,6 +2578,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/MainItemStudioPlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_MainItemStudioPlus">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -2994,6 +3029,7 @@
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
     </Shader>
     <Shader Name="xukmi/HairFrontPlusDepthOnly" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusDepthOnly">
       <Property Name="MainTex" Type="Texture" />

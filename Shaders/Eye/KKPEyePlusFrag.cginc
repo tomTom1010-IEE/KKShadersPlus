@@ -116,7 +116,7 @@ fixed4 frag (Varyings i) : SV_Target {
 	emissionUV = emissionUV * _EmissionMask_ST.xy + _EmissionMask_ST.zw;
 
 	float4 emission = GetEmission(emissionUV);
-	finalCol = max(CombineEmission(finalCol, emission, 1.0), 1E-06);
+	finalCol = max(CombineEmission(finalCol, emission), 1E-06);
 	
 	return float4(max(finalCol, 1E-06), alpha);
 }

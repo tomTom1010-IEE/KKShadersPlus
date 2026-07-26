@@ -14,20 +14,20 @@ float3 GetMatCapNormal(Varyings i)
 	return lerp(float3(0, 0, 1), KKPHeightNormalTS(i.uv0, _HeightScale * _NormalMapScale), useHeightNormal);
 }
 
-float3 CreateBinormal(float3 normal, float4 tangent, float binormalSign)
+float3 CreateBinormal(float3 normal, float3 tangent, float binormalSign)
 {
-	return cross(normal, tangent.xyz) * (binormalSign * unity_WorldTransformParams.w);
+	return cross(normal, tangent) * (binormalSign * unity_WorldTransformParams.w);
 }
 
 float3 NormalAdjust(Varyings i, float3 finalCombinedNormal, int faceDir)
 {
-	float3 tangent = normalize(i.tangent);
-	float3 binormal = CreateBinormal(i.normalDir, float4(tangent, 1), i.binormalSign);
-	float3 worldSpaceNormal = mul(finalCombinedNormal, float3x3(tangent, binormal, i.normalDir));
-	worldSpaceNormal = normalize(worldSpaceNormal);
-	float3 adjustedNormal = worldSpaceNormal * faceDir;
-	worldSpaceNormal = _AdjustBackfaceNormals ? adjustedNormal : worldSpaceNormal;
-	return worldSpaceNormal;
+	float3 binormal = CreateBinormal(i.normalWS, i.tanWS.xyz, i.tanWS.w);
+	float3 worldSpaceNormal = normalize(
+		finalCombinedNormal.x * i.tanWS.xyz +
+		finalCombinedNormal.y * binormal +
+		finalCombinedNormal.z * i.normalWS
+	);
+	return _AdjustBackfaceNormals ? worldSpaceNormal * (faceDir <= 0 ? -1 : 1) : worldSpaceNormal;
 }
 
 #endif

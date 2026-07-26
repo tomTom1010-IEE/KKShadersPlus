@@ -19,6 +19,7 @@
 		[Gamma]_EmissionColor("Emission Color", Color) = (1, 1, 1, 1)
 		_EmissionIntensity("Emission Intensity", Float) = 1
 		_EmissionMaskMode("Emission Mask Mode", Float) = 0
+		_EmissionKeepCol("Emission Keep Base Color", Float) = 1
 		[Gamma]_CustomAmbient("Custom Ambient", Color) = (0.666666666, 0.666666666, 0.666666666, 1)
 		[MaterialToggle] _UseRampForLights ("Use Ramp For Light", Float) = 1
 		_DisablePointLights ("Disable Point Lights", Range(0,1)) = 0.0
