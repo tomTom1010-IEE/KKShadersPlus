@@ -29,11 +29,13 @@
 		_DisableShadowedMatcap ("Disable Shadowed Matcap", Range(0,1)) = 0.0
 
 		_DisablePointLights ("Disable Point Lights", Range(0,1)) = 0.0
+		[MaterialToggle] _UseForwardAddFullShadows ("Use ForwardAdd Full Shadows", Float) = 0
 		_ShadowHSV ("Shadow HSV", Vector) = (0, 0, 0, 0)
 		_Saturation ("Saturation", Float) = 1
 	}
 	SubShader
 	{
+		UsePass "Hidden/KKP/LegacyForwardAdd/EYE_W"
 		LOD 600
 		Tags { "IGNOREPROJECTOR" = "true" "QUEUE" = "Transparent-1" "RenderType" = "Transparent" }
 

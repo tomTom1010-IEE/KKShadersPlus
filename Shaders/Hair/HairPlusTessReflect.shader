@@ -76,6 +76,7 @@ Shader "xukmi/HairPlusTessReflect"
 		_ReflectRotation ("Matcap Rotation", Range(0, 360)) = 0
 		_ReflectMask ("Reflect Body Mask", 2D) = "white" {}
 		_DisablePointLights ("Disable Point Lights", Range(0,1)) = 0.0
+		[MaterialToggle] _UseForwardAddFullShadows ("Use ForwardAdd Full Shadows", Float) = 0
 		_DisableShadowedMatcap ("Disable Shadowed Matcap", Range(0,1)) = 0.0
 		[MaterialToggle] _AdjustBackfaceNormals ("Adjust Backface Normals", Float) = 0.0
 		[Enum(Off,0,Front,1,Back,2)] _CullOption ("Cull Option", Range(0, 2)) = 0
@@ -86,6 +87,7 @@ Shader "xukmi/HairPlusTessReflect"
 	}
 	SubShader
 	{
+		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_TESS"
 		LOD 600
 		Tags {"RenderType" = "Opaque" }
 		//Outline

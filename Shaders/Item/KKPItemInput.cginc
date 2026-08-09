@@ -15,7 +15,9 @@
 	{
 		float4 posCS : SV_POSITION;
 		float2 uv0 : TEXCOORD0;
-	#ifdef SHADOWS_SCREEN
+	#ifdef KKP_FORWARD_ADD_PASS
+		LIGHTING_COORDS(5, 6)
+	#elif defined(SHADOWS_SCREEN)
 		float4 shadowCoordinate : TEXCOORD5;
 	#endif
         float4 posWS    : TEXCOORD1;

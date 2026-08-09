@@ -23,6 +23,7 @@
 		[Gamma]_CustomAmbient("Custom Ambient", Color) = (0.666666666, 0.666666666, 0.666666666, 1)
 		[MaterialToggle] _UseRampForLights ("Use Ramp For Light", Float) = 1
 		_DisablePointLights ("Disable Point Lights", Range(0,1)) = 0.0
+		[MaterialToggle] _UseForwardAddFullShadows ("Use ForwardAdd Full Shadows", Float) = 0
 		_ShadowHSV ("Shadow HSV", Vector) = (0, 0, 0, 0)
 
 		_ReflectMap ("Reflect Body Map", 2D) = "white" {}
@@ -42,6 +43,7 @@
 	}
 	SubShader
 	{
+		UsePass "Hidden/KKP/LegacyForwardAdd/EYE"
 		LOD 600
 		Tags {"IgnoreProjector" = "true"
 			  "Queue" = "Transparent"

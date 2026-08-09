@@ -1,6 +1,8 @@
 ﻿#ifndef KKP_VERTEX_LIGHTING_INC
 #define KKP_VERTEX_LIGHTING_INC
 
+float _UseForwardAddFullShadows;
+
 // Vertex Lights
 //Has nothing to do with vertex lighting
 //This is using Unity's variables designated for single-pass multi-light lighting
@@ -31,6 +33,7 @@ void GetVertexLights(out KKVertexLight lights[4], float3 surfaceWorldPos) {
 }
 
 void GetVertexLightsTwo(out KKVertexLight lights[4], float3 surfaceWorldPos, float disablePointLights) {
+	disablePointLights = saturate(disablePointLights + _UseForwardAddFullShadows);
 	[unroll]
 	for(int i = 0; i < 4; i++){
 		KKVertexLight kLight;

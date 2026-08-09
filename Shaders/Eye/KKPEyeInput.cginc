@@ -23,7 +23,9 @@
 		float3 normalWS : TEXCOORD4;
 		float4 tanWS    : TEXCOORD5;
 		float3 bitanWS  : TEXCOORD6;
-	#ifdef SHADOWS_SCREEN
+	#ifdef KKP_FORWARD_ADD_PASS
+		LIGHTING_COORDS(7, 8)
+	#elif defined(SHADOWS_SCREEN)
 		float4 shadowCoordinate : TEXCOORD7;
 	#endif
 	};

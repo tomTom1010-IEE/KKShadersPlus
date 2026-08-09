@@ -103,6 +103,7 @@
 		_ShadowHSV ("Shadow HSV", Vector) = (0, 0, 0, 0)
 		[MaterialToggle] _AdjustBackfaceNormals ("Adjust Backface Normals", Float) = 0.0
 		_DisablePointLights ("Disable Point Lights", Range(0,1)) = 0.0
+		[MaterialToggle] _UseForwardAddFullShadows ("Use ForwardAdd Full Shadows", Float) = 0
 		_DisableShadowedMatcap ("Disable Shadowed Matcap", Range(0,1)) = 0.0
 		_rimReflectMode ("Rimlight Placement", Float) = 0.0
 		
@@ -112,6 +113,7 @@
 	}
 	SubShader
 	{
+		UsePass "Hidden/KKP/LegacyForwardAdd/ITEM_STUDIO_ALPHA"
 		LOD 600
 		Tags { "Queue" = "Transparent+1907" "RenderType" = "TransparentCutout" }
 

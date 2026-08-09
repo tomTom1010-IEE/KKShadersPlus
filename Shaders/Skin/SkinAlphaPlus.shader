@@ -78,6 +78,7 @@
 		_KKPRimRotateY("Body Rim Rotate Y", Float) = 0.0
 		
 		_DisablePointLights ("Disable Point Lights", Float) = 0.0
+		[MaterialToggle] _UseForwardAddFullShadows ("Use ForwardAdd Full Shadows", Float) = 0
 		[MaterialToggle] _AdjustBackfaceNormals ("Adjust Backface Normals", Float) = 0.0
 		_rimReflectMode ("Rimlight Placement", Float) = 0.0
 		
@@ -88,6 +89,7 @@
 	}
 	SubShader
 	{
+		UsePass "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA"
 		LOD 600
 		Tags { "Queue" = "Transparent+40" "RenderType" = "Transparent" }
 		//Outline

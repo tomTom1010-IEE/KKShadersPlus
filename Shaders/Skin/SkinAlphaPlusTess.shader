@@ -89,6 +89,7 @@ Shader "xukmi/SkinAlphaPlusTess"
 		_Clock ("W is for displacement multiplier for animation", Vector) = (0,0,0,1)
 		
 		_DisablePointLights ("Disable Point Lights", Float) = 0.0
+		[MaterialToggle] _UseForwardAddFullShadows ("Use ForwardAdd Full Shadows", Float) = 0
 		[MaterialToggle] _AdjustBackfaceNormals ("Adjust Backface Normals", Float) = 0.0
 		_rimReflectMode ("Rimlight Placement", Float) = 0.0
 		
@@ -99,6 +100,7 @@ Shader "xukmi/SkinAlphaPlusTess"
 	}
 	SubShader
 	{
+		UsePass "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA_TESS"
 		LOD 600
 		Tags { "Queue" = "Transparent+40" "RenderType" = "Transparent" }
 		//Outline
