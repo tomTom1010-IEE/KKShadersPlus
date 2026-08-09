@@ -51,6 +51,7 @@ Shader "xukmi/HairFrontPlus"
 		_KKPRimRotateX("Body Rim Rotate X", Float) = 0.0
 		_KKPRimRotateY("Body Rim Rotate Y", Float) = 0.0
 		_DisablePointLights ("Disable Point Lights", Range(0,1)) = 0.0
+		[MaterialToggle] _UseForwardAddFullShadows ("Use ForwardAdd Full Shadows", Float) = 0
 		[MaterialToggle] _AdjustBackfaceNormals ("Adjust Backface Normals", Float) = 0.0
 		[Enum(Off,0,Front,1,Back,2)] _CullOption ("Cull Option", Range(0, 2)) = 0
 		_rimReflectMode ("Rimlight Placement", Float) = 0.0
@@ -63,6 +64,8 @@ Shader "xukmi/HairFrontPlus"
 	}
 	SubShader
 	{
+		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE"
+		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE"
 		LOD 600
 		Tags {"Queue" = "AlphaTest+25" "RenderType" = "Transparent" }
 		// Outline

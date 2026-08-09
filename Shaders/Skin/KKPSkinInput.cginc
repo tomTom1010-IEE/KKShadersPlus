@@ -23,7 +23,9 @@
 		float2 uv1 : TEXCOORD1;
 		float2 uv2 : TEXCOORD2;
 		float2 uv3 : TEXCOORD3;
-	#ifdef SHADOWS_SCREEN
+	#ifdef KKP_FORWARD_ADD_PASS
+		LIGHTING_COORDS(9, 10)
+	#elif defined(SHADOWS_SCREEN)
 		float4 shadowCoordinate : TEXCOORD4;
 	#endif
         float4 posWS    : TEXCOORD5;
