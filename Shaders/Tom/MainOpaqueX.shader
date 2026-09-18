@@ -29,16 +29,20 @@ Shader "tom/MainOpaqueX"
 		_ShadowRemapStrength ("Shadow Remap Strength", Range(0,1)) = 0
 		_ShadowThreshold ("Shadow Threshold", Range(0,1)) = 0.5
 		_ShadowSoftness ("Shadow Softness", Range(0.001,1)) = 0.2
+		_ShadowOffsetFactor ("Shadow Offset Factor", Range(-4,4)) = 0
+		_ShadowOffsetUnits ("Shadow Offset Units", Range(-4,4)) = 0
 		_MainLightIntensity ("Main Light Intensity", Range(0,4)) = 1
 		_AdditionalLightIntensity ("Additional Light Intensity", Range(0,4)) = 1
+		_VertexLightIntensity ("Vertex Light Fill Intensity", Range(0,1)) = 0.5
 		_LightProbeBlend ("Light Probe Blend", Range(0,1)) = 1
+		_CustomSHVolumeBlend ("Custom SH Volume Blend", Range(0,1)) = 1
 		_IndirectDiffuseIntensity ("Indirect Diffuse Intensity", Range(0,4)) = 1
 
 		[Gamma] _SpecularColor ("Specular Color", Color) = (1,1,1,1)
 		_SpecularStrength ("Specular Strength", Range(0,4)) = 0.5
 		_SpecularPower ("Specular Power", Range(1,256)) = 64
 		_SpecularShadowStrength ("Specular Shadow Strength", Range(0,1)) = 1
-		_GGXSpecularBlend ("GGX Specular Blend", Range(0,1)) = 1
+		_GGXSpecularBlend ("GGX Specular Blend (1 = Production)", Range(0,1)) = 1
 		_Metallic ("Metallic", Range(0,1)) = 0
 		_Roughness ("Roughness", Range(0.04,1)) = 0.5
 		_RoughnessBias ("Roughness Bias", Range(-1,1)) = 0
@@ -81,12 +85,14 @@ Shader "tom/MainOpaqueX"
 		{
 			Name "OUTLINE"
 			Tags { "LightMode" = "Always" }
-			Cull Front
+			Cull Off
 			ZWrite On
 			CGPROGRAM
 			#pragma target 4.0
 			#pragma vertex vertOutline
 			#pragma fragment fragOutline
+			#pragma multi_compile_fog
+			#pragma multi_compile_instancing
 			#pragma only_renderers d3d11 glcore gles3 metal xboxone ps4
 			#include "UnityCG.cginc"
 			sampler2D _MainTex;
@@ -94,39 +100,67 @@ Shader "tom/MainOpaqueX"
 			float4 _MainTex_ST;
 			float4 _AlphaMask_ST;
 			float _Cutoff;
+			float _CullOption;
 			float _OutlineOn;
 			float _OutlineWidth;
 			float _OutlineScreenSpace;
 			float _OutlineDepthOffset;
 			float4 _OutlineColor;
-			struct appdata { float4 vertex : POSITION; float3 normal : NORMAL; float2 uv : TEXCOORD0; };
-			struct v2f { float4 pos : SV_POSITION; float2 uv : TEXCOORD0; };
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+				float2 uv : TEXCOORD0;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
+			};
+			struct v2f
+			{
+				float4 pos : SV_POSITION;
+				float2 uv : TEXCOORD0;
+				UNITY_FOG_COORDS(1)
+				UNITY_VERTEX_INPUT_INSTANCE_ID
+				UNITY_VERTEX_OUTPUT_STEREO
+			};
 			v2f vertOutline(appdata v)
 			{
 				v2f o;
+				UNITY_SETUP_INSTANCE_ID(v);
+				UNITY_INITIALIZE_OUTPUT(v2f, o);
+				UNITY_TRANSFER_INSTANCE_ID(v, o);
+				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 				float4 basePositionCS = UnityObjectToClipPos(v.vertex);
-				float4 expandedVertex = v.vertex;
-				expandedVertex.xyz += v.normal * (_OutlineWidth * 0.01);
-				float4 objectSpacePositionCS = UnityObjectToClipPos(expandedVertex);
+				float3 positionWS = mul(unity_ObjectToWorld, v.vertex).xyz;
+				float3 normalWS = normalize(UnityObjectToWorldNormal(v.normal));
+				float3 expandedPositionWS = positionWS + normalWS * (_OutlineWidth * 0.01);
+				float4 worldSpacePositionCS = UnityWorldToClipPos(expandedPositionWS);
 
-				float3 normalVS = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
+				float3 normalVS = mul((float3x3)UNITY_MATRIX_V, normalWS);
 				float2 projectedNormal = mul((float2x2)UNITY_MATRIX_P, normalVS.xy);
 				projectedNormal /= max(length(projectedNormal), 0.0001);
 				float2 pixelSizeCS = 2.0 / _ScreenParams.xy;
 				float4 screenSpacePositionCS = basePositionCS;
 				screenSpacePositionCS.xy += projectedNormal * pixelSizeCS * _OutlineWidth * basePositionCS.w;
-				o.pos = lerp(objectSpacePositionCS, screenSpacePositionCS, saturate(_OutlineScreenSpace));
+				o.pos = lerp(worldSpacePositionCS, screenSpacePositionCS, saturate(_OutlineScreenSpace));
 				o.pos.z += _OutlineDepthOffset * 0.001 * o.pos.w;
 				o.uv = v.uv;
+				UNITY_TRANSFER_FOG(o, o.pos);
 				return o;
 			}
-			fixed4 fragOutline(v2f i) : SV_Target
+			fixed4 fragOutline(v2f i, fixed faceSign : VFACE) : SV_Target
 			{
+				UNITY_SETUP_INSTANCE_ID(i);
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 				clip(_OutlineOn - 0.5);
+				if (_CullOption > 0.5 && _CullOption < 1.5)
+					clip(faceSign);
+				else
+					clip(-faceSign);
 				float mainAlpha = tex2D(_MainTex, i.uv * _MainTex_ST.xy + _MainTex_ST.zw).a;
 				float mask = tex2D(_AlphaMask, i.uv * _AlphaMask_ST.xy + _AlphaMask_ST.zw).r;
 				clip(mainAlpha * mask - _Cutoff);
-				return _OutlineColor;
+				fixed4 color = _OutlineColor;
+				UNITY_APPLY_FOG(i.fogCoord, color);
+				return color;
 			}
 			ENDCG
 		}
@@ -142,6 +176,8 @@ Shader "tom/MainOpaqueX"
 			#pragma vertex TomVert
 			#pragma fragment TomFragBase
 			#pragma multi_compile_fwdbase
+			#pragma multi_compile_fog
+			#pragma multi_compile_instancing
 			#pragma multi_compile __ UNITY_SPECCUBE_BOX_PROJECTION
 			#pragma multi_compile __ UNITY_SPECCUBE_BLENDING
 			#pragma only_renderers d3d11 glcore gles3 metal xboxone ps4
@@ -167,6 +203,8 @@ Shader "tom/MainOpaqueX"
 			#pragma vertex TomVert
 			#pragma fragment TomFragAdd
 			#pragma multi_compile_fwdadd_fullshadows
+			#pragma multi_compile_fog
+			#pragma multi_compile_instancing
 			#pragma only_renderers d3d11 glcore gles3 metal xboxone ps4
 			#include "UnityCG.cginc"
 			#include "UnityStandardUtils.cginc"
@@ -181,12 +219,14 @@ Shader "tom/MainOpaqueX"
 		{
 			Name "SHADOWCASTER"
 			Tags { "LightMode" = "ShadowCaster" }
-			Cull [_CullOption]
-			Offset 1, 1
+			Cull Off
+			Offset [_ShadowOffsetFactor], [_ShadowOffsetUnits]
 			CGPROGRAM
+			#pragma target 3.0
 			#pragma vertex vertShadow
 			#pragma fragment fragShadow
 			#pragma multi_compile_shadowcaster
+			#pragma multi_compile_instancing
 			#pragma only_renderers d3d11 glcore gles3 metal xboxone ps4
 			#include "UnityCG.cginc"
 			sampler2D _MainTex;
@@ -194,16 +234,33 @@ Shader "tom/MainOpaqueX"
 			float4 _MainTex_ST;
 			float4 _AlphaMask_ST;
 			float _Cutoff;
+			float _CullOption;
 			struct v2f { float2 uv : TEXCOORD1; V2F_SHADOW_CASTER; };
 			v2f vertShadow(appdata_base v)
 			{
 				v2f o;
+				UNITY_SETUP_INSTANCE_ID(v);
+				UNITY_INITIALIZE_OUTPUT(v2f, o);
 				o.uv = v.texcoord.xy;
-				TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
+				UNITY_BRANCH
+				if (_CullOption < 0.5)
+				{
+					TRANSFER_SHADOW_CASTER_NOPOS_LEGACY(o, o.pos)
+				}
+				else
+				{
+					if (_CullOption < 1.5)
+						v.normal = -v.normal;
+					TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
+				}
 				return o;
 			}
-			float4 fragShadow(v2f i) : SV_Target
+			float4 fragShadow(v2f i, fixed faceSign : VFACE) : SV_Target
 			{
+				if (_CullOption > 1.5)
+					clip(faceSign);
+				else if (_CullOption > 0.5)
+					clip(-faceSign);
 				float mainAlpha = tex2D(_MainTex, i.uv * _MainTex_ST.xy + _MainTex_ST.zw).a;
 				float mask = tex2D(_AlphaMask, i.uv * _AlphaMask_ST.xy + _AlphaMask_ST.zw).r;
 				clip(mainAlpha * mask - _Cutoff);

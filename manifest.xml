@@ -1833,9 +1833,13 @@
       <Property Name="ShadowRemapStrength" Category="Lighting" Type="Float" Range="0, 1" />
       <Property Name="ShadowThreshold" Category="Lighting" Type="Float" Range="0, 1" />
       <Property Name="ShadowSoftness" Category="Lighting" Type="Float" Range="0.001, 1" />
+      <Property Name="ShadowOffsetFactor" Category="Lighting" Type="Float" Range="-4, 4" />
+      <Property Name="ShadowOffsetUnits" Category="Lighting" Type="Float" Range="-4, 4" />
       <Property Name="MainLightIntensity" Category="Lighting" Type="Float" Range="0, 4" />
       <Property Name="AdditionalLightIntensity" Category="Lighting" Type="Float" Range="0, 4" />
+      <Property Name="VertexLightIntensity" Category="Lighting" Type="Float" Range="0, 1" />
       <Property Name="LightProbeBlend" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="CustomSHVolumeBlend" Category="Lighting" Type="Float" Range="0, 1" />
       <Property Name="IndirectDiffuseIntensity" Category="Lighting" Type="Float" Range="0, 4" />
       <Property Name="SpecularColor" Category="Specular" Type="Color" />
       <Property Name="SpecularStrength" Category="Specular" Type="Float" Range="0, 4" />

@@ -9,6 +9,9 @@ struct TomVertexData
 	float3 normal : NORMAL;
 	float4 tangent : TANGENT;
 	float2 uv0 : TEXCOORD0;
+	float2 uv1 : TEXCOORD1;
+	float2 uv2 : TEXCOORD2;
+	UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 struct TomVaryings
@@ -19,7 +22,12 @@ struct TomVaryings
 	float3 normalWS : TEXCOORD2;
 	float4 tangentWS : TEXCOORD3;
 	float3 bitangentWS : TEXCOORD4;
-	LIGHTING_COORDS(5, 6)
+	half4 ambientOrLightmapUV : TEXCOORD5;
+	UNITY_LIGHTING_COORDS(6, 7)
+	UNITY_FOG_COORDS(8)
+	half3 vertexLightDiffuse : TEXCOORD9;
+	UNITY_VERTEX_INPUT_INSTANCE_ID
+	UNITY_VERTEX_OUTPUT_STEREO
 };
 
 DECLARE_TEX2D(_MainTex);
@@ -64,8 +72,17 @@ float _ShadowThreshold;
 float _ShadowSoftness;
 float _MainLightIntensity;
 float _AdditionalLightIntensity;
+float _VertexLightIntensity;
 float _LightProbeBlend;
+float _CustomSHVolumeBlend;
 float _IndirectDiffuseIntensity;
+
+sampler3D _TomSHVolumeTex;
+float4x4 _TomSHWorldToLocal;
+float4 _TomSHBoundsMin;
+float4 _TomSHBoundsInvSize;
+float4 _TomSHVolumeGrid;
+float4 _TomSHVolumeParams;
 
 float4 _SpecularColor;
 float _SpecularStrength;
