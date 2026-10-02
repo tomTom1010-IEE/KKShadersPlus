@@ -86,9 +86,7 @@ float4 _TomSHVolumeParams;
 
 float4 _SpecularColor;
 float _SpecularStrength;
-float _SpecularPower;
 float _SpecularShadowStrength;
-float _GGXSpecularBlend;
 float _Metallic;
 float _Roughness;
 float _RoughnessBias;
@@ -100,7 +98,6 @@ float _SpecularOcclusionStrength;
 
 float4 _RimColor;
 float _RimStrength;
-float _RimPower;
 float _RimShadowStrength;
 
 float _ReflectionMode;
@@ -120,5 +117,46 @@ float4 _OutlineColor;
 float _OutlineWidth;
 float _OutlineScreenSpace;
 float _OutlineDepthOffset;
+
+float _UsePackedMaterialMap;
+DECLARE_TEX2D_NOSAMPLER(_MaterialMap);
+float4 _MaterialMap_ST;
+DECLARE_TEX2D_NOSAMPLER(_LayerMask);
+float4 _LayerMask_ST;
+DECLARE_TEX2D_NOSAMPLER(_SecondaryRamp);
+float4 _SecondaryRamp_ST;
+DECLARE_TEX2D_NOSAMPLER(_OutlineWidthMask);
+float4 _OutlineWidthMask_ST;
+float _DiffuseEnergyBlend;
+float _RampMode;
+float _ToonThreshold;
+float _ToonSoftness;
+float _ToonShadeLevel;
+float _SecondaryToneStrength;
+float _IndirectToonBlend;
+float _IndirectToonThreshold;
+float _IndirectToonSoftness;
+float _IndirectShadeLevel;
+float _SpecularToonBlend;
+float _SpecularSize;
+float _SpecularThreshold;
+float _SpecularSoftness;
+float _SpecularBands;
+float _SpecularAA;
+float _EnvironmentToonBlend;
+float _EnvironmentThreshold;
+float _EnvironmentSoftness;
+float _EnvironmentExposure;
+float _EnvironmentColorWeight;
+float _EnvironmentBaseColorTint;
+float _EnvironmentFresnelStrength;
+float4 _EnvironmentColor;
+float _RimWidth;
+float _RimSoftness;
+float _RimLightInfluence;
+float _MatCapNormalSource;
+float _EmissionKeepCol;
+float _OutlineNormalSource;
+float _DebugView;
 
 #endif

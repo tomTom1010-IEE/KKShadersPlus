@@ -2,6 +2,7 @@
 #define TOM_TOON_LIGHTING_INC
 
 #include "TomToonBRDF.cginc"
+#include "TomToonStyle.cginc"
 #include "UnityGlobalIllumination.cginc"
 
 struct TomMaterialData
@@ -9,6 +10,10 @@ struct TomMaterialData
 	float3 albedo;
 	float3 geometricNormalWS;
 	float3 shadingNormalWS;
+	float3 mainNormalWS;
+	float normalVariance;
+	float4 layerMask;
+	float secondaryToneMask;
 	float metallic;
 	float roughness;
 	float occlusion;
@@ -117,7 +122,13 @@ float TomFaceOrientation(fixed faceSign)
 	return faceSign >= 0.0 ? 1.0 : -1.0;
 }
 
-float3 TomNormalWS(TomVaryings i, float faceOrientation, float3 geometricNormalWS)
+float3 TomSafeDirection(float3 direction)
+{
+	// A scene without a main light may supply a zero vector.
+	return direction * rsqrt(max(dot(direction, direction), 0.000001));
+}
+
+float3 TomNormalWS(TomVaryings i, float faceOrientation, float3 geometricNormalWS, out float3 mainNormalWS)
 {
 	float2 normalUV = i.uv0 * _NormalMap_ST.xy + _NormalMap_ST.zw;
 	float2 detailUV = i.uv0 * _NormalMapDetail_ST.xy + _NormalMapDetail_ST.zw;
@@ -126,6 +137,7 @@ float3 TomNormalWS(TomVaryings i, float faceOrientation, float3 geometricNormalW
 	float3 normalTS = BlendNormals(baseNormal, detailNormal);
 	float3 tangentWS = normalize(i.tangentWS.xyz);
 	float3 bitangentWS = normalize(i.bitangentWS) * faceOrientation;
+	mainNormalWS = normalize(baseNormal.x * tangentWS + baseNormal.y * bitangentWS + baseNormal.z * geometricNormalWS);
 	return normalize(
 		normalTS.x * tangentWS
 		+ normalTS.y * bitangentWS
@@ -143,23 +155,55 @@ TomMaterialData TomGetDirectMaterialData(TomVaryings i, fixed faceSign)
 	TomMaterialData material;
 	float4 mainTex = SAMPLE_TEX2D(_MainTex, i.uv0 * _MainTex_ST.xy + _MainTex_ST.zw);
 	clip(TomSurfaceAlpha(i, mainTex.a) - _Cutoff);
-
 	float faceOrientation = TomFaceOrientation(faceSign);
 	material.albedo = mainTex.rgb * _BaseColor.rgb;
 	material.geometricNormalWS = normalize(i.normalWS) * faceOrientation;
-	material.shadingNormalWS = TomNormalWS(i, faceOrientation, material.geometricNormalWS);
-
-	float metallicMap = SAMPLE_TEX2D(_MetallicMap, i.uv0 * _MetallicMap_ST.xy + _MetallicMap_ST.zw).r;
-	float roughnessMap = SAMPLE_TEX2D(_RoughnessMap, i.uv0 * _RoughnessMap_ST.xy + _RoughnessMap_ST.zw).r;
+	material.shadingNormalWS = TomNormalWS(i, faceOrientation, material.geometricNormalWS, material.mainNormalWS);
+	float3 dx = ddx(material.shadingNormalWS);
+	float3 dy = ddy(material.shadingNormalWS);
+	material.normalVariance = 0.5 * (dot(dx, dx) + dot(dy, dy));
+	float metallicMap;
+	float roughnessMap;
+	material.occlusion = 1.0;
+	UNITY_BRANCH
+	if (_UsePackedMaterialMap > 0.5)
+	{
+		float4 packed = SAMPLE_TEX2D_SAMPLER(_MaterialMap, _MainTex, i.uv0 * _MaterialMap_ST.xy + _MaterialMap_ST.zw);
+		metallicMap = packed.r;
+		roughnessMap = packed.g;
+		material.occlusion = lerp(1.0, saturate(packed.b), saturate(_OcclusionStrength));
+		material.specularMask = packed.a;
+	}
+	else
+	{
+		metallicMap = SAMPLE_TEX2D(_MetallicMap, i.uv0 * _MetallicMap_ST.xy + _MetallicMap_ST.zw).r;
+		roughnessMap = SAMPLE_TEX2D(_RoughnessMap, i.uv0 * _RoughnessMap_ST.xy + _RoughnessMap_ST.zw).r;
+		material.specularMask = SAMPLE_TEX2D(_SpecularMask, i.uv0 * _SpecularMask_ST.xy + _SpecularMask_ST.zw).r;
+	}
 	material.metallic = saturate(_Metallic * metallicMap);
 	material.roughness = max(saturate(_Roughness * roughnessMap + _RoughnessBias), 0.04);
-
 	float dielectricF0 = TomIorToF0(_SpecularIOR);
 	material.f0 = lerp(dielectricF0.xxx, material.albedo, material.metallic);
-	material.specularMask = SAMPLE_TEX2D(_SpecularMask, i.uv0 * _SpecularMask_ST.xy + _SpecularMask_ST.zw).r;
-
-	material.occlusion = 1.0;
+	material.layerMask = 1.0;
+	float reflectionMode = floor(_ReflectionMode + 0.5);
+	bool matcapMultiply = (reflectionMode == 1.0 || reflectionMode == 3.0)
+		&& _MatCapIntensity > 0.0 && _MatCapBlendMode < 0.5;
+	bool needsLayers = _SecondaryToneStrength > 0.0 || matcapMultiply;
+#if defined(UNITY_PASS_FORWARDBASE)
+	needsLayers = needsLayers || _RimStrength > 0.0 || reflectionMode > 0.0;
+#endif
+	UNITY_BRANCH
+	if (needsLayers)
+		material.layerMask = SAMPLE_TEX2D_SAMPLER(_LayerMask, _MainTex, i.uv0 * _LayerMask_ST.xy + _LayerMask_ST.zw);
+	material.secondaryToneMask = material.layerMask.r;
 	material.reflectionMask = 0.0;
+	bool needsReflectionMask = matcapMultiply;
+#if defined(UNITY_PASS_FORWARDBASE)
+	needsReflectionMask = reflectionMode > 0.0;
+#endif
+	UNITY_BRANCH
+	if (needsReflectionMask)
+		material.reflectionMask = SAMPLE_TEX2D(_ReflectionMask, i.uv0 * _ReflectionMask_ST.xy + _ReflectionMask_ST.zw).r;
 	material.emission = 0.0;
 	return material;
 }
@@ -167,18 +211,39 @@ TomMaterialData TomGetDirectMaterialData(TomVaryings i, fixed faceSign)
 TomMaterialData TomGetBaseMaterialData(TomVaryings i, fixed faceSign)
 {
 	TomMaterialData material = TomGetDirectMaterialData(i, faceSign);
-	float occlusionMap = SAMPLE_TEX2D(_OcclusionMap, i.uv0 * _OcclusionMap_ST.xy + _OcclusionMap_ST.zw).r;
-	material.occlusion = lerp(1.0, saturate(occlusionMap), saturate(_OcclusionStrength));
-	material.reflectionMask = SAMPLE_TEX2D(_ReflectionMask, i.uv0 * _ReflectionMask_ST.xy + _ReflectionMask_ST.zw).r;
-	float3 emissionMask = SAMPLE_TEX2D(_EmissionMask, i.uv0 * _EmissionMask_ST.xy + _EmissionMask_ST.zw).rgb;
-	material.emission = emissionMask * _EmissionColor.rgb * _EmissionIntensity;
+	UNITY_BRANCH
+	if (_UsePackedMaterialMap < 0.5 && _OcclusionStrength > 0.0)
+	{
+		float occlusionMap = SAMPLE_TEX2D(_OcclusionMap, i.uv0 * _OcclusionMap_ST.xy + _OcclusionMap_ST.zw).r;
+		material.occlusion = lerp(1.0, saturate(occlusionMap), saturate(_OcclusionStrength));
+	}
+	UNITY_BRANCH
+	if (_EmissionIntensity > 0.0)
+	{
+		float3 emissionMask = SAMPLE_TEX2D(_EmissionMask, i.uv0 * _EmissionMask_ST.xy + _EmissionMask_ST.zw).rgb;
+		material.emission = emissionMask * _EmissionColor.rgb * _EmissionIntensity
+			* lerp(1.0.xxx, material.albedo, saturate(_EmissionKeepCol));
+	}
 	return material;
 }
 
-float TomSampleRamp(float value)
+float TomSampleRamp(float value, float secondaryMask)
 {
-	float2 rampUV = float2(saturate(value), 0.5) * _RampTex_ST.xy + _RampTex_ST.zw;
-	return SAMPLE_TEX2D(_RampTex, rampUV).r;
+	float ramp = lerp(_ToonShadeLevel, 1.0, TomSoftBand(value, _ToonThreshold, _ToonSoftness));
+	UNITY_BRANCH
+	if (_RampMode > 0.5)
+	{
+		float2 uv = float2(saturate(value), 0.5) * _RampTex_ST.xy + _RampTex_ST.zw;
+		ramp = SAMPLE_TEX2D(_RampTex, uv).r;
+	}
+	UNITY_BRANCH
+	if (_SecondaryToneStrength > 0.0 && secondaryMask > 0.0)
+	{
+		float2 uv = float2(saturate(value), 0.5) * _SecondaryRamp_ST.xy + _SecondaryRamp_ST.zw;
+		float secondary = SAMPLE_TEX2D_SAMPLER(_SecondaryRamp, _MainTex, uv).r;
+		ramp = lerp(ramp, secondary, saturate(_SecondaryToneStrength * secondaryMask));
+	}
+	return ramp;
 }
 
 float TomShapeShadow(float physicalShadow)
@@ -280,7 +345,10 @@ TomSurfaceLightTerms TomBuildSurfaceLightTerms(
 		1.0,
 		surface.diffuseShadowAttenuation,
 		saturate(_UseRampForShadows));
-	float ramp = TomSampleRamp(rampInput);
+	float ramp = light.physicalShadowAttenuation;
+	UNITY_BRANCH
+	if (_UseRamp > 0.0)
+		ramp = TomSampleRamp(rampInput, material.secondaryToneMask);
 	float toonNdotL = lerp(surface.shadingNdotL, ramp, saturate(_UseRamp));
 	float shadowOutsideRamp = lerp(
 		surface.diffuseShadowAttenuation,
@@ -289,7 +357,7 @@ TomSurfaceLightTerms TomBuildSurfaceLightTerms(
 	surface.toonVisibility = toonNdotL
 		* light.distanceAttenuation
 		* light.cookieAttenuation
-		* shadowOutsideRamp
+		* min(shadowOutsideRamp, surface.diffuseShadowAttenuation)
 		* surface.horizon;
 	return surface;
 }
@@ -309,70 +377,28 @@ TomLightingResult TomEvaluateDirectLight(
 	float nDotL = surface.shadingNdotL;
 	float nDotH = saturate(dot(material.shadingNormalWS, halfDir)) * halfIsValid;
 	float vDotH = saturate(dot(viewDir, halfDir)) * halfIsValid;
-	float ggxBlend = saturate(_GGXSpecularBlend);
-
-	float3 fresnel = halfIsValid > 0.5
-		? TomFresnelSchlick(vDotH, material.f0, _FresnelStrength)
-		: material.f0;
-	float3 energyConservingDiffuse = (1.0 - fresnel) * (1.0 - material.metallic);
-	float3 diffuseWeight;
-	float3 specularBRDF;
-
+	float3 fresnel = TomFresnelSchlick(vDotH, material.f0, _FresnelStrength);
+	result.diffuse = material.albedo * TomDiffuseWeight(fresnel, material.metallic)
+		* light.color * surface.toonVisibility;
+	result.specular = 0.0;
+	// Derivatives are evaluated outside per-pixel visibility branches.
+	float toonLobe = TomStylizedGGXLobe(nDotH, material.normalVariance);
 	UNITY_BRANCH
-	if (ggxBlend >= 0.999)
+	if (_SpecularStrength > 0.0 && halfIsValid > 0.5 && surface.horizon > 0.0
+		&& nDotV > 0.00001 && nDotL > 0.00001)
 	{
-		diffuseWeight = energyConservingDiffuse;
-		specularBRDF = halfIsValid > 0.5 && surface.horizon > 0.0
-			? TomEvaluateProductionGGX(
-				nDotV,
-				nDotL,
-				nDotH,
-				vDotH,
-				material.roughness,
-				material.f0,
-				_FresnelStrength) * _SpecularColor.rgb * surface.horizon
-			: 0.0;
-	}
-	else
-	{
-		float blinnLobe = pow(nDotH, max(_SpecularPower, 1.0)) * surface.horizon;
-		float3 blinnSpecular = blinnLobe * _SpecularColor.rgb;
-
+		float3 specular = 0.0;
 		UNITY_BRANCH
-		if (ggxBlend <= 0.001)
-		{
-			diffuseWeight = 1.0.xxx;
-			specularBRDF = blinnSpecular;
-		}
-		else
-		{
-			float3 ggxSpecular = halfIsValid > 0.5 && surface.horizon > 0.0
-				? TomEvaluateProductionGGX(
-					nDotV,
-					nDotL,
-					nDotH,
-					vDotH,
-					material.roughness,
-					material.f0,
-					_FresnelStrength) * _SpecularColor.rgb * surface.horizon
-				: 0.0;
-			diffuseWeight = lerp(1.0.xxx, energyConservingDiffuse, ggxBlend);
-			specularBRDF = lerp(blinnSpecular, ggxSpecular, ggxBlend);
-		}
+		if (_SpecularToonBlend < 0.999)
+			specular = TomEvaluateProductionGGX(nDotV, nDotL, nDotH, vDotH,
+				TomFilteredRoughness(material.roughness, material.normalVariance), material.f0, _FresnelStrength);
+		float3 shaped = toonLobe * fresnel * nDotL;
+		specular = lerp(specular, shaped, saturate(_SpecularToonBlend));
+		float shadow = lerp(1.0, surface.artisticShadowAttenuation, saturate(_SpecularShadowStrength));
+		result.specular = specular * _SpecularColor.rgb * surface.horizon
+			* material.specularMask * _SpecularStrength * light.color
+			* light.distanceAttenuation * light.cookieAttenuation * shadow;
 	}
-
-	result.diffuse = material.albedo * diffuseWeight * light.color * surface.toonVisibility;
-	float specularShadow = lerp(
-		1.0,
-		surface.artisticShadowAttenuation,
-		saturate(_SpecularShadowStrength));
-	result.specular = specularBRDF
-		* material.specularMask
-		* _SpecularStrength
-		* light.color
-		* light.distanceAttenuation
-		* light.cookieAttenuation
-		* specularShadow;
 	return result;
 }
 
@@ -489,10 +515,18 @@ float3 TomEvaluateIndirectDiffuse(
 		saturate(_CustomSHVolumeBlend) * customSH.a);
 #endif
 
+	UNITY_BRANCH
+	if (_IndirectToonBlend > 0.0)
+	{
+		float luma = TomLuminance(irradiance);
+		float tone = lerp(_IndirectShadeLevel, 1.0,
+			TomSoftBand(luma, _IndirectToonThreshold, _IndirectToonSoftness));
+		float3 toned = irradiance / max(luma, 0.0001) * tone * saturate(luma / 0.05);
+		irradiance = lerp(irradiance, toned, saturate(_IndirectToonBlend));
+	}
 	float nDotV = saturate(dot(material.shadingNormalWS, viewDir));
 	float3 fresnel = TomFresnelSchlick(nDotV, material.f0, _FresnelStrength);
-	float3 energyConservingDiffuse = (1.0 - fresnel) * (1.0 - material.metallic);
-	float3 diffuseWeight = lerp(1.0.xxx, energyConservingDiffuse, saturate(_GGXSpecularBlend));
+	float3 diffuseWeight = TomDiffuseWeight(fresnel, material.metallic);
 	return material.albedo
 		* diffuseWeight
 		* irradiance
@@ -508,8 +542,7 @@ float3 TomEvaluateVertexLightDiffuse(
 #if defined(VERTEXLIGHT_ON) && !defined(LIGHTMAP_ON)
 	float nDotV = saturate(dot(material.geometricNormalWS, viewDir));
 	float3 fresnel = TomFresnelSchlick(nDotV, material.f0, _FresnelStrength);
-	float3 energyConservingDiffuse = (1.0 - fresnel) * (1.0 - material.metallic);
-	float3 diffuseWeight = lerp(1.0.xxx, energyConservingDiffuse, saturate(_GGXSpecularBlend));
+	float3 diffuseWeight = TomDiffuseWeight(fresnel, material.metallic);
 	return material.albedo
 		* diffuseWeight
 		* max(vertexLightDiffuse, 0.0)
@@ -557,63 +590,82 @@ float3 TomEvaluateProbeSpecular(
 	float grazingTerm = saturate(smoothness + reflectivity);
 	float nDotV = saturate(dot(material.shadingNormalWS, viewDir));
 	float3 unityFresnel = FresnelLerp(material.f0, grazingTerm.xxx, nDotV);
-	float3 fresnel = saturate(lerp(material.f0, unityFresnel, _FresnelStrength));
+	float3 fresnel = saturate(lerp(material.f0, unityFresnel, _EnvironmentFresnelStrength));
 	float specularOcclusion = lerp(
 		1.0,
 		material.occlusion,
 		saturate(_SpecularOcclusionStrength));
-	return environment * surfaceReduction * fresnel * specularOcclusion;
+	float3 shaped = TomShapeEnvironment(environment);
+	float3 reflected = lerp(environment * surfaceReduction, shaped, saturate(_EnvironmentToonBlend));
+	return reflected * fresnel * specularOcclusion * _EnvironmentColor.rgb
+		* lerp(1.0.xxx, material.albedo, saturate(_EnvironmentBaseColorTint));
 }
 
-float3 TomApplyReflections(
-	TomVaryings i,
-	UnityGIInput giInput,
-	TomMaterialData material,
-	float3 viewDir,
-	float mainShadow,
-	float3 color)
+float3 TomSampleMatCap(TomVaryings i, TomMaterialData material)
 {
+	float3 normalWS = material.shadingNormalWS;
+	if (_MatCapNormalSource < 0.5)
+		normalWS = material.geometricNormalWS;
+	else if (_MatCapNormalSource < 1.5)
+		normalWS = material.mainNormalWS;
+	float2 uv = mul((float3x3)UNITY_MATRIX_V, normalWS).xy * 0.5 + 0.5;
+	uv = uv * _MatCap_ST.xy + _MatCap_ST.zw;
+	return SAMPLE_TEX2D_LOD(_MatCap, float4(uv, 0, 0), _MatCapMip).rgb;
+}
+
+float3 TomMatCapMultiplier(TomVaryings i, TomMaterialData material, float mainShadow)
+{
+	float3 result = 1.0;
 	float mode = floor(_ReflectionMode + 0.5);
-	float reflectionShadow = lerp(1.0, mainShadow, saturate(_ReflectionShadowStrength));
-
 	UNITY_BRANCH
-	if (mode == 1.0 || mode == 3.0)
+	if ((mode == 1.0 || mode == 3.0) && _MatCapIntensity > 0.0 && _MatCapBlendMode < 0.5)
 	{
-		float3 normalVS = mul((float3x3)UNITY_MATRIX_V, material.shadingNormalWS);
-		float2 matCapUV = normalVS.xy * 0.5 + 0.5;
-		matCapUV = matCapUV * _MatCap_ST.xy + _MatCap_ST.zw;
-		float3 matCap = SAMPLE_TEX2D_LOD(_MatCap, float4(matCapUV, 0, 0), _MatCapMip).rgb;
-		float matCapAmount = material.reflectionMask * _MatCapIntensity * reflectionShadow;
-		float3 matCapMultiply = color * lerp(1.0, matCap * 2.0, matCapAmount);
-		float3 matCapAdd = color + matCap * matCapAmount;
-		color = lerp(matCapMultiply, matCapAdd, saturate(_MatCapBlendMode));
+		float amount = saturate(material.reflectionMask * material.layerMask.b * _MatCapIntensity);
+		// A material tint must be identical in Base and Add; shadow influence applies to additive layers only.
+		result = lerp(1.0.xxx, TomSampleMatCap(i, material) * 2.0, amount);
 	}
-
-	UNITY_BRANCH
-	if (mode == 2.0 || mode == 3.0)
-	{
-		color += TomEvaluateProbeSpecular(giInput, material, viewDir)
-			* material.reflectionMask
-			* _EnvironmentIntensity
-			* reflectionShadow;
-	}
-	return color;
+	return result;
 }
 
-float3 TomEvaluateRim(TomMaterialData material, float3 viewDir, float mainShadow)
+float3 TomEnvironmentLayer(UnityGIInput giInput, TomMaterialData material, float3 viewDir, float mainShadow)
 {
-	float rim = pow(saturate(1.0 - dot(material.shadingNormalWS, viewDir)), max(_RimPower, 0.01));
-	float shadow = lerp(1.0, mainShadow, saturate(_RimShadowStrength));
-	return rim * _RimStrength * _RimColor.rgb * shadow;
+	float3 result = 0.0;
+	float mode = floor(_ReflectionMode + 0.5);
+	UNITY_BRANCH
+	if ((mode == 2.0 || mode == 3.0) && _EnvironmentIntensity > 0.0)
+		result = TomEvaluateProbeSpecular(giInput, material, viewDir) * material.reflectionMask
+			* material.layerMask.a * _EnvironmentIntensity
+			* lerp(1.0, mainShadow, saturate(_ReflectionShadowStrength));
+	return result;
 }
 
-fixed4 TomFragBase(TomVaryings i, fixed faceSign : VFACE) : SV_Target
+float3 TomMatCapAddLayer(TomVaryings i, TomMaterialData material, float mainShadow)
+{
+	float3 result = 0.0;
+	float mode = floor(_ReflectionMode + 0.5);
+	UNITY_BRANCH
+	if ((mode == 1.0 || mode == 3.0) && _MatCapIntensity > 0.0 && _MatCapBlendMode >= 0.5)
+		result = TomSampleMatCap(i, material) * material.reflectionMask * material.layerMask.b
+			* _MatCapIntensity * lerp(1.0, mainShadow, saturate(_ReflectionShadowStrength));
+	return result;
+}
+
+float3 TomEvaluateRim(TomMaterialData material, float3 viewDir, float3 mainLightDir, float mainShadow)
+{
+	float facing = saturate(dot(material.shadingNormalWS, viewDir));
+	float rim = 1.0 - TomSoftBand(facing, _RimWidth, _RimSoftness);
+	rim *= lerp(1.0, saturate(dot(material.geometricNormalWS, mainLightDir)), saturate(_RimLightInfluence));
+	float shadow = lerp(1.0, mainShadow, saturate(_RimShadowStrength));
+	return rim * _RimStrength * _RimColor.rgb * shadow * material.layerMask.g;
+}
+
+float4 TomFragBase(TomVaryings i, fixed faceSign : VFACE) : SV_Target
 {
 	UNITY_SETUP_INSTANCE_ID(i);
 	UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 	TomMaterialData material = TomGetBaseMaterialData(i, faceSign);
-	float3 viewDir = normalize(_WorldSpaceCameraPos.xyz - i.posWS);
-	float3 lightDir = normalize(UnityWorldSpaceLightDir(i.posWS));
+	float3 viewDir = TomSafeDirection(_WorldSpaceCameraPos.xyz - i.posWS);
+	float3 lightDir = TomSafeDirection(UnityWorldSpaceLightDir(i.posWS));
 	float distanceAttenuation;
 	float cookieAttenuation;
 	TomSampleLightDistanceAndCookie(i.posWS, distanceAttenuation, cookieAttenuation);
@@ -652,32 +704,33 @@ fixed4 TomFragBase(TomVaryings i, fixed faceSign : VFACE) : SV_Target
 		1.0,
 		mainSurface.diffuseShadowAttenuation);
 	shadowTint = lerp(1.0.xxx, shadowTint, mainDirectOwnership);
-	float3 color = indirectDiffuse * shadowTint
-		+ vertexLightDiffuse
-		+ direct.diffuse
-		+ direct.specular;
-	color += TomEvaluateRim(material, viewDir, mainSurface.artisticShadowAttenuation);
-	color = TomApplyReflections(
-		i,
-		giInput,
-		material,
-		viewDir,
-		mainSurface.artisticShadowAttenuation,
-		color);
-	color += material.emission;
-
-	fixed4 outputColor = float4(max(color, 0.0), 1.0);
-	UNITY_APPLY_FOG(i.fogCoord, outputColor);
+	float3 body = (indirectDiffuse * shadowTint + vertexLightDiffuse + direct.diffuse)
+		* TomMatCapMultiplier(i, material, mainSurface.artisticShadowAttenuation);
+	float3 environment = TomEnvironmentLayer(giInput, material, viewDir, mainSurface.artisticShadowAttenuation);
+	float3 matcap = TomMatCapAddLayer(i, material, mainSurface.artisticShadowAttenuation);
+	float3 rim = TomEvaluateRim(material, viewDir, lightDir, mainSurface.artisticShadowAttenuation);
+	float3 color = body + direct.specular + environment + matcap + rim + material.emission;
+	int debugView = (int)floor(_DebugView + 0.5);
+	if (debugView == 1) color = body;
+	else if (debugView == 2) color = direct.specular;
+	else if (debugView == 3) color = environment;
+	else if (debugView == 4) color = _MatCapBlendMode < 0.5
+		? TomMatCapMultiplier(i, material, mainSurface.artisticShadowAttenuation) : matcap;
+	else if (debugView == 5) color = rim;
+	else if (debugView == 6) color = material.emission;
+	float4 outputColor = float4(max(color, 0.0), 1.0);
+	if (debugView == 0) { UNITY_APPLY_FOG(i.fogCoord, outputColor); }
 	return outputColor;
 }
 
-fixed4 TomFragAdd(TomVaryings i, fixed faceSign : VFACE) : SV_Target
+float4 TomFragAdd(TomVaryings i, fixed faceSign : VFACE) : SV_Target
 {
 	UNITY_SETUP_INSTANCE_ID(i);
 	UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+	if (_DebugView > 2.5) return 0.0;
 	TomMaterialData material = TomGetDirectMaterialData(i, faceSign);
-	float3 viewDir = normalize(_WorldSpaceCameraPos.xyz - i.posWS);
-	float3 lightDir = normalize(UnityWorldSpaceLightDir(i.posWS));
+	float3 viewDir = TomSafeDirection(_WorldSpaceCameraPos.xyz - i.posWS);
+	float3 lightDir = TomSafeDirection(UnityWorldSpaceLightDir(i.posWS));
 	float distanceAttenuation;
 	float cookieAttenuation;
 	TomSampleLightDistanceAndCookie(i.posWS, distanceAttenuation, cookieAttenuation);
@@ -692,8 +745,13 @@ fixed4 TomFragAdd(TomVaryings i, fixed faceSign : VFACE) : SV_Target
 	TomSurfaceLightTerms surface = TomBuildSurfaceLightTerms(material, light);
 	TomLightingResult direct = TomEvaluateDirectLight(material, light, surface, viewDir);
 
-	fixed4 outputColor = float4(max(direct.diffuse + direct.specular, 0.0), 0.0);
-	UNITY_APPLY_FOG(i.fogCoord, outputColor);
+	// Multiplicative MatCap modifies diffuse only, identically for every light.
+	float3 body = direct.diffuse * TomMatCapMultiplier(i, material, 1.0);
+	float3 color = body + direct.specular;
+	if (_DebugView > 0.5 && _DebugView < 1.5) color = body;
+	else if (_DebugView >= 1.5) color = direct.specular;
+	float4 outputColor = float4(max(color, 0.0), 0.0);
+	if (_DebugView < 0.5) { UNITY_APPLY_FOG(i.fogCoord, outputColor); }
 	return outputColor;
 }
 

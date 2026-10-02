@@ -1,5 +1,41 @@
 # X Series Three-Stage Development Roadmap
 
+## Stage Two Accepted (2026-10-02)
+
+The user accepted reference-scene and packaged KKS appearance. Stage Two is now
+closed as the versioned Toon material baseline. Follow-up CodexBridge rendering
+passed the scoped regression checks without modifying shader appearance.
+See [closure evidence and remaining hardening work](XSeriesStageTwoClosure.md).
+The 98-property interface and texture-channel contract are frozen. The next
+development target is MainAlphaX, not additional opaque material features.
+Production GPU profiling and untested edge cases remain explicit Stage Three
+release-hardening work; closure does not retroactively pass every Stage One gate.
+
+## Stage Two Working Baseline (2026-09-20)
+
+The KKS MainOpaqueX working implementation now targets stable Toon body color and
+independently controllable material highlights. Stage One descriptions below record
+the historical foundation and its original acceptance baseline; they are not a claim
+that removed prototype controls still exist.
+
+- Optional DiffuseEnergyBlend replaces implicit Fresnel suppression at the default.
+- SpecularToonBlend selects continuous GGX or GGX-shaped Toon highlights. The old
+  GGXSpecularBlend/Legacy Blinn and SpecularPower controls are removed.
+- Environment reflection has separate selection, softness, exposure, hue influence,
+  tint and Fresnel controls. Roughness remains part of the material contract.
+- Procedural and secondary direct tone transfer, indirect tone shaping, simplified
+  Rim, diffuse-only MatCap Multiply and emission base-color tint are implemented.
+- MatCap Add remains Base-only. MatCap Multiply now also runs conditionally in Add
+  so all diffuse lights receive the same tint; this supersedes the old Add cost rule.
+- Outline adds a width mask and optional UV4 object-space smooth normals.
+- 98 shader/manifest properties have scoped tooltips. Reference scenes are generated
+  through CodexBridge without rendering or changing existing user materials.
+
+See [Stage Two progress](XSeriesStageTwoProgress.md) for implementation evidence and
+[material contract and user tests](XSeriesStageTwoAcceptance.md) for composition,
+migration, texture ownership, limitations and the pending visual acceptance gate.
+Stage Two code does not imply Stage One's manual gates have retrospectively passed.
+
 ## 1. Project Definition
 
 The X series is a new shader architecture informed by the practical experience of the xukmi/V+ shaders. It is not intended to reproduce every V+ option or every historical shader variant.

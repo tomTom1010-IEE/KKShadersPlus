@@ -38,11 +38,9 @@ Shader "tom/MainOpaqueX"
 		_CustomSHVolumeBlend ("Custom SH Volume Blend", Range(0,1)) = 1
 		_IndirectDiffuseIntensity ("Indirect Diffuse Intensity", Range(0,4)) = 1
 
-		[Gamma] _SpecularColor ("Specular Color", Color) = (1,1,1,1)
-		_SpecularStrength ("Specular Strength", Range(0,4)) = 0.5
-		_SpecularPower ("Specular Power", Range(1,256)) = 64
+		[Gamma] _SpecularColor ("Direct Specular Color", Color) = (1,1,1,1)
+		_SpecularStrength ("Direct Specular Strength", Range(0,4)) = 0.5
 		_SpecularShadowStrength ("Specular Shadow Strength", Range(0,1)) = 1
-		_GGXSpecularBlend ("GGX Specular Blend (1 = Production)", Range(0,1)) = 1
 		_Metallic ("Metallic", Range(0,1)) = 0
 		_Roughness ("Roughness", Range(0.04,1)) = 0.5
 		_RoughnessBias ("Roughness Bias", Range(-1,1)) = 0
@@ -54,7 +52,6 @@ Shader "tom/MainOpaqueX"
 
 		[Gamma] _RimColor ("Rim Color", Color) = (1,1,1,1)
 		_RimStrength ("Rim Strength", Range(0,4)) = 0
-		_RimPower ("Rim Power", Range(0.1,16)) = 4
 		_RimShadowStrength ("Rim Shadow Strength", Range(0,1)) = 0
 
 		[Enum(Off,0,MatCap,1,Environment,2,MatCapAndEnvironment,3)] _ReflectionMode ("Reflection Mode", Float) = 0
@@ -74,6 +71,43 @@ Shader "tom/MainOpaqueX"
 
 		[Gamma] _EmissionColor ("Emission Color", Color) = (1,1,1,1)
 		_EmissionIntensity ("Emission Intensity", Range(0,10)) = 0
+
+		[MaterialToggle] _UsePackedMaterialMap ("Use Packed Material Map", Float) = 0
+		_MaterialMap ("Material Map (Metal/Rough/AO/Spec)", 2D) = "white" {}
+		_LayerMask ("Layer Mask (Tone/Rim/MatCap/Environment)", 2D) = "white" {}
+		_SecondaryRamp ("Secondary Tone Ramp", 2D) = "white" {}
+		_OutlineWidthMask ("Outline Width Mask", 2D) = "white" {}
+		_DiffuseEnergyBlend ("Physical Diffuse Suppression", Range(0,1)) = 0
+		[Enum(Procedural,0,Texture,1)] _RampMode ("Toon Ramp Source", Float) = 0
+		_ToonThreshold ("Toon Threshold", Range(0,1)) = 0.5
+		_ToonSoftness ("Toon Softness", Range(0.001,1)) = 0.1
+		_ToonShadeLevel ("Toon Shade Level", Range(0,1)) = 0.15
+		_SecondaryToneStrength ("Secondary Tone Strength", Range(0,1)) = 0
+		_IndirectToonBlend ("Indirect Tone Blend", Range(0,1)) = 0
+		_IndirectToonThreshold ("Indirect Tone Threshold", Range(0,2)) = 0.4
+		_IndirectToonSoftness ("Indirect Tone Softness", Range(0.001,1)) = 0.2
+		_IndirectShadeLevel ("Indirect Shade Level", Range(0,1)) = 0.3
+		_SpecularToonBlend ("Direct Specular Toon Blend", Range(0,1)) = 1
+		_SpecularSize ("Direct Highlight Size", Range(0,1)) = 0.5
+		_SpecularThreshold ("Direct Highlight Threshold", Range(0,1)) = 0.5
+		_SpecularSoftness ("Direct Highlight Softness", Range(0.001,1)) = 0.15
+		[IntRange] _SpecularBands ("Direct Highlight Bands (1 = Smooth)", Range(1,4)) = 1
+		_SpecularAA ("Specular Anti Aliasing", Range(0,1)) = 0.5
+		_EnvironmentToonBlend ("Environment Toon Blend", Range(0,1)) = 1
+		_EnvironmentThreshold ("Environment Highlight Threshold", Range(0,1)) = 0.6
+		_EnvironmentSoftness ("Environment Highlight Softness", Range(0.001,1)) = 0.2
+		_EnvironmentExposure ("Environment Selection Exposure", Range(0.01,8)) = 1
+		_EnvironmentColorWeight ("Environment Color Weight", Range(0,1)) = 0.5
+		_EnvironmentBaseColorTint ("Environment Base Color Tint", Range(0,1)) = 0
+		_EnvironmentFresnelStrength ("Environment Fresnel Strength", Range(0,2)) = 1
+		[Gamma] _EnvironmentColor ("Environment Tint", Color) = (1,1,1,1)
+		_RimWidth ("Rim Width", Range(0,1)) = 0.3
+		_RimSoftness ("Rim Softness", Range(0.001,1)) = 0.2
+		_RimLightInfluence ("Rim Main Light Influence", Range(0,1)) = 0
+		[Enum(Geometry,0,MainNormal,1,CombinedNormal,2)] _MatCapNormalSource ("MatCap Normal Source", Float) = 2
+		[MaterialToggle] _EmissionKeepCol ("Emission Keep Base Color", Float) = 0
+		[Enum(MeshNormal,0,UV4ObjectSpace,1)] _OutlineNormalSource ("Outline Normal Source", Float) = 0
+		[Enum(Final,0,Body,1,DirectSpecular,2,Environment,3,MatCap,4,Rim,5,Emission,6)] _DebugView ("Lighting Debug View", Float) = 0
 	}
 
 	SubShader
@@ -97,20 +131,25 @@ Shader "tom/MainOpaqueX"
 			#include "UnityCG.cginc"
 			sampler2D _MainTex;
 			sampler2D _AlphaMask;
+			sampler2D _OutlineWidthMask;
 			float4 _MainTex_ST;
 			float4 _AlphaMask_ST;
+			float4 _OutlineWidthMask_ST;
 			float _Cutoff;
 			float _CullOption;
 			float _OutlineOn;
 			float _OutlineWidth;
 			float _OutlineScreenSpace;
 			float _OutlineDepthOffset;
+			float _OutlineNormalSource;
+			float _DebugView;
 			float4 _OutlineColor;
 			struct appdata
 			{
 				float4 vertex : POSITION;
 				float3 normal : NORMAL;
 				float2 uv : TEXCOORD0;
+				float3 smoothNormalOS : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 			struct v2f
@@ -130,8 +169,13 @@ Shader "tom/MainOpaqueX"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 				float4 basePositionCS = UnityObjectToClipPos(v.vertex);
 				float3 positionWS = mul(unity_ObjectToWorld, v.vertex).xyz;
-				float3 normalWS = normalize(UnityObjectToWorldNormal(v.normal));
-				float3 expandedPositionWS = positionWS + normalWS * (_OutlineWidth * 0.01);
+				float3 normalOS = v.normal;
+				if (_OutlineNormalSource > 0.5 && dot(v.smoothNormalOS, v.smoothNormalOS) > 0.0001)
+					normalOS = normalize(v.smoothNormalOS);
+				float3 normalWS = normalize(UnityObjectToWorldNormal(normalOS));
+				float2 widthUV = v.uv * _OutlineWidthMask_ST.xy + _OutlineWidthMask_ST.zw;
+				float width = _OutlineWidth * tex2Dlod(_OutlineWidthMask, float4(widthUV, 0, 0)).r;
+				float3 expandedPositionWS = positionWS + normalWS * (width * 0.01);
 				float4 worldSpacePositionCS = UnityWorldToClipPos(expandedPositionWS);
 
 				float3 normalVS = mul((float3x3)UNITY_MATRIX_V, normalWS);
@@ -139,9 +183,13 @@ Shader "tom/MainOpaqueX"
 				projectedNormal /= max(length(projectedNormal), 0.0001);
 				float2 pixelSizeCS = 2.0 / _ScreenParams.xy;
 				float4 screenSpacePositionCS = basePositionCS;
-				screenSpacePositionCS.xy += projectedNormal * pixelSizeCS * _OutlineWidth * basePositionCS.w;
+				screenSpacePositionCS.xy += projectedNormal * pixelSizeCS * width * basePositionCS.w;
 				o.pos = lerp(worldSpacePositionCS, screenSpacePositionCS, saturate(_OutlineScreenSpace));
+				#if defined(UNITY_REVERSED_Z)
+				o.pos.z -= _OutlineDepthOffset * 0.001 * o.pos.w;
+				#else
 				o.pos.z += _OutlineDepthOffset * 0.001 * o.pos.w;
+				#endif
 				o.uv = v.uv;
 				UNITY_TRANSFER_FOG(o, o.pos);
 				return o;
@@ -151,6 +199,7 @@ Shader "tom/MainOpaqueX"
 				UNITY_SETUP_INSTANCE_ID(i);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 				clip(_OutlineOn - 0.5);
+				clip(0.5 - _DebugView);
 				if (_CullOption > 0.5 && _CullOption < 1.5)
 					clip(faceSign);
 				else
