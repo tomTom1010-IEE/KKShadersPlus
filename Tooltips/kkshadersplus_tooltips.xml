@@ -25,9 +25,6 @@
     <Tooltip>Transparent skin shader with the standard alpha workflow.</Tooltip>
   </Shader>
 
-  <Shader Name="xukmi/TomBSDFAlpha">
-    <Tooltip>Transparent Tom BSDF shader with the standard alpha workflow.</Tooltip>
-  </Shader>
 
   <Shader Name="xukmi/MainHeightAlpha">
     <Tooltip>Transparent height-overlay item shader. This entry tests a shader-specific tooltip override.</Tooltip>

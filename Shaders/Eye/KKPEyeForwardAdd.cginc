@@ -75,12 +75,13 @@ float4 KKPEyeForwardAddSurface(Varyings i)
 
 fixed4 fragAdd(Varyings i) : SV_Target
 {
-	clip(KKPForwardAddEnabled() - 0.5);
+	clip(KKPForwardAddEnabled() - 1E-06);
 	float4 surface = KKPEyeForwardAddSurface(i);
 	float3 normalWS = normalize(i.normalWS);
 	float3 lightDir = normalize(UnityWorldSpaceLightDir(i.posWS.xyz));
-	UNITY_LIGHT_ATTENUATION(attenuation, i, i.posWS.xyz);
-	float toon = KKPForwardAddToon(dot(normalWS, lightDir), attenuation, _UseRampForLights, 0.0);
+	float shadowAttenuation = UNITY_SHADOW_ATTENUATION(i, i.posWS.xyz);
+	float attenuation = KKPForwardAddAttenuation(i.posWS.xyz, shadowAttenuation);
+	float toon = KKPForwardAddToon(dot(normalWS, lightDir), attenuation, shadowAttenuation, _UseRampForLights, 0.0);
 	float3 color = KKPForwardAddLightColor(surface.rgb, toon);
 	return float4(color * surface.a, 0.0);
 }

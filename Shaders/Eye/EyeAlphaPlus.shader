@@ -44,7 +44,6 @@ Shader "xukmi/EyeAlphaPlus"
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/EYE_ALPHA"
 		LOD 600
 		Tags {"IgnoreProjector" = "true"
 			  "Queue" = "Transparent"
@@ -157,6 +156,8 @@ Shader "xukmi/EyeAlphaPlus"
 
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/EYE_ALPHA"
 
 		//Reflection Pass
 		Pass {

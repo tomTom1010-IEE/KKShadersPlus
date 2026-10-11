@@ -62,7 +62,6 @@ Shader "xukmi/HairPlus"
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR"
 		LOD 600
 		Tags {"RenderType" = "Opaque" }
 		//Outline
@@ -191,6 +190,8 @@ Shader "xukmi/HairPlus"
 			
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR"
 
 		
 		//ShadowCaster

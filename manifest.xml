@@ -2,12 +2,11 @@
 <manifest schema-ver="1">
   <guid>xukmi.Shaders.VanillaPlus</guid>
   <name>Vanilla Plus (tom fork)</name>
-  <version>1.7.5</version>
+  <version>1.7.6</version>
   <author>xukmi&amp;tomTom</author>
   <description>Vanilla KK Shaders with more features</description>
   <website>https://www.pixiv.net/en/users/66587336</website>
   <MaterialEditor>
-    <TooltipCatalog AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="tom_x_tooltips" />
     <TooltipCatalog AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="kkshadersplus_tooltips" />
     <Shader Name="xukmi/SkinPlus" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_SkinPlus">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
@@ -154,6 +153,84 @@
       <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
       <Property Name="OutlineColor" Category="Outline" Type="Color" />
       <Property Name="LineWidthS" Category="Outline" Type="Float" Range="0, 1" />
+      <Property Name="EmissionColor" Category="Emission" Type="Color" />
+      <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
+      <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
+      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" />
+      <Property Name="LiquidTiling" Category="Liquid" Type="Color" />
+      <Property Name="liquidftop" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="liquidfbot" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="liquidbtop" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="liquidbbot" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="liquidface" Category="Liquid" Type="Float" Range="0, 2" />
+      <Property Name="nip" Category="Koikatsu Extension" Type="Float" Range="0, 1" />
+      <Property Name="nipsize" Category="Koikatsu Extension" Type="Float" Range="0, 1" />
+      <Property Name="nip_specular" Category="Koikatsu Extension" Type="Float" Range="0, 1" />
+      <Property Name="tex1mask" Category="Koikatsu Extension" Type="Float" Range="0, 1" />
+      <Property Name="linetexon" Category="Koikatsu Extension" Type="Float" Range="0,1" />
+    </Shader>
+    <Shader Name="xukmi/SkinMaskedAlphaTwoPass" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_SkinMaskedAlphaTwoPass">
+      <Property Name="MainTex" Category="Textures" Type="Texture" />
+      <Property Name="AlphaMask" Category="Textures" Type="Texture" />
+      <Property Name="TransparencyMask" Category="Textures" Type="Texture" />
+      <Property Name="NormalMap" Category="Textures" Type="Texture" />
+      <Property Name="NormalMapDetail" Category="Textures" Type="Texture" />
+      <Property Name="DetailMask" Category="Textures" Type="Texture" />
+      <Property Name="LineMask" Category="Textures" Type="Texture" />
+      <Property Name="ColMask" Category="Textures" Type="Texture" />
+      <Property Name="NormalMask" Category="Textures" Type="Texture" />
+      <Property Name="EmissionMask" Category="Textures" Type="Texture" />
+      <Property Name="liquidmask" Category="Textures" Type="Texture" />
+      <Property Name="Texture2" Category="Textures" Type="Texture" />
+      <Property Name="Texture3" Category="Textures" Type="Texture" />
+      <Property Name="overtex1" Category="Textures" Type="Texture" />
+      <Property Name="overtex2" Category="Textures" Type="Texture" />
+      <Property Name="overtex3" Category="Textures" Type="Texture" />
+      <Property Name="Col0" Category="Base Colors" Type="Color" />
+      <Property Name="Col1" Category="Base Colors" Type="Color" />
+      <Property Name="Col2" Category="Base Colors" Type="Color" />
+      <Property Name="Col3" Category="Base Colors" Type="Color" />
+      <Property Name="overcolor1" Category="Base Colors" Type="Color" />
+      <Property Name="overcolor2" Category="Base Colors" Type="Color" />
+      <Property Name="overcolor3" Category="Base Colors" Type="Color" />
+      <Property Name="Saturation" Category="Base Colors" Type="Float" Range="0, 2" />
+      <Property Name="NormalMapScale" Category="Render Options" Type="Float" Range="0, 1" />
+      <Property Name="DetailNormalMapScale" Category="Render Options" Type="Float" Range="0,1" />
+      <Property Name="MaskedTransparency" Category="Render Options" Type="Float" Range="0, 1" DefaultValue="0" />
+      <Property Name="AlphaOptionZWrite" Category="Render Options" Type="Float" Range="0, 1" DefaultValue="0" />
+      <Property Name="CustomAmbient" Category="Lighting" Type="Color" />
+      <Property Name="ShadowColor" Category="Lighting" Type="Color" />
+      <Property Name="ShadowHSV" Category="Lighting" Type="Color" />
+      <Property Name="ShadowExtend" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForLights" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForShadows" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="DisablePointLights" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="UseForwardAddFullShadows" Category="Lighting" Type="Float" Range="0, 1" />
+      <Property Name="SpecularColor" Category="Specular" Type="Color" />
+      <Property Name="SpeclarHeight" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularPower" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularPowerNail" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularNormalScale" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="SpecularDetailNormalScale" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="UseRampForSpecular" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="UseLightColorSpecular" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="UseDetailRAsSpecularMap" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="notusetexspecular" Category="Specular" Type="Float" Range="0, 1" />
+      <Property Name="rimpower" Category="Rim" Type="Float" Range="0, 1" />
+      <Property Name="rimV" Category="Rim" Type="Float" Range="0, 1" />
+      <Property Name="rimReflectMode" Category="Rim" Type="Float" Range="-1, 1" />
+      <Property Name="UseKKPRim" Category="Rim" Type="Float" Range="0, 1" />
+      <Property Name="KKPRimColor" Category="Rim" Type="Color" />
+      <Property Name="KKPRimSoft" Category="Rim" Type="Float" Range="0, 10" />
+      <Property Name="KKPRimIntensity" Category="Rim" Type="Float" Range="0, 10" />
+      <Property Name="KKPRimAsDiffuse" Category="Rim" Type="Float" Range="0, 1" />
+      <Property Name="KKPRimRotateX" Category="Rim" Type="Float" Range="-2, 2" />
+      <Property Name="KKPRimRotateY" Category="Rim" Type="Float" Range="-2, 2" />
+      <Property Name="Reflective" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="ReflectiveBlend" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="ReflectiveMulOrAdd" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="UseKKMetal" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
+      <Property Name="AnotherRampFull" Category="Reflection / MatCap" Type="Float" Range="0, 1" />
       <Property Name="EmissionColor" Category="Emission" Type="Color" />
       <Property Name="EmissionIntensity" Category="Emission" Type="Float" />
       <Property Name="EmissionMaskMode" Category="Emission" Type="Float" />
@@ -1808,106 +1885,6 @@
       <Property Name="PBRSpecularBlend" Category="PBR Mix" Type="Float" Range="0, 1" />
       <Property Name="PBRReflectionBlend" Category="PBR Mix" Type="Float" Range="0, 1" />
     </Shader>
-    <Shader Name="tom/MainOpaqueX" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_TomMainOpaqueX">
-      <Property Name="MainTex" Category="Textures" Type="Texture" />
-      <Property Name="NormalMap" Category="Textures" Type="Texture" />
-      <Property Name="NormalMapDetail" Category="Textures" Type="Texture" />
-      <Property Name="AlphaMask" Category="Textures" Type="Texture" />
-      <Property Name="MaterialMap" Category="Textures" Type="Texture" />
-      <Property Name="LayerMask" Category="Textures" Type="Texture" />
-      <Property Name="BaseColor" Category="Base Color" Type="Color" />
-      <Property Name="NormalMapScale" Category="Base Color" Type="Float" Range="0, 2" />
-      <Property Name="DetailNormalMapScale" Category="Base Color" Type="Float" Range="0, 2" />
-      <Property Name="Cutoff" Category="Render Options" Type="Float" Range="0, 1" />
-      <Property Name="CullOption" Category="Render Options" Type="Float" Range="0, 2" />
-      <Property Name="RampTex" Category="Toon Shading" Type="Texture" />
-      <Property Name="SecondaryRamp" Category="Toon Shading" Type="Texture" />
-      <Property Name="UseRamp" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="RampMode" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="ToonThreshold" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="ToonSoftness" Category="Toon Shading" Type="Float" Range="0.001, 1" />
-      <Property Name="ToonShadeLevel" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="SecondaryToneStrength" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="UseRampForShadows" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="ShadowColor" Category="Toon Shading" Type="Color" />
-      <Property Name="ShadowStrength" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="ShadowRemapStrength" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="ShadowThreshold" Category="Toon Shading" Type="Float" Range="0, 1" />
-      <Property Name="ShadowSoftness" Category="Toon Shading" Type="Float" Range="0.001, 1" />
-      <Property Name="AmbientColor" Category="Lighting" Type="Color" />
-      <Property Name="MainLightIntensity" Category="Lighting" Type="Float" Range="0, 4" />
-      <Property Name="AdditionalLightIntensity" Category="Lighting" Type="Float" Range="0, 4" />
-      <Property Name="VertexLightIntensity" Category="Lighting" Type="Float" Range="0, 1" />
-      <Property Name="LightProbeBlend" Category="Lighting" Type="Float" Range="0, 1" />
-      <Property Name="CustomSHVolumeBlend" Category="Lighting" Type="Float" Range="0, 1" />
-      <Property Name="IndirectDiffuseIntensity" Category="Lighting" Type="Float" Range="0, 4" />
-      <Property Name="IndirectToonBlend" Category="Lighting" Type="Float" Range="0, 1" />
-      <Property Name="IndirectToonThreshold" Category="Lighting" Type="Float" Range="0, 2" />
-      <Property Name="IndirectToonSoftness" Category="Lighting" Type="Float" Range="0.001, 1" />
-      <Property Name="IndirectShadeLevel" Category="Lighting" Type="Float" Range="0, 1" />
-      <Property Name="ShadowOffsetFactor" Category="Lighting" Type="Float" Range="-4, 4" />
-      <Property Name="ShadowOffsetUnits" Category="Lighting" Type="Float" Range="-4, 4" />
-      <Property Name="UsePackedMaterialMap" Category="Material" Type="Float" Range="0, 1" />
-      <Property Name="MetallicMap" Category="Material" Type="Texture" />
-      <Property Name="RoughnessMap" Category="Material" Type="Texture" />
-      <Property Name="OcclusionMap" Category="Material" Type="Texture" />
-      <Property Name="Metallic" Category="Material" Type="Float" Range="0, 1" />
-      <Property Name="Roughness" Category="Material" Type="Float" Range="0.04, 1" />
-      <Property Name="RoughnessBias" Category="Material" Type="Float" Range="-1, 1" />
-      <Property Name="SpecularIOR" Category="Material" Type="Float" Range="1, 2.5" />
-      <Property Name="FresnelStrength" Category="Material" Type="Float" Range="0, 2" />
-      <Property Name="DiffuseEnergyBlend" Category="Material" Type="Float" Range="0, 1" />
-      <Property Name="NormalHorizonFade" Category="Material" Type="Float" Range="0.001, 0.25" />
-      <Property Name="OcclusionStrength" Category="Material" Type="Float" Range="0, 1" />
-      <Property Name="SpecularOcclusionStrength" Category="Material" Type="Float" Range="0, 1" />
-      <Property Name="SpecularMask" Category="Direct Specular" Type="Texture" />
-      <Property Name="SpecularColor" Category="Direct Specular" Type="Color" />
-      <Property Name="SpecularStrength" Category="Direct Specular" Type="Float" Range="0, 4" />
-      <Property Name="SpecularShadowStrength" Category="Direct Specular" Type="Float" Range="0, 1" />
-      <Property Name="SpecularToonBlend" Category="Direct Specular" Type="Float" Range="0, 1" />
-      <Property Name="SpecularSize" Category="Direct Specular" Type="Float" Range="0, 1" />
-      <Property Name="SpecularThreshold" Category="Direct Specular" Type="Float" Range="0, 1" />
-      <Property Name="SpecularSoftness" Category="Direct Specular" Type="Float" Range="0.001, 1" />
-      <Property Name="SpecularBands" Category="Direct Specular" Type="Float" Range="1, 4" />
-      <Property Name="SpecularAA" Category="Direct Specular" Type="Float" Range="0, 1" />
-      <Property Name="ReflectionMode" Category="Environment Reflection" Type="Float" Range="0, 3" />
-      <Property Name="ReflectionMask" Category="Environment Reflection" Type="Texture" />
-      <Property Name="EnvironmentIntensity" Category="Environment Reflection" Type="Float" Range="0, 4" />
-      <Property Name="EnvironmentRoughness" Category="Environment Reflection" Type="Float" Range="0, 1" />
-      <Property Name="UseMaterialRoughnessForEnvironment" Category="Environment Reflection" Type="Float" Range="0, 1" />
-      <Property Name="ReflectionShadowStrength" Category="Environment Reflection" Type="Float" Range="0, 1" />
-      <Property Name="EnvironmentToonBlend" Category="Environment Reflection" Type="Float" Range="0, 1" />
-      <Property Name="EnvironmentThreshold" Category="Environment Reflection" Type="Float" Range="0, 1" />
-      <Property Name="EnvironmentSoftness" Category="Environment Reflection" Type="Float" Range="0.001, 1" />
-      <Property Name="EnvironmentExposure" Category="Environment Reflection" Type="Float" Range="0.01, 8" />
-      <Property Name="EnvironmentColorWeight" Category="Environment Reflection" Type="Float" Range="0, 1" />
-      <Property Name="EnvironmentBaseColorTint" Category="Environment Reflection" Type="Float" Range="0, 1" />
-      <Property Name="EnvironmentFresnelStrength" Category="Environment Reflection" Type="Float" Range="0, 2" />
-      <Property Name="EnvironmentColor" Category="Environment Reflection" Type="Color" />
-      <Property Name="MatCap" Category="MatCap" Type="Texture" />
-      <Property Name="MatCapBlendMode" Category="MatCap" Type="Float" Range="0, 1" />
-      <Property Name="MatCapIntensity" Category="MatCap" Type="Float" Range="0, 2" />
-      <Property Name="MatCapMip" Category="MatCap" Type="Float" Range="0, 8" />
-      <Property Name="MatCapNormalSource" Category="MatCap" Type="Float" Range="0, 2" />
-      <Property Name="RimColor" Category="Rim" Type="Color" />
-      <Property Name="RimStrength" Category="Rim" Type="Float" Range="0, 4" />
-      <Property Name="RimShadowStrength" Category="Rim" Type="Float" Range="0, 1" />
-      <Property Name="RimWidth" Category="Rim" Type="Float" Range="0, 1" />
-      <Property Name="RimSoftness" Category="Rim" Type="Float" Range="0.001, 1" />
-      <Property Name="RimLightInfluence" Category="Rim" Type="Float" Range="0, 1" />
-      <Property Name="OutlineWidthMask" Category="Outline" Type="Texture" />
-      <Property Name="OutlineOn" Category="Outline" Type="Float" Range="0, 1" />
-      <Property Name="OutlineColor" Category="Outline" Type="Color" />
-      <Property Name="OutlineWidth" Category="Outline" Type="Float" Range="0, 8" />
-      <Property Name="OutlineScreenSpace" Category="Outline" Type="Float" Range="0, 1" />
-      <Property Name="OutlineDepthOffset" Category="Outline" Type="Float" Range="-1, 1" />
-      <Property Name="OutlineNormalSource" Category="Outline" Type="Float" Range="0, 1" />
-      <Property Name="EmissionMask" Category="Emission" Type="Texture" />
-      <Property Name="EmissionColor" Category="Emission" Type="Color" />
-      <Property Name="EmissionIntensity" Category="Emission" Type="Float" Range="0, 10" />
-      <Property Name="EmissionKeepCol" Category="Emission" Type="Float" Range="0, 1" />
-      <Property Name="DebugView" Category="Debug" Type="Float" Range="0, 6" />
-    </Shader>
     <Shader Name="xukmi/MainOpaquePlusTess" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_MainOpaquePlusTess">
       <Property Name="MainTex" Category="Textures" Type="Texture" />
       <Property Name="AlphaMask" Category="Textures" Type="Texture" />
@@ -3172,110 +3149,6 @@
     <Shader Name="xukmi/HairFrontPlusDepthOnly" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_HairFrontPlusDepthOnly">
       <Property Name="MainTex" Type="Texture" />
       <Property Name="Cutoff" Type="Float" Range="0, 1" />
-    </Shader>
-    <Shader Name="xukmi/TomBSDFBase" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_TomBSDFBase">
-      <Property Name="PBRBaseColor" Type="Color" />
-      <Property Name="MainTex" Type="Texture" />
-      <Property Name="NormalMap" Type="Texture" />
-      <Property Name="NormalMapScale" Type="Float" Range="0, 2" />
-      <Property Name="PBRMetallic" Type="Float" Range="0, 1" />
-      <Property Name="PBRMetallicMap" Type="Texture" />
-      <Property Name="PBRRoughness" Type="Float" Range="0, 1" />
-      <Property Name="PBRRoughnessMap" Type="Texture" />
-      <Property Name="PBRRoughnessBias" Type="Float" Range="-1, 1" />
-      <Property Name="PBROcclusion" Type="Float" Range="0, 1" />
-      <Property Name="PBROcclusionMap" Type="Texture" />
-      <Property Name="PBROcclusionStrength" Type="Float" Range="0, 1" />
-      <Property Name="PBRIOR" Type="Float" Range="1, 2.5" />
-      <Property Name="PBRSpecular" Type="Float" Range="0, 1" />
-      <Property Name="PBRFresnelStrength" Type="Float" Range="0, 2" />
-      <Property Name="PBRDirectIntensity" Type="Float" Range="0, 4" />
-      <Property Name="PBREnvIntensity" Type="Float" Range="0, 4" />
-      <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatWeight" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatMask" Type="Texture" />
-      <Property Name="PBRCoatRoughness" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatRoughnessMap" Type="Texture" />
-      <Property Name="PBRCoatIOR" Type="Float" Range="1, 2.5" />
-      <Property Name="PBRCoatNormalMap" Type="Texture" />
-      <Property Name="PBRCoatNormalScale" Type="Float" Range="0, 2" />
-      <Property Name="EmissionMask" Type="Texture" />
-      <Property Name="EmissionColor" Type="Color" />
-      <Property Name="EmissionIntensity" Type="Float" />
-    </Shader>
-    <Shader Name="xukmi/TomBSDF" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_TomBSDF">
-      <Property Name="PBRBaseColor" Type="Color" />
-      <Property Name="MainTex" Type="Texture" />
-      <Property Name="AlphaMask" Type="Texture" />
-      <Property Name="Cutoff" Type="Float" Range="0, 1" />
-      <Property Name="AlphaOptionCutoff" Type="Float" Range="0, 1" DefaultValue="1" />
-      <Property Name="CullOption" Type="Float" Range="0, 2" />
-      <Property Name="alpha_a" Type="Float" Range="0, 1" DefaultValue="1" />
-      <Property Name="alpha_b" Type="Float" Range="0, 1" DefaultValue="1" />
-      <Property Name="NormalMap" Type="Texture" />
-      <Property Name="NormalMapScale" Type="Float" Range="0, 2" />
-      <Property Name="PBRMetallic" Type="Float" Range="0, 1" />
-      <Property Name="PBRMetallicMap" Type="Texture" />
-      <Property Name="PBRRoughness" Type="Float" Range="0, 1" />
-      <Property Name="PBRRoughnessMap" Type="Texture" />
-      <Property Name="PBRRoughnessBias" Type="Float" Range="-1, 1" />
-      <Property Name="PBROcclusion" Type="Float" Range="0, 1" />
-      <Property Name="PBROcclusionMap" Type="Texture" />
-      <Property Name="PBROcclusionStrength" Type="Float" Range="0, 1" />
-      <Property Name="PBRIOR" Type="Float" Range="1, 2.5" />
-      <Property Name="PBRSpecular" Type="Float" Range="0, 1" />
-      <Property Name="PBRFresnelStrength" Type="Float" Range="0, 2" />
-      <Property Name="PBRDirectIntensity" Type="Float" Range="0, 4" />
-      <Property Name="PBREnvIntensity" Type="Float" Range="0, 4" />
-      <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatWeight" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatMask" Type="Texture" />
-      <Property Name="PBRCoatRoughness" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatRoughnessMap" Type="Texture" />
-      <Property Name="PBRCoatIOR" Type="Float" Range="1, 2.5" />
-      <Property Name="PBRCoatNormalMap" Type="Texture" />
-      <Property Name="PBRCoatNormalScale" Type="Float" Range="0, 2" />
-      <Property Name="EmissionMask" Type="Texture" />
-      <Property Name="EmissionColor" Type="Color" />
-      <Property Name="EmissionIntensity" Type="Float" />
-    </Shader>
-    <Shader Name="xukmi/TomBSDFAlpha" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_TomBSDFAlpha">
-      <Property Name="PBRBaseColor" Type="Color" />
-      <Property Name="MainTex" Type="Texture" />
-      <Property Name="AlphaMask" Type="Texture" />
-      <Property Name="Cutoff" Type="Float" Range="0, 1" />
-      <Property Name="Alpha" Type="Float" Range="0, 1" DefaultValue="1" />
-      <Property Name="AlphaOptionCutoff" Type="Float" Range="0, 2" DefaultValue="1" />
-      <Property Name="AlphaOptionZWrite" Type="Float" Range="0, 1" DefaultValue="1" />
-      <Property Name="CullOption" Type="Float" Range="0, 2" DefaultValue="2" />
-      <Property Name="alpha_a" Type="Float" Range="0, 1" DefaultValue="1" />
-      <Property Name="alpha_b" Type="Float" Range="0, 1" DefaultValue="1" />
-      <Property Name="NormalMap" Type="Texture" />
-      <Property Name="NormalMapScale" Type="Float" Range="0, 2" />
-      <Property Name="PBRMetallic" Type="Float" Range="0, 1" />
-      <Property Name="PBRMetallicMap" Type="Texture" />
-      <Property Name="PBRRoughness" Type="Float" Range="0, 1" />
-      <Property Name="PBRRoughnessMap" Type="Texture" />
-      <Property Name="PBRRoughnessBias" Type="Float" Range="-1, 1" />
-      <Property Name="PBROcclusion" Type="Float" Range="0, 1" />
-      <Property Name="PBROcclusionMap" Type="Texture" />
-      <Property Name="PBROcclusionStrength" Type="Float" Range="0, 1" />
-      <Property Name="PBRIOR" Type="Float" Range="1, 2.5" />
-      <Property Name="PBRSpecular" Type="Float" Range="0, 1" />
-      <Property Name="PBRFresnelStrength" Type="Float" Range="0, 2" />
-      <Property Name="PBRDirectIntensity" Type="Float" Range="0, 4" />
-      <Property Name="PBREnvIntensity" Type="Float" Range="0, 4" />
-      <Property Name="DisablePointLights" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatWeight" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatMask" Type="Texture" />
-      <Property Name="PBRCoatRoughness" Type="Float" Range="0, 1" />
-      <Property Name="PBRCoatRoughnessMap" Type="Texture" />
-      <Property Name="PBRCoatIOR" Type="Float" Range="1, 2.5" />
-      <Property Name="PBRCoatNormalMap" Type="Texture" />
-      <Property Name="PBRCoatNormalScale" Type="Float" Range="0, 2" />
-      <Property Name="EmissionMask" Type="Texture" />
-      <Property Name="EmissionColor" Type="Color" />
-      <Property Name="EmissionIntensity" Type="Float" />
     </Shader>
     <Shader Name="xukmi/TomNormalOverlay" AssetBundle="chara/xukmi/shaders/vanillaplus.unity3d" Asset="a_TomNormalOverlay">
       <Property Name="OverlayNormalMap" Category="Textures" Type="Texture" />

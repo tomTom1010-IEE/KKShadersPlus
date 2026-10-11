@@ -145,6 +145,13 @@ float GetSkinAlpha(float2 uv){
 #endif
 }
 
+float GetSkinMaskedAlpha(float2 uv){
+	float2 maskUV = uv * _TransparencyMask_ST.xy + _TransparencyMask_ST.zw;
+	float mask = SAMPLE_TEX2D_SAMPLER(_TransparencyMask, _MainTex, maskUV).r;
+	float localTransparency = saturate(mask) * saturate(_MaskedTransparency);
+	return saturate(1.0 - localTransparency);
+}
+
 float3 HUEtoRGB(in float H)
 {
 	float R = abs(H * 6 - 3) - 1;

@@ -64,8 +64,6 @@ Shader "xukmi/HairFrontPlus"
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE"
-		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE"
 		LOD 600
 		Tags {"Queue" = "AlphaTest+25" "RenderType" = "Transparent" }
 		// Outline
@@ -383,6 +381,8 @@ Shader "xukmi/HairFrontPlus"
 			
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE"
 		
 		// Main Alpha
 		Pass
@@ -436,6 +436,8 @@ Shader "xukmi/HairFrontPlus"
 
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE"
 		
 		// ShadowCaster
 		Pass

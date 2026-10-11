@@ -99,7 +99,6 @@ Shader "xukmi/MainAlphaPlus"
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE_ALPHA"
 		LOD 600
 		Tags { "Queue" = "Transparent+40" "RenderType" = "TransparentCutout" }
 		//Outline
@@ -301,6 +300,8 @@ Shader "xukmi/MainAlphaPlus"
 			
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE_ALPHA"
 
 		//ShadowCaster
 		Pass

@@ -58,6 +58,7 @@
 	//Input Textures
 	DECLARE_TEX2D(_MainTex);
 	DECLARE_TEX2D(_AlphaMask);
+	DECLARE_TEX2D_NOSAMPLER(_TransparencyMask);
 	DECLARE_TEX2D(_NormalMap);
 	DECLARE_TEX2D_NOSAMPLER(_NormalMapDetail);
 	DECLARE_TEX2D_NOSAMPLER(_liquidmask);
@@ -73,6 +74,7 @@
 	//UV Offsets
 	float4 _MainTex_ST;
 	float4 _AlphaMask_ST;
+	float4 _TransparencyMask_ST;
 	float4 _NormalMap_ST;
 	float4 _NormalMapDetail_ST;
 	float4 _liquidmask_ST;
@@ -87,6 +89,7 @@
 	float4 _LineMask_ST;
 	float _Cutoff;
 	float _Alpha;
+	float _MaskedTransparency;
 	float _AlphaOptionZWrite;
 	float _AlphaOptionCutoff;
 	float _CullOption;

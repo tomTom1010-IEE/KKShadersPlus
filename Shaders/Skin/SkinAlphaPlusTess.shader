@@ -100,7 +100,6 @@ Shader "xukmi/SkinAlphaPlusTess"
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA_TESS"
 		LOD 600
 		Tags { "Queue" = "Transparent+40" "RenderType" = "Transparent" }
 		//Outline
@@ -329,6 +328,8 @@ Shader "xukmi/SkinAlphaPlusTess"
 
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA_TESS"
 
 		
 		//ShadowCaster

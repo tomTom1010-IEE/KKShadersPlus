@@ -47,7 +47,6 @@
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/EYE_W_TESS"
 		LOD 600
 		Tags { "IGNOREPROJECTOR" = "true" "QUEUE" = "Transparent-1" "RenderType" = "Transparent" }
 
@@ -114,6 +113,8 @@
 
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/EYE_W_TESS"
 
 		//Reflection Pass
 		Pass {

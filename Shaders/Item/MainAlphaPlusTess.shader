@@ -113,7 +113,6 @@ Shader "xukmi/MainAlphaPlusTess"
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE_ALPHA_TESS"
 		LOD 600
 		Tags { "Queue" = "Transparent+40" "RenderType" = "TransparentCutout" }
 		//Outline
@@ -338,6 +337,8 @@ Shader "xukmi/MainAlphaPlusTess"
 			
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE_ALPHA_TESS"
 
 		//ShadowCaster
 		Pass

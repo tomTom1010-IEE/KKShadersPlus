@@ -33,7 +33,6 @@ void GetVertexLights(out KKVertexLight lights[4], float3 surfaceWorldPos) {
 }
 
 void GetVertexLightsTwo(out KKVertexLight lights[4], float3 surfaceWorldPos, float disablePointLights) {
-	disablePointLights = saturate(disablePointLights + _UseForwardAddFullShadows);
 	[unroll]
 	for(int i = 0; i < 4; i++){
 		KKVertexLight kLight;

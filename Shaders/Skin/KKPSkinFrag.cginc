@@ -39,7 +39,11 @@ fixed4 frag (Varyings i, int frontFace : VFACE) : SV_Target
 	float3 normal = GetNormal(i);
 	_NormalMapScale *= _SpecularNormalScale;
 	_DetailNormalMapScale *= _SpecularDetailNormalScale;
+#ifdef SKIN_BACKFACE_SEAL_PASS
+	float3 specularNormal = -NormalAdjust(i, GetNormal(i), 1);
+#else
 	float3 specularNormal = NormalAdjust(i, GetNormal(i), frontFace);
+#endif
 
 	// Cum
 	float liquidFinalMask;
@@ -48,7 +52,11 @@ fixed4 frag (Varyings i, int frontFace : VFACE) : SV_Target
 	
 	//Combines normals from cum then adjusts to WS from TS
 	float3 finalCombinedNormal = lerp(normal, liquidNormal, liquidFinalMask); 
+#ifdef SKIN_BACKFACE_SEAL_PASS
+	normal = -NormalAdjust(i, finalCombinedNormal, 1);
+#else
 	normal = NormalAdjust(i, finalCombinedNormal, frontFace);
+#endif
 	//Detailmask channels:
 	//Red 	: Specular
 	//Green : Drawn shadows
@@ -208,7 +216,13 @@ fixed4 frag (Varyings i, int frontFace : VFACE) : SV_Target
 	float4 emission = GetEmission(i.uv0);
 	finalCol = CombineEmission(finalCol, emission);
 
-#ifdef SKIN_ALPHA_BLEND
+#ifdef SKIN_BACKFACE_SEAL_PASS
+	return float4(max(finalCol, 1E-06), 1);
+#elif defined(SKIN_MASKED_ALPHA_BLEND)
+	float alpha = GetSkinMaskedAlpha(i.uv0);
+	clip(alpha - 1E-06);
+	return float4(max(finalCol, 1E-06), alpha);
+#elif defined(SKIN_ALPHA_BLEND)
 	float alpha = GetSkinAlpha(i.uv0);
 	return float4(max(finalCol, 1E-06), alpha);
 #else

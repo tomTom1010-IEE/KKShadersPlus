@@ -90,8 +90,6 @@ Shader "xukmi/HairFrontPlusTessReflect"
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE_TESS"
-		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE_TESS"
 		LOD 600
 		Tags {"Queue" = "AlphaTest+25" "RenderType" = "Transparent" }
 		// Outline
@@ -449,6 +447,8 @@ Shader "xukmi/HairFrontPlusTessReflect"
 			ENDCG
 		}
 
+		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE_TESS"
+
 		// Main Alpha
 		Pass
 		{
@@ -504,6 +504,8 @@ Shader "xukmi/HairFrontPlusTessReflect"
 
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE_TESS"
 
 		// Reflection Pass 1
 		Pass

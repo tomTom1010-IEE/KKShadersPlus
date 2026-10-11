@@ -102,7 +102,6 @@ Shader "xukmi/SkinAlphaPlusReflect"
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA"
 		LOD 600
 		Tags { "Queue" = "Transparent+40" "RenderType" = "Transparent" }
 		//Outline
@@ -305,6 +304,8 @@ Shader "xukmi/SkinAlphaPlusReflect"
 
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA"
 
 		//Reflection Pass
 		Pass {

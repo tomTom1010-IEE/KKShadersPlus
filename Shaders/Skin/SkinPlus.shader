@@ -85,7 +85,6 @@
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/SKIN"
 		LOD 600
 		Tags { "Queue" = "AlphaTest-100" "RenderType" = "TransparentCutout" }
 		//Outline
@@ -274,6 +273,8 @@
 			
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/SKIN"
 		
 		//ShadowCaster
 		Pass

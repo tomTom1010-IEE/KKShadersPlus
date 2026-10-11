@@ -43,7 +43,6 @@
 	}
 	SubShader
 	{
-		UsePass "Hidden/KKP/LegacyForwardAdd/EYE"
 		LOD 600
 		Tags {"IgnoreProjector" = "true"
 			  "Queue" = "Transparent"
@@ -111,6 +110,8 @@
 
 			ENDCG
 		}
+
+		UsePass "Hidden/KKP/LegacyForwardAdd/EYE"
 
 		//Reflection Pass
 		Pass {

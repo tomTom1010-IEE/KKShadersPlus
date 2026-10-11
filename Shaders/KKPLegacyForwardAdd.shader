@@ -480,6 +480,48 @@ Shader "Hidden/KKP/LegacyForwardAdd"
 
 		Pass
 		{
+			Name "SKIN_MASKED_ALPHA_BACK"
+			Tags { "LightMode" = "ForwardAdd" }
+			Blend One One
+			ZWrite Off
+			Cull Front
+			ColorMask RGB
+			CGPROGRAM
+			#pragma target 4.0
+			#pragma vertex vert
+			#pragma fragment fragAdd
+			#pragma multi_compile_fwdadd_fullshadows
+			#define SKIN_BACKFACE_SEAL_PASS
+			#include "Skin/KKPSkinInput.cginc"
+			#include "Skin/KKPDiffuse.cginc"
+			#include "Skin/KKPNormals.cginc"
+			#include "Skin/KKPSkinForwardAdd.cginc"
+			ENDCG
+		}
+
+		Pass
+		{
+			Name "SKIN_MASKED_ALPHA_FRONT"
+			Tags { "LightMode" = "ForwardAdd" }
+			Blend One One
+			ZWrite Off
+			Cull Back
+			ColorMask RGB
+			CGPROGRAM
+			#pragma target 4.0
+			#pragma vertex vert
+			#pragma fragment fragAdd
+			#pragma multi_compile_fwdadd_fullshadows
+			#define SKIN_MASKED_ALPHA_BLEND
+			#include "Skin/KKPSkinInput.cginc"
+			#include "Skin/KKPDiffuse.cginc"
+			#include "Skin/KKPNormals.cginc"
+			#include "Skin/KKPSkinForwardAdd.cginc"
+			ENDCG
+		}
+
+		Pass
+		{
 			Name "SKIN_TESS"
 			Tags { "LightMode" = "ForwardAdd" }
 			Blend One One
