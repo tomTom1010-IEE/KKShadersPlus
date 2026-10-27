@@ -1,6 +1,16 @@
 # KKShadersPlus
 Recreated Koikatsu shaders with more features 
 
+## Rendering Reference For Users And Agents
+
+Start with [RenderDocs](Documents/RenderDocs/README.md) for a self-contained pipeline/source map,
+texture and mask semantics, family exceptions, current shader/carrier catalog and a read-only audit.
+No previous conversation, TomX or BSDF checkout is required. This is the KKS LTS source tree;
+do not assume that its source review constitutes a new KK or game-render acceptance.
+For a new environment, follow [Blender-to-Unity-to-Studio setup](Documents/RenderDocs/EnvironmentSetup.md)
+or download the [standalone setup skill](https://github.com/tomTom1010-IEE/KKShadersPlus/releases/tag/scene-pipeline-setup-20261027).
+This documentation release does not replace the V+ LTS shader package.
+
 ## V+ LTS 1.7.6
 
 - Fix ForwardAdd pass ordering so base passes no longer overwrite added lights.

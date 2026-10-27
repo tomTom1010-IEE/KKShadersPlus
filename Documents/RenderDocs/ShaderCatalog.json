@@ -1,0 +1,1693 @@
+{
+  "schemaVersion": 2,
+  "hashContract": "sha256-utf8-lf-no-bom",
+  "excludedSourcePaths": [],
+  "reviewDate": "2026-10-27",
+  "scope": "Static source/manifest/carrier inventory; not compilation, runtime acceptance or delivered-bytecode audit.",
+  "packageGuid": "xukmi.Shaders.VanillaPlus",
+  "packageVersion": "1.7.6",
+  "game": "Koikatsu Sunshine",
+  "registeredShaderCount": 46,
+  "registeredPropertyCount": 3220,
+  "entries": [
+    {
+      "name": "xukmi/SkinPlus",
+      "source": "Shaders/Skin/SkinPlus.shader",
+      "sourceSha256": "0ac6b6b05218db3396ffd73847b4738930a8d5ccb46bc7b97ee2a76c67c6c633",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinPlus",
+      "carrier": "Prefab/a_SkinPlus.prefab",
+      "propertyCount": 76,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Outline",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN"
+      ]
+    },
+    {
+      "name": "xukmi/SkinAlphaPlus",
+      "source": "Shaders/Skin/SkinAlphaPlus.shader",
+      "sourceSha256": "7053193ab5953cfffac6ef4cbbb894bbc72e80db5c6edb310c315fade2e4ce5a",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinAlphaPlus",
+      "carrier": "Prefab/a_SkinAlphaPlus.prefab",
+      "propertyCount": 81,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Outline",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA"
+      ]
+    },
+    {
+      "name": "xukmi/SkinMaskedAlphaTwoPass",
+      "source": "Shaders/Skin/SkinMaskedAlphaTwoPass.shader",
+      "sourceSha256": "45a2b99900164c78e4487177a98731d44192065c10ab6714e46276ec6aa2ecf1",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinMaskedAlphaTwoPass",
+      "carrier": "Prefab/a_SkinMaskedAlphaTwoPass.prefab",
+      "propertyCount": 76,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "BackfaceSeal",
+        "FrontTransparent",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN_MASKED_ALPHA_BACK",
+        "Hidden/KKP/LegacyForwardAdd/SKIN_MASKED_ALPHA_FRONT"
+      ]
+    },
+    {
+      "name": "xukmi/SkinAlphaPlusReflect",
+      "source": "Shaders/Skin/SkinAlphaPlusReflect.shader",
+      "sourceSha256": "618bc811a0e90e5c438dafea367dadafc01f80bd2f9f92f0fcef5f314893a0d0",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinAlphaPlusReflect",
+      "carrier": "Prefab/a_SkinAlphaPlusReflect.prefab",
+      "propertyCount": 94,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Outline",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA"
+      ]
+    },
+    {
+      "name": "xukmi/SkinAlphaPlusTess",
+      "source": "Shaders/Skin/SkinAlphaPlusTess.shader",
+      "sourceSha256": "abf2e9d70c7200e5d9a5cb1602e7fddaff4ac2c3949f9e4e269b02813edab84b",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinAlphaPlusTess",
+      "carrier": "Prefab/a_SkinAlphaPlusTess.prefab",
+      "propertyCount": 92,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Outline",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/SkinAlphaPlusTessReflect",
+      "source": "Shaders/Skin/SkinAlphaPlusTessReflect.shader",
+      "sourceSha256": "537e5f40f78c8ed4fcbc87f38447d5da8a408681eacdb8bfc9b7bc86b5258999",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinAlphaPlusTessReflect",
+      "carrier": "Prefab/a_SkinAlphaPlusTessReflect.prefab",
+      "propertyCount": 105,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Outline",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN_ALPHA_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/SkinPlusReflect",
+      "source": "Shaders/Skin/SkinPlusReflect.shader",
+      "sourceSha256": "ae89d84a5d38e8afb8fdd548497f577e35a58466d94c6678a23465382303f1ef",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinPlusReflect",
+      "carrier": "Prefab/a_SkinPlusReflect.prefab",
+      "propertyCount": 89,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Outline",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN"
+      ]
+    },
+    {
+      "name": "xukmi/SkinPlusTess",
+      "source": "Shaders/Skin/SkinPlusTess.shader",
+      "sourceSha256": "55eebb4a6dfa2ac51a012402faf371bfa60046a175216d035107b67715ee81c3",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinPlusTess",
+      "carrier": "Prefab/a_SkinPlusTess.prefab",
+      "propertyCount": 87,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Outline",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/SkinPlusTessReflect",
+      "source": "Shaders/Skin/SkinPlusTessReflect.shader",
+      "sourceSha256": "5f2f20effa0eb3b1f729a3b50330acf0cfbf2989a851636fb5f5c9e0b58e5676",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_SkinPlusTessReflect",
+      "carrier": "Prefab/a_SkinPlusTessReflect.prefab",
+      "propertyCount": 100,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Reflection / MatCap",
+        "Outline",
+        "Emission",
+        "Liquid",
+        "Koikatsu Extension"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/SKIN_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/HairPlus",
+      "source": "Shaders/Hair/HairPlus.shader",
+      "sourceSha256": "4f6a689f276418002eb0c9505e459f76dcd499b74686d45ca338d82d689e329a",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairPlus",
+      "carrier": "Prefab/a_HairPlus.prefab",
+      "propertyCount": 54,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR"
+      ]
+    },
+    {
+      "name": "xukmi/HairPlusTess",
+      "source": "Shaders/Hair/HairPlusTess.shader",
+      "sourceSha256": "8995118496f25076eac60f4eb3137d5e2a66de6f736ca6eac41c300d8faa5f41",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairPlusTess",
+      "carrier": "Prefab/a_HairPlusTess.prefab",
+      "propertyCount": 65,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/HairPlusReflect",
+      "source": "Shaders/Hair/HairPlusReflect.shader",
+      "sourceSha256": "523a50018c5beae50ebf1fb6667bd36dd6327dab90fe65077e0f347e04bd5703",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairPlusReflect",
+      "carrier": "Prefab/a_HairPlusReflect.prefab",
+      "propertyCount": 67,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR"
+      ]
+    },
+    {
+      "name": "xukmi/HairPlusTessReflect",
+      "source": "Shaders/Hair/HairPlusTessReflect.shader",
+      "sourceSha256": "7dc9f20c94f7c68869bc69b4fab61e5edaf6bba3301420f51a3de15729a13f75",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairPlusTessReflect",
+      "carrier": "Prefab/a_HairPlusTessReflect.prefab",
+      "propertyCount": 78,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/HairFrontPlus",
+      "source": "Shaders/Hair/HairFrontPlus.shader",
+      "sourceSha256": "eda34de7555e9b2283df1e3c10a9976d7f7f58a40c2bef136f81f7d33e574a62",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairFrontPlus",
+      "carrier": "Prefab/a_HairFrontPlus.prefab",
+      "propertyCount": 64,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "OutlineAlpha1",
+        "OutlineAlpha2",
+        "Forward",
+        "MainAlpha",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE",
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE"
+      ]
+    },
+    {
+      "name": "xukmi/HairFrontPlusTess",
+      "source": "Shaders/Hair/HairFrontPlusTess.shader",
+      "sourceSha256": "c0f76f87d0a4b0550043f5cbffdae378e2a7f199c1c7140f28daf1fa66cc2ca8",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairFrontPlusTess",
+      "carrier": "Prefab/a_HairFrontPlusTess.prefab",
+      "propertyCount": 75,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "OutlineAlpha1",
+        "OutlineAlpha2",
+        "Forward",
+        "ALPHA",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE_TESS",
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/HairFrontPlusReflect",
+      "source": "Shaders/Hair/HairFrontPlusReflect.shader",
+      "sourceSha256": "bc29e10ff08baafa2b49be2df59da2c7fa1a7effb79869f9852654dab830a747",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairFrontPlusReflect",
+      "carrier": "Prefab/a_HairFrontPlusReflect.prefab",
+      "propertyCount": 68,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "OutlineAlpha1",
+        "OutlineAlpha2",
+        "Forward",
+        "ALPHA",
+        "Reflect1",
+        "Reflect2",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE",
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE"
+      ]
+    },
+    {
+      "name": "xukmi/HairFrontPlusReflectDOF",
+      "source": "Shaders/Hair/HairFrontPlusReflectDOF.shader",
+      "sourceSha256": "0d231bc4ade21eb6cce68c3217425e73e0ce170ea3e18fa8223d8120eab661e8",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairFrontPlusReflectDOF",
+      "carrier": "Prefab/a_HairFrontPlusReflectDOF.prefab",
+      "propertyCount": 69,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "DepthPrepass",
+        "Outline",
+        "OutlineAlpha1",
+        "OutlineAlpha2",
+        "Forward",
+        "ALPHA",
+        "Reflect1",
+        "Reflect2",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE",
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE"
+      ]
+    },
+    {
+      "name": "xukmi/HairFrontPlusTessReflect",
+      "source": "Shaders/Hair/HairFrontPlusTessReflect.shader",
+      "sourceSha256": "883e7a6ea959358ccfaf456e18ec318a55c7a5bcfddd4a2a6e7e11c76e58bda5",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairFrontPlusTessReflect",
+      "carrier": "Prefab/a_HairFrontPlusTessReflect.prefab",
+      "propertyCount": 79,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "OutlineAlpha1",
+        "OutlineAlpha2",
+        "Forward",
+        "ALPHA",
+        "Reflect1",
+        "Reflect2",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE_TESS",
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/EyePlus",
+      "source": "Shaders/Eye/EyePlus.shader",
+      "sourceSha256": "d37867ad6c00b6ae302ccc6b188e54ffae8e99038a4d863dc5f1496189b3fb5b",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_EyePlus",
+      "carrier": "Prefab/a_EyePlus.prefab",
+      "propertyCount": 36,
+      "hiddenPropertyCount": 0,
+      "categories": [],
+      "declaredPassNames": [
+        "Forward",
+        "Reflect"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/EYE"
+      ]
+    },
+    {
+      "name": "xukmi/EyeAlphaPlus",
+      "source": "Shaders/Eye/EyeAlphaPlus.shader",
+      "sourceSha256": "2c34a72b5caf77c2301399f1f7bca815f38c650e7ae693fb6ed838ed7b8b51d2",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_EyeAlphaPlus",
+      "carrier": "Prefab/a_EyeAlphaPlus.prefab",
+      "propertyCount": 38,
+      "hiddenPropertyCount": 0,
+      "categories": [],
+      "declaredPassNames": [
+        "StencilMask",
+        "Forward",
+        "Reflect"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/EYE_ALPHA"
+      ]
+    },
+    {
+      "name": "xukmi/EyePlusTess",
+      "source": "Shaders/Eye/EyePlusTess.shader",
+      "sourceSha256": "5bb656c42e2384109708326fed3e30b2faae812f59e97f04c4ab0bcd11884aaf",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_EyePlusTess",
+      "carrier": "Prefab/a_EyePlusTess.prefab",
+      "propertyCount": 47,
+      "hiddenPropertyCount": 0,
+      "categories": [],
+      "declaredPassNames": [
+        "Forward",
+        "Reflect"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/EYE_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/EyeWPlus",
+      "source": "Shaders/Eye/EyeWPlus.shader",
+      "sourceSha256": "c6a06ba7c60d73d07224de31f041804a862c2c1012b1bc55f44ccd77e61fcd08",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_EyeWPlus",
+      "carrier": "Prefab/a_EyeWPlus.prefab",
+      "propertyCount": 28,
+      "hiddenPropertyCount": 0,
+      "categories": [],
+      "declaredPassNames": [
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/EYE_W"
+      ]
+    },
+    {
+      "name": "xukmi/EyeWAlphaPlus",
+      "source": "Shaders/Eye/EyeWAlphaPlus.shader",
+      "sourceSha256": "e230d93633230a91d1fbd3f765a515febae6ed19b6d7f2f21304843b8ab1ec55",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_EyeWAlphaPlus",
+      "carrier": "Prefab/a_EyeWAlphaPlus.prefab",
+      "propertyCount": 29,
+      "hiddenPropertyCount": 0,
+      "categories": [],
+      "declaredPassNames": [
+        "StencilMask",
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/EYE_W_ALPHA"
+      ]
+    },
+    {
+      "name": "xukmi/EyeWPlusTess",
+      "source": "Shaders/Eye/EyeWPlusTess.shader",
+      "sourceSha256": "fc212373d4f55de7e7893f8c18583fc6055546e3ba8fc7edb3159c19290a075f",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_EyeWPlusTess",
+      "carrier": "Prefab/a_EyeWPlusTess.prefab",
+      "propertyCount": 39,
+      "hiddenPropertyCount": 0,
+      "categories": [],
+      "declaredPassNames": [
+        "Forward",
+        "Reflect",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/EYE_W_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/MainOpaquePlus",
+      "source": "Shaders/Item/MainOpaquePlus.shader",
+      "sourceSha256": "8b695271e622cd5538d92541884d2a450a2aa8a5a12eee02e97be2eb3d6cd109",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainOpaquePlus",
+      "carrier": "Prefab/a_MainOpaquePlus.prefab",
+      "propertyCount": 84,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission",
+        "Liquid"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE"
+      ]
+    },
+    {
+      "name": "xukmi/MainOpaqueBlend",
+      "source": "Shaders/Item/MainOpaqueBlend.shader",
+      "sourceSha256": "eec96dcb254d0ef0f133f0200407fb5a49556cc8d090dc4f2dc219ef11188596",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainOpaqueBlend",
+      "carrier": "Prefab/a_MainOpaqueBlend.prefab",
+      "propertyCount": 105,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Shared Textures",
+        "Stylized Textures",
+        "PBR Textures",
+        "Stylized",
+        "PBR",
+        "PBR Mix"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE"
+      ]
+    },
+    {
+      "name": "xukmi/MainOpaquePlusTess",
+      "source": "Shaders/Item/MainOpaquePlusTess.shader",
+      "sourceSha256": "4136a2084ff960f8089308d8575190686c0d4689b04fe7c3c87d0ce4fa40df94",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainOpaquePlusTess",
+      "carrier": "Prefab/a_MainOpaquePlusTess.prefab",
+      "propertyCount": 97,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission",
+        "Liquid"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/MainAlphaPlus",
+      "source": "Shaders/Item/MainAlphaPlus.shader",
+      "sourceSha256": "feeb8dbc6a75b1e9bc46988473ec95d5aaaa5a5ffc9f68c8e03adf59187ffb74",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainAlphaPlus",
+      "carrier": "Prefab/a_MainAlphaPlus.prefab",
+      "propertyCount": 86,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission",
+        "Liquid"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE_ALPHA"
+      ]
+    },
+    {
+      "name": "xukmi/MainAlphaPlusTess",
+      "source": "Shaders/Item/MainAlphaPlusTess.shader",
+      "sourceSha256": "8cc868c29c7fc3d366fab7d781e8e28bfa9f9e20423ebd93be20d7712872cc37",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainAlphaPlusTess",
+      "carrier": "Prefab/a_MainAlphaPlusTess.prefab",
+      "propertyCount": 99,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission",
+        "Liquid"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_OPAQUE_ALPHA_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/MainHeightAlpha",
+      "source": "Shaders/Item/MainHeightAlpha.shader",
+      "sourceSha256": "431664181b73ed5d9159b03ca10ab2b4a65b9c180477cfa7cfa9f4e58a95f856",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainHeightAlpha",
+      "carrier": "Prefab/a_MainHeightAlpha.prefab",
+      "propertyCount": 88,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission",
+        "Liquid"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": []
+    },
+    {
+      "name": "xukmi/MainHeightAlphaDisplace",
+      "source": "Shaders/Item/MainHeightAlphaDisplace.shader",
+      "sourceSha256": "90b6bccf806d081e98ffafb083a009f1e518e28c16c2d3d0eb7f4aae49bf039f",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainHeightAlphaDisplace",
+      "carrier": "Prefab/a_MainHeightAlphaDisplace.prefab",
+      "propertyCount": 99,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission",
+        "Liquid"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": []
+    },
+    {
+      "name": "xukmi/MainItemPlus",
+      "source": "Shaders/Item/MainItemPlus.shader",
+      "sourceSha256": "cde3396319ec5cdc30bd4de56a211d639e4475c4bc495c6f2b89d0f10d4934e8",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainItemPlus",
+      "carrier": "Prefab/a_MainItemPlus.prefab",
+      "propertyCount": 72,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM"
+      ]
+    },
+    {
+      "name": "xukmi/MainItemPlusTess",
+      "source": "Shaders/Item/MainItemPlusTess.shader",
+      "sourceSha256": "583791e4ca5ded73d56e5a6847c4654475d15dcf4b9cc8080103c2d140921411",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainItemPlusTess",
+      "carrier": "Prefab/a_MainItemPlusTess.prefab",
+      "propertyCount": 85,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/MainItemAlphaPlus",
+      "source": "Shaders/Item/MainItemAlphaPlus.shader",
+      "sourceSha256": "f7692b021ba333ac8f81c5b0fd467af6671358a40724dcc2701c209663c43200",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainItemAlphaPlus",
+      "carrier": "Prefab/a_MainItemAlphaPlus.prefab",
+      "propertyCount": 74,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_ALPHA"
+      ]
+    },
+    {
+      "name": "xukmi/MainItemAlphaPlusTess",
+      "source": "Shaders/Item/MainItemAlphaPlusTess.shader",
+      "sourceSha256": "6704108c360f083f3a9e1056db8e954bacc357f815bb1a0115a181b08275f703",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainItemAlphaPlusTess",
+      "carrier": "Prefab/a_MainItemAlphaPlusTess.prefab",
+      "propertyCount": 87,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_ALPHA_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/MainItemStudioPlus",
+      "source": "Shaders/Item/MainItemStudioPlus.shader",
+      "sourceSha256": "fe92b1c0cc7086294adb7b94c95371334ee97c4c759eb877e5dc436f4445b306",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainItemStudioPlus",
+      "carrier": "Prefab/a_MainItemStudioPlus.prefab",
+      "propertyCount": 84,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission",
+        "Studio"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_STUDIO"
+      ]
+    },
+    {
+      "name": "xukmi/MainItemStudioPlusTess",
+      "source": "Shaders/Item/MainItemStudioPlusTess.shader",
+      "sourceSha256": "f6d4c68339979e7a2e6074fdb7d94208984bd275ab162e5a5c3a03a54da72a46",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainItemStudioPlusTess",
+      "carrier": "Prefab/a_MainItemStudioPlusTess.prefab",
+      "propertyCount": 97,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission",
+        "Studio"
+      ],
+      "declaredPassNames": [
+        "Outline",
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_STUDIO_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/MainItemStudioAlphaPlus",
+      "source": "Shaders/Item/MainItemStudioAlphaPlus.shader",
+      "sourceSha256": "70fbb49e6f9b6ea1db34cb4571965261e5a042b7f42d389772302141985413c6",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainItemStudioAlphaPlus",
+      "carrier": "Prefab/a_MainItemStudioAlphaPlus.prefab",
+      "propertyCount": 84,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Emission",
+        "Studio"
+      ],
+      "declaredPassNames": [
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_STUDIO_ALPHA"
+      ]
+    },
+    {
+      "name": "xukmi/MainItemStudioAlphaPlusTess",
+      "source": "Shaders/Item/MainItemStudioAlphaPlusTess.shader",
+      "sourceSha256": "ebb418dab5896a44ce0f7d76079bb21622bc4f6597c73ab8d4494059d075a120",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_MainItemStudioAlphaPlusTess",
+      "carrier": "Prefab/a_MainItemStudioAlphaPlusTess.prefab",
+      "propertyCount": 97,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Tessellation",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Emission",
+        "Studio"
+      ],
+      "declaredPassNames": [
+        "Forward",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/ITEM_STUDIO_ALPHA_TESS"
+      ]
+    },
+    {
+      "name": "xukmi/Debug/WireframeTess",
+      "source": "Shaders/Debug/WireframeTess.shader",
+      "sourceSha256": "99d412ca9cf12a832f7bee38b9fd805eeab6cce679a39d4afe22fe7a6a193f98",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_WireframeTess",
+      "carrier": "Prefab/a_WireframeTess.prefab",
+      "propertyCount": 17,
+      "hiddenPropertyCount": 0,
+      "categories": [],
+      "declaredPassNames": [],
+      "usePass": []
+    },
+    {
+      "name": "xukmi/HairFrontPlusDOF",
+      "source": "Shaders/Hair/HairFrontPlus DOF.shader",
+      "sourceSha256": "2333a74198bf49da51e2f07ada98f81e44536859ebe573681dcbe490b26f3bc0",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairFrontPlusDOF",
+      "carrier": "Prefab/a_HairFrontPlusDOF.prefab",
+      "propertyCount": 65,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Reflection / MatCap",
+        "Base Colors",
+        "Render Options",
+        "Lighting",
+        "Specular",
+        "Rim",
+        "Outline",
+        "Emission"
+      ],
+      "declaredPassNames": [
+        "DepthPrepass",
+        "ShadowCaster",
+        "Outline",
+        "OutlineAlpha1",
+        "OutlineAlpha2",
+        "Forward",
+        "MainAlpha",
+        "ShadowCaster"
+      ],
+      "usePass": [
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_OUTSIDE",
+        "Hidden/KKP/LegacyForwardAdd/HAIR_FRONT_INSIDE"
+      ]
+    },
+    {
+      "name": "xukmi/HairFrontPlusDepthOnly",
+      "source": "Shaders/Hair/HairFrontPlusDepthOnly.shader",
+      "sourceSha256": "5618be379e824eb1afd2504a4f9716668d2974dfc93ab392f17ff2610de03483",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_HairFrontPlusDepthOnly",
+      "carrier": "Prefab/a_HairFrontPlusDepthOnly.prefab",
+      "propertyCount": 2,
+      "hiddenPropertyCount": 0,
+      "categories": [],
+      "declaredPassNames": [],
+      "usePass": []
+    },
+    {
+      "name": "xukmi/TomNormalOverlay",
+      "source": "Shaders/TomNormalOverlay.shader",
+      "sourceSha256": "a037ba946046f70ac8d406a6b092fd6d70d7d44ae702b07f843c4bc64b4da61d",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_TomNormalOverlay",
+      "carrier": "Prefab/a_TomNormalOverlay.prefab",
+      "propertyCount": 40,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Overlay",
+        "GGX",
+        "Fake Specular",
+        "MatCap",
+        "Render Options"
+      ],
+      "declaredPassNames": [
+        "ForwardBase"
+      ],
+      "usePass": []
+    },
+    {
+      "name": "xukmi/TomNormalOnlyOverlay",
+      "source": "Shaders/TomNormalOnlyOverlay.shader",
+      "sourceSha256": "0121f5491c25a5c0728eed470feb1dadea50ae56b99adfe9adb6d58d495a944e",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_TomNormalOnlyOverlay",
+      "carrier": "Prefab/a_TomNormalOnlyOverlay.prefab",
+      "propertyCount": 42,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Overlay",
+        "GGX",
+        "Fake Specular",
+        "MatCap",
+        "Render Options"
+      ],
+      "declaredPassNames": [
+        "ForwardBase"
+      ],
+      "usePass": []
+    },
+    {
+      "name": "xukmi/TomHeightNormalOverlay",
+      "source": "Shaders/TomHeightNormalOverlay.shader",
+      "sourceSha256": "c46d46b09e39913a14eece54c484093968d16c4a42b53400e4651238ad6e7c49",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_TomHeightNormalOverlay",
+      "carrier": "Prefab/a_TomHeightNormalOverlay.prefab",
+      "propertyCount": 37,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Overlay",
+        "Specular",
+        "Rim",
+        "MatCap",
+        "Render Options"
+      ],
+      "declaredPassNames": [
+        "ForwardBase"
+      ],
+      "usePass": []
+    },
+    {
+      "name": "xukmi/TomHeightDisplaceOverlay",
+      "source": "Shaders/TomHeightDisplaceOverlay.shader",
+      "sourceSha256": "6f452034ec2f93e97a8038310ed0e365829b11a068a1a39ae2b4872cc95edaae",
+      "assetBundle": "chara/xukmi/shaders/vanillaplus.unity3d",
+      "asset": "a_TomHeightDisplaceOverlay",
+      "carrier": "Prefab/a_TomHeightDisplaceOverlay.prefab",
+      "propertyCount": 43,
+      "hiddenPropertyCount": 0,
+      "categories": [
+        "Textures",
+        "Overlay",
+        "Tessellation",
+        "Specular",
+        "Rim",
+        "MatCap",
+        "Render Options"
+      ],
+      "declaredPassNames": [
+        "ForwardBase"
+      ],
+      "usePass": []
+    }
+  ],
+  "inputs": [
+    {
+      "path": "manifest.xml",
+      "sha256": "5cd6b35ff34666a9b7b77b84f785cab7ad12256021679cc4ed1ef56df752a9f1"
+    },
+    {
+      "path": "Shaders/Debug/TessDebug.cginc",
+      "sha256": "53237f0817c012a1d2f0eb406a2f09b8df70f6cf0d24c2b62c84d442f4ae5787"
+    },
+    {
+      "path": "Shaders/Debug/WireframeTess.shader",
+      "sha256": "99d412ca9cf12a832f7bee38b9fd805eeab6cce679a39d4afe22fe7a6a193f98"
+    },
+    {
+      "path": "Shaders/Eye/EyeAlphaPlus.shader",
+      "sha256": "2c34a72b5caf77c2301399f1f7bca815f38c650e7ae693fb6ed838ed7b8b51d2"
+    },
+    {
+      "path": "Shaders/Eye/EyePlus.shader",
+      "sha256": "d37867ad6c00b6ae302ccc6b188e54ffae8e99038a4d863dc5f1496189b3fb5b"
+    },
+    {
+      "path": "Shaders/Eye/EyePlusTess.shader",
+      "sha256": "5bb656c42e2384109708326fed3e30b2faae812f59e97f04c4ab0bcd11884aaf"
+    },
+    {
+      "path": "Shaders/Eye/EyeWAlphaPlus.shader",
+      "sha256": "e230d93633230a91d1fbd3f765a515febae6ed19b6d7f2f21304843b8ab1ec55"
+    },
+    {
+      "path": "Shaders/Eye/EyeWPlus.shader",
+      "sha256": "c6a06ba7c60d73d07224de31f041804a862c2c1012b1bc55f44ccd77e61fcd08"
+    },
+    {
+      "path": "Shaders/Eye/EyeWPlusTess.shader",
+      "sha256": "fc212373d4f55de7e7893f8c18583fc6055546e3ba8fc7edb3159c19290a075f"
+    },
+    {
+      "path": "Shaders/Eye/KKPEyeAlpha.cginc",
+      "sha256": "ce5fc6eb971dea1697e5bdf3a2ddb6f22cd03eb85e8d9ae3f2ead0b79765a477"
+    },
+    {
+      "path": "Shaders/Eye/KKPEyeDiffuse.cginc",
+      "sha256": "d3fc90f46dc14b196be18243dbb2acf3c6bfa1846d4baa8dd74baca3674e6166"
+    },
+    {
+      "path": "Shaders/Eye/KKPEyeForwardAdd.cginc",
+      "sha256": "76e377af07bc23ed9a5298fde4b82a5b4ea0284fb43e983db7fdacee80a004f6"
+    },
+    {
+      "path": "Shaders/Eye/KKPEyeInput.cginc",
+      "sha256": "373d96ebe0320b4c0f32cdfdbbaf589c7120939cabd658a59adf916f9d99e67c"
+    },
+    {
+      "path": "Shaders/Eye/KKPEyePlusFrag.cginc",
+      "sha256": "beba690023ad13b8e2b2e096614caa0bd98c5f8841e2e85d47ba6b9231c2a853"
+    },
+    {
+      "path": "Shaders/Eye/KKPEyeReflect.cginc",
+      "sha256": "b9942ec9bdb19179d071148737cbdfe8631b6589dd2652b945b18a3c1e7d757e"
+    },
+    {
+      "path": "Shaders/Eye/KKPEyeTess.cginc",
+      "sha256": "1b22c1356ecfe40643fd1bbc51b8be4d499a183acc578b86200f49c7ae0d1dc5"
+    },
+    {
+      "path": "Shaders/Eye/KKPEyeWPlusFrag.cginc",
+      "sha256": "2de62d703cefbd96b4a3491e8468ec063a1bd3d540f1c1cf7fabb7c939da85ee"
+    },
+    {
+      "path": "Shaders/Hair/HairFrontPlus DOF.shader",
+      "sha256": "2333a74198bf49da51e2f07ada98f81e44536859ebe573681dcbe490b26f3bc0"
+    },
+    {
+      "path": "Shaders/Hair/HairFrontPlus.shader",
+      "sha256": "eda34de7555e9b2283df1e3c10a9976d7f7f58a40c2bef136f81f7d33e574a62"
+    },
+    {
+      "path": "Shaders/Hair/HairFrontPlusDepthOnly.shader",
+      "sha256": "5618be379e824eb1afd2504a4f9716668d2974dfc93ab392f17ff2610de03483"
+    },
+    {
+      "path": "Shaders/Hair/HairFrontPlusReflect.shader",
+      "sha256": "bc29e10ff08baafa2b49be2df59da2c7fa1a7effb79869f9852654dab830a747"
+    },
+    {
+      "path": "Shaders/Hair/HairFrontPlusReflectDOF.shader",
+      "sha256": "0d231bc4ade21eb6cce68c3217425e73e0ce170ea3e18fa8223d8120eab661e8"
+    },
+    {
+      "path": "Shaders/Hair/HairFrontPlusTess.shader",
+      "sha256": "c0f76f87d0a4b0550043f5cbffdae378e2a7f199c1c7140f28daf1fa66cc2ca8"
+    },
+    {
+      "path": "Shaders/Hair/HairFrontPlusTessReflect.shader",
+      "sha256": "883e7a6ea959358ccfaf456e18ec318a55c7a5bcfddd4a2a6e7e11c76e58bda5"
+    },
+    {
+      "path": "Shaders/Hair/HairPlus.shader",
+      "sha256": "4f6a689f276418002eb0c9505e459f76dcd499b74686d45ca338d82d689e329a"
+    },
+    {
+      "path": "Shaders/Hair/HairPlusReflect.shader",
+      "sha256": "523a50018c5beae50ebf1fb6667bd36dd6327dab90fe65077e0f347e04bd5703"
+    },
+    {
+      "path": "Shaders/Hair/HairPlusTess.shader",
+      "sha256": "8995118496f25076eac60f4eb3137d5e2a66de6f736ca6eac41c300d8faa5f41"
+    },
+    {
+      "path": "Shaders/Hair/HairPlusTessReflect.shader",
+      "sha256": "7dc9f20c94f7c68869bc69b4fab61e5edaf6bba3301420f51a3de15729a13f75"
+    },
+    {
+      "path": "Shaders/Hair/KKPHairDiffuse.cginc",
+      "sha256": "6a03f9892d2c57b58622853ba531be3471fc615a2056110783644ab3252acde5"
+    },
+    {
+      "path": "Shaders/Hair/KKPHairForwardAdd.cginc",
+      "sha256": "29024a99837bc2183c31aa4d30a8714b688830ecc6d1733da67481aacdcf23cb"
+    },
+    {
+      "path": "Shaders/Hair/KKPHairInput.cginc",
+      "sha256": "8a3e0cab791ba64e5b3e5bec2e7cbf337a2e6ebb190a84f9b21280dbc1528dea"
+    },
+    {
+      "path": "Shaders/Hair/KKPHairLighting.cginc",
+      "sha256": "5225296c9ebab0dbdcfee4150e3edea27ff2000b9a2696d923c236234014b5d6"
+    },
+    {
+      "path": "Shaders/Hair/KKPHairNormals.cginc",
+      "sha256": "ddd4e0fbb42ca7c9fa79cf9f591535a9f3a1555ee6e00b3332e0f3f6955c5aa1"
+    },
+    {
+      "path": "Shaders/Hair/KKPHairReflect.cginc",
+      "sha256": "c933db61baa2945fe069d4115c65b5b07705f72121257788396ab2549f121f35"
+    },
+    {
+      "path": "Shaders/Hair/KKPHairTess.cginc",
+      "sha256": "097d670752fa0439d4e1eb37269618eed2d7d2caf566403a2478ba860b1e034a"
+    },
+    {
+      "path": "Shaders/Hair/KKPHairVertFrag.cginc",
+      "sha256": "958755c3e10f2b0cb354ff10cdb78d18ae3cc9be1f39f2356793b9d246da2bf9"
+    },
+    {
+      "path": "Shaders/Item/KKPItemBlendFrag.cginc",
+      "sha256": "2ff6a337e62820f092c7f0652bb7f56c3b3ca5028bc515c6d88297d935738506"
+    },
+    {
+      "path": "Shaders/Item/KKPItemDiffuse.cginc",
+      "sha256": "576838841007652d5b9b31f08e4aabaac5582fe4b368cf0349d4d7357c38806c"
+    },
+    {
+      "path": "Shaders/Item/KKPItemForwardAdd.cginc",
+      "sha256": "48b492e3a954b9b5b16ab2f49a89526973e600f3df8cbeb560b9cb8c456e5b57"
+    },
+    {
+      "path": "Shaders/Item/KKPItemFrag.cginc",
+      "sha256": "3e17c0272e83c46e77ba3e61120e9b6feb4226475c2cdbc7974773b9aee15d5d"
+    },
+    {
+      "path": "Shaders/Item/KKPItemHeightCore.cginc",
+      "sha256": "816bc0ba8194ea403b42167c73c307fbda6f47941baff2b82714485abec810c7"
+    },
+    {
+      "path": "Shaders/Item/KKPItemHeightDisplace.cginc",
+      "sha256": "98bd869b79b90eecf4146b8ceeae4584238d0381339ecd2ecbe297daa2583ee4"
+    },
+    {
+      "path": "Shaders/Item/KKPItemHeightFrag.cginc",
+      "sha256": "c0547d099eb99a22305d9acbfddeac83e8976a5286f46acefb8c7560d40dbef1"
+    },
+    {
+      "path": "Shaders/Item/KKPItemHeightNormals.cginc",
+      "sha256": "477151121617a146657281b6d3c991a219d2f5082d819900cd94668752d6c142"
+    },
+    {
+      "path": "Shaders/Item/KKPItemInput.cginc",
+      "sha256": "163ca8e7c42c5e304932a8b44d99005a3fe98c4f53a0c976d3d07325d8cc65fe"
+    },
+    {
+      "path": "Shaders/Item/KKPItemItemFrag.cginc",
+      "sha256": "6bd5e51f27a9ef23cd134f44a8c7d5b20872c972d7fb2ca9de3c6b03c065b4e8"
+    },
+    {
+      "path": "Shaders/Item/KKPItemNormals.cginc",
+      "sha256": "fdc586e8f5e7eb16d0f8c48763395dd4be74ef7486b74bcaee12888986f1ad8b"
+    },
+    {
+      "path": "Shaders/Item/KKPItemTess.cginc",
+      "sha256": "7414ed4880ece496f7f86b6f0db135653ee5f815c6a9b19b5b9a4b3371352918"
+    },
+    {
+      "path": "Shaders/Item/KKPStudioItemFrag.cginc",
+      "sha256": "58022a66118ca467a2c364e7f5d1bd7ecf88c181037e00e712a2c46975d12d0f"
+    },
+    {
+      "path": "Shaders/Item/MainAlphaPlus.shader",
+      "sha256": "feeb8dbc6a75b1e9bc46988473ec95d5aaaa5a5ffc9f68c8e03adf59187ffb74"
+    },
+    {
+      "path": "Shaders/Item/MainAlphaPlusTess.shader",
+      "sha256": "8cc868c29c7fc3d366fab7d781e8e28bfa9f9e20423ebd93be20d7712872cc37"
+    },
+    {
+      "path": "Shaders/Item/MainHeightAlpha.shader",
+      "sha256": "431664181b73ed5d9159b03ca10ab2b4a65b9c180477cfa7cfa9f4e58a95f856"
+    },
+    {
+      "path": "Shaders/Item/MainHeightAlphaDisplace.shader",
+      "sha256": "90b6bccf806d081e98ffafb083a009f1e518e28c16c2d3d0eb7f4aae49bf039f"
+    },
+    {
+      "path": "Shaders/Item/MainItemAlphaPlus.shader",
+      "sha256": "f7692b021ba333ac8f81c5b0fd467af6671358a40724dcc2701c209663c43200"
+    },
+    {
+      "path": "Shaders/Item/MainItemAlphaPlusTess.shader",
+      "sha256": "6704108c360f083f3a9e1056db8e954bacc357f815bb1a0115a181b08275f703"
+    },
+    {
+      "path": "Shaders/Item/MainItemPlus.shader",
+      "sha256": "cde3396319ec5cdc30bd4de56a211d639e4475c4bc495c6f2b89d0f10d4934e8"
+    },
+    {
+      "path": "Shaders/Item/MainItemPlusTess.shader",
+      "sha256": "583791e4ca5ded73d56e5a6847c4654475d15dcf4b9cc8080103c2d140921411"
+    },
+    {
+      "path": "Shaders/Item/MainItemStudioAlphaPlus.shader",
+      "sha256": "70fbb49e6f9b6ea1db34cb4571965261e5a042b7f42d389772302141985413c6"
+    },
+    {
+      "path": "Shaders/Item/MainItemStudioAlphaPlusTess.shader",
+      "sha256": "ebb418dab5896a44ce0f7d76079bb21622bc4f6597c73ab8d4494059d075a120"
+    },
+    {
+      "path": "Shaders/Item/MainItemStudioPlus.shader",
+      "sha256": "fe92b1c0cc7086294adb7b94c95371334ee97c4c759eb877e5dc436f4445b306"
+    },
+    {
+      "path": "Shaders/Item/MainItemStudioPlusTess.shader",
+      "sha256": "f6d4c68339979e7a2e6074fdb7d94208984bd275ab162e5a5c3a03a54da72a46"
+    },
+    {
+      "path": "Shaders/Item/MainOpaqueBlend.shader",
+      "sha256": "eec96dcb254d0ef0f133f0200407fb5a49556cc8d090dc4f2dc219ef11188596"
+    },
+    {
+      "path": "Shaders/Item/MainOpaquePlus.shader",
+      "sha256": "8b695271e622cd5538d92541884d2a450a2aa8a5a12eee02e97be2eb3d6cd109"
+    },
+    {
+      "path": "Shaders/Item/MainOpaquePlusTess.shader",
+      "sha256": "4136a2084ff960f8089308d8575190686c0d4689b04fe7c3c87d0ce4fa40df94"
+    },
+    {
+      "path": "Shaders/KKPCoom.cginc",
+      "sha256": "8cc0a44de7662124d3d7a0434f5dc20c8647b1cf6309c4e81ad35a014dc376a7"
+    },
+    {
+      "path": "Shaders/KKPDeclarations.cginc",
+      "sha256": "4e384b9590d1f6b6bfb6ec5b7df5b471607986a13fcd474b40bfb586cd148521"
+    },
+    {
+      "path": "Shaders/KKPDisplace.cginc",
+      "sha256": "1a0cd72d3aa9dd330215ca87f592c8a546e7f6a501c6e589433ed224fd6ba34c"
+    },
+    {
+      "path": "Shaders/KKPEmission.cginc",
+      "sha256": "4b03d92a1825f28073b4402baad93598573bb95b4afda5340a71f4d64c8eff24"
+    },
+    {
+      "path": "Shaders/KKPForwardAdd.cginc",
+      "sha256": "c9b4127e75a8a9f323205f73fd514412c47f98342fbb03e17e5a2bab896a8129"
+    },
+    {
+      "path": "Shaders/KKPLegacyForwardAdd.shader",
+      "sha256": "040c8b906ed6efada676a420219f72e20da7e74252d3400750d60a47bbf23401"
+    },
+    {
+      "path": "Shaders/KKPLighting.cginc",
+      "sha256": "9207bd134b663f77a7033480dcb172418007210413659b4cac95082373337247"
+    },
+    {
+      "path": "Shaders/KKPMatcapBlur.cginc",
+      "sha256": "c05bb87e97477b4ce0a06e8f00137f5c655a8f871f342673a2e6d3ed6559f17c"
+    },
+    {
+      "path": "Shaders/KKPPBRBRDF.cginc",
+      "sha256": "601be019fd67ef14f245dd52b3d4717e2a44b584e49d6cf68f47e42a624c17b1"
+    },
+    {
+      "path": "Shaders/KKPReflect.cginc",
+      "sha256": "f20a5924966fcfe34a0fe8267edc33398f63c27cba8aa46ae32b19766e4e3974"
+    },
+    {
+      "path": "Shaders/KKPVertexLights.cginc",
+      "sha256": "51a5a8de46045313f52648b5472d7d52e8657a9821f3e5c2e81058d757b20f60"
+    },
+    {
+      "path": "Shaders/KKPVertexLightsSpecular.cginc",
+      "sha256": "89448d54c791df8d6595a85ff9f9f6d683a882ec284dcea70824eeb3032cf6e1"
+    },
+    {
+      "path": "Shaders/Skin/KKPDiffuse.cginc",
+      "sha256": "c989eed04a0468f5dffa52ac7fca5c0cd011efd6e1d121632f710dbd3da53edd"
+    },
+    {
+      "path": "Shaders/Skin/KKPNormals.cginc",
+      "sha256": "c28cfdf47c33a621fea7d04bf2bec4635dec672fba2ef7a0d3abc79203b13ecc"
+    },
+    {
+      "path": "Shaders/Skin/KKPSkinForwardAdd.cginc",
+      "sha256": "61b1a267b67d8d0fe2b2f95b39e06e383529fbfe102343d3ba03c58d4bf48212"
+    },
+    {
+      "path": "Shaders/Skin/KKPSkinFrag.cginc",
+      "sha256": "af32b6cc2cece5919033e14ce9894dfc748c01bf759c124bce755a2dcca06794"
+    },
+    {
+      "path": "Shaders/Skin/KKPSkinInput.cginc",
+      "sha256": "62cc4e72368046df2c8ba24bb467e011457065c43648765633df0acdb97ca091"
+    },
+    {
+      "path": "Shaders/Skin/KKPSkinMaskedAlphaPass.cginc",
+      "sha256": "066bd7fb6a687ff6025c65f639c50ce57d4ca0389ff48b43966859751ff69b15"
+    },
+    {
+      "path": "Shaders/Skin/KKPSkinReflect.cginc",
+      "sha256": "f7379a86a4562281704f1d2a5d5e7a9af823b68dcd57393022a1f8eb65099d70"
+    },
+    {
+      "path": "Shaders/Skin/KKPTess.cginc",
+      "sha256": "11947367e91b2c4bd808381b877601c8849f0f6e381111f734d06ccf540bde74"
+    },
+    {
+      "path": "Shaders/Skin/SkinAlphaPlus.shader",
+      "sha256": "7053193ab5953cfffac6ef4cbbb894bbc72e80db5c6edb310c315fade2e4ce5a"
+    },
+    {
+      "path": "Shaders/Skin/SkinAlphaPlusReflect.shader",
+      "sha256": "618bc811a0e90e5c438dafea367dadafc01f80bd2f9f92f0fcef5f314893a0d0"
+    },
+    {
+      "path": "Shaders/Skin/SkinAlphaPlusTess.shader",
+      "sha256": "abf2e9d70c7200e5d9a5cb1602e7fddaff4ac2c3949f9e4e269b02813edab84b"
+    },
+    {
+      "path": "Shaders/Skin/SkinAlphaPlusTessReflect.shader",
+      "sha256": "537e5f40f78c8ed4fcbc87f38447d5da8a408681eacdb8bfc9b7bc86b5258999"
+    },
+    {
+      "path": "Shaders/Skin/SkinMaskedAlphaTwoPass.shader",
+      "sha256": "45a2b99900164c78e4487177a98731d44192065c10ab6714e46276ec6aa2ecf1"
+    },
+    {
+      "path": "Shaders/Skin/SkinPlus.shader",
+      "sha256": "0ac6b6b05218db3396ffd73847b4738930a8d5ccb46bc7b97ee2a76c67c6c633"
+    },
+    {
+      "path": "Shaders/Skin/SkinPlusReflect.shader",
+      "sha256": "ae89d84a5d38e8afb8fdd548497f577e35a58466d94c6678a23465382303f1ef"
+    },
+    {
+      "path": "Shaders/Skin/SkinPlusTess.shader",
+      "sha256": "55eebb4a6dfa2ac51a012402faf371bfa60046a175216d035107b67715ee81c3"
+    },
+    {
+      "path": "Shaders/Skin/SkinPlusTessReflect.shader",
+      "sha256": "5f2f20effa0eb3b1f729a3b50330acf0cfbf2989a851636fb5f5c9e0b58e5676"
+    },
+    {
+      "path": "Shaders/TomHeightDisplaceOverlay.shader",
+      "sha256": "6f452034ec2f93e97a8038310ed0e365829b11a068a1a39ae2b4872cc95edaae"
+    },
+    {
+      "path": "Shaders/TomHeightNormalOverlay.shader",
+      "sha256": "c46d46b09e39913a14eece54c484093968d16c4a42b53400e4651238ad6e7c49"
+    },
+    {
+      "path": "Shaders/TomNormalOnlyOverlay.shader",
+      "sha256": "0121f5491c25a5c0728eed470feb1dadea50ae56b99adfe9adb6d58d495a944e"
+    },
+    {
+      "path": "Shaders/TomNormalOverlay.shader",
+      "sha256": "a037ba946046f70ac8d406a6b092fd6d70d7d44ae702b07f843c4bc64b4da61d"
+    },
+    {
+      "path": "Tooltips/kkshadersplus_tooltips.xml",
+      "sha256": "8f35fb67a7c9dfa92b94dd466bb7cf7dcb9267a3043e5ff8be60697d35cfc569"
+    }
+  ]
+}

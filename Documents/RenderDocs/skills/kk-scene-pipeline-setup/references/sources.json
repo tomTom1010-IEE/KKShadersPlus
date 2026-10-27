@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-27",
+  "rules": [
+    "Recheck upstream instructions and recipient repository access before downloading or installing.",
+    "Pinned commits are reviewed baselines, not a claim that newer releases are unsuitable.",
+    "Author bridge and StudioMCP downloads may require repository access or an author-supplied matching source/binary package.",
+    "No third-party binaries, game files, tokens or paid assets are bundled with this skill."
+  ],
+  "sources": [
+    {"id":"blender","url":"https://www.blender.org/download/","role":"Official Blender download. Check the selected MCP add-on's compatibility rather than assuming the newest Blender is required."},
+    {"id":"blender-mcp","url":"https://github.com/ahujasid/mcp-for-blender","role":"Third-party upstream, explicitly not Blender Foundation software. Current package mcp-for-blender; old blender-mcp alias documented upstream."},
+    {"id":"uv","url":"https://docs.astral.sh/uv/getting-started/installation/","role":"Official package-runner installation reference."},
+    {"id":"unity-archive","url":"https://unity.com/releases/editor/archive","role":"Official Editor downloads; match the template/runtime lane."},
+    {"id":"kks-template","url":"https://github.com/IllusionMods/KoikatsuSunshineModdingTools","role":"KKS authoring template for the Unity 2019.4.9f1 lane. Check the downloaded ProjectVersion.txt before opening."},
+    {"id":"kk-template","url":"https://github.com/IllusionMods/KoikatsuModdingTools","role":"KK authoring template for the Unity 5.6.2f1 lane. Check the downloaded ProjectVersion.txt before opening."},
+    {"id":"unity2019-bridge","url":"https://github.com/tomTom1010-IEE/unity2019.4_bridge","commit":"8ba8d6a06b6c0fdb6d5376a4f20a35be90d851db","role":"Portable KKS bridge with Editor busy guards and optional Probe/face-weight authoring modules; project-specific diagnostics are not part of its generic API."},
+    {"id":"unity56-bridge","url":"https://github.com/tomTom1010-IEE/unity5.6_bridge","commit":"b9836f3c39139916f826a4cdb01a8bdb67a7f73f","role":"KK bridge with matching template build dependencies documented in its README."},
+    {"id":"studio-mcp","url":"https://github.com/tomTom1010-IEE/KK_StudioMCP","commit":"8ca98307c98652d7a5eda24c9810722cb1ae2698","role":"Author's Studio bridge and external .NET host. A scene package may instead include a matching StudioMCP-Source.zip plus game bridge DLLs. Follow the received version's API and timeout configuration."},
+    {"id":"dotnet8","url":"https://dotnet.microsoft.com/en-us/download/dotnet/8.0","role":"Runtime/SDK for the reviewed net8.0 host; legacy Framework targeting packs are separate."},
+    {"id":"game-api","url":"https://github.com/IllusionMods/IllusionModdingAPI","role":"Matching KKAPI/KKSAPI."},
+    {"id":"bepis","url":"https://github.com/IllusionMods/BepisPlugins","role":"Game-matched Sideloader, ExtendedSave and ordinary Screencap release family."},
+    {"id":"material-editor","url":"https://github.com/tomTom1010-IEE/KK_Plugins_MEUI_revive","role":"Maintained ME fork used in the authoring environment; inspect the chosen game build and dependencies."},
+    {"id":"depth-capture","url":"https://github.com/tomTom1010-IEE/KK_ScreenshotManagerReshadeOutpuit","role":"Optional paired-depth Screencap fork. Select the actual game-compatible release/branch and API; no external ReShade filter is required for raw export."},
+    {"id":"tomx","url":"https://github.com/tomTom1010-IEE/TomshadersX","role":"Toon-first KKS shader source/release and project RenderDocs."},
+    {"id":"tombsdf","url":"https://github.com/tomTom1010-IEE/TomBSDF","role":"Modern hard-surface KKS source/release and project RenderDocs."},
+    {"id":"vplus","url":"https://github.com/tomTom1010-IEE/KKShadersPlus","role":"Independent legacy-compatible V+ source/release; check edition/branch and do not install old combined duplicate identities."},
+    {"id":"codex-mcp","url":"https://learn.chatgpt.com/docs/extend/mcp?surface=cli","role":"Official current Codex stdio/TOML/MCP configuration."},
+    {"id":"codex-skills","url":"https://learn.chatgpt.com/docs/build-skills","role":"Official skill structure, discovery and invocation. Host-specific legacy paths may differ."}
+  ]
+}

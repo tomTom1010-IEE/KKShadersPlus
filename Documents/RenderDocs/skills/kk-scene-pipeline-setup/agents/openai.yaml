@@ -1,0 +1,4 @@
+interface:
+  display_name: "KK Scene Pipeline Setup"
+  short_description: "Set up Blender, Unity and Studio scene authoring"
+  default_prompt: "Use $kk-scene-pipeline-setup to inspect my KK or KKS environment, fill the missing setup steps, and verify one Blender-to-Unity-to-Studio scene round trip."

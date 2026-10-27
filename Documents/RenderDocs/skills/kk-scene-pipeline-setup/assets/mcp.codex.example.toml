@@ -1,0 +1,19 @@
+# Example only: merge into the target host's config after replacing paths.
+# Do not overwrite an existing config or install duplicate server entries.
+[mcp_servers.blender]
+command = "uvx"
+args = ["mcp-for-blender"]
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.studio]
+command = "dotnet"
+args = ["C:/Modding/StudioMCP/src/StudioMcp.Host/bin/Release/net8.0/StudioMcp.Host.dll"]
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+
+[mcp_servers.studio.env]
+STUDIOMCP_CONNECTION = "C:/Games/KKS/UserData/StudioMCP/connection.json"
+# Contains no credential: the local descriptor is read by the host, not pasted here.
+
+# Unity Codex Bridge has no mcp_servers entry. Use its project-local file queue.

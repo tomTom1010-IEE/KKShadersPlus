@@ -53,3 +53,32 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Keep portable RenderDocs, not machine-local authoring state or test output.
+**/AGENTS.md
+**/AGENTS.md.meta
+**/Agent-Knowledge/
+**/Agent-Knowledge.meta
+**/connection.json
+**/connection.json.meta
+**/Tests/
+**/Tests.meta
+**/Reports/
+**/Reports.meta
+**/Evidence/
+**/Evidence.meta
+**/Captures/
+**/Captures.meta
+**/Cache/
+**/Cache.meta
+**/CodexBridge/
+**/CodexBridge.meta
+**/bin/
+**/obj/
+**/__pycache__/
+*.log
+*.raw
+*.result.json
+*.receipt.json
+/.codex/
+/.agents/
